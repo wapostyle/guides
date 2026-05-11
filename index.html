@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wapo's Game Guides</title>
+<style>
+  :root {
+    --bg:       #1a1a1a;
+    --bg2:      #242424;
+    --bg3:      #2e2e2e;
+    --border:   #3a3a3a;
+    --text:     #e0e0e0;
+    --muted:    #888;
+    --accent:   #7eb8e8;
+    --accent2:  #a8d0f0;
+    --green:    #6fbf8e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  header {
+    background: #111;
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px;
+  }
+  header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  header p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .guide-card {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+  .guide-card:hover {
+    border-color: var(--accent);
+    background: var(--bg3);
+  }
+  .guide-card[data-status="planned"] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: default;
+  }
+  .guide-card[data-status="wip"] {
+    border-style: dashed;
+  }
+
+  .card-inner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .card-cover {
+    width: 112px;
+    min-width: 112px;
+    height: 144px;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+  }
+  .card-cover-placeholder {
+    width: 112px;
+    min-width: 112px;
+    height: 144px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+  }
+
+  .card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
+  .card-platform {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+  }
+
+  .card-summary {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-summary.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+  }
+
+  .show-more {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 11px;
+    color: var(--accent);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: none;
+  }
+  .show-more:hover { text-decoration: underline; }
+
+  .card-progress {
+    margin-top: 10px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .card-progress-fill {
+    height: 100%;
+    background: #5a9e6f;
+    border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .card-progress-label {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  footer a:hover { text-decoration: underline; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 24px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Wapo's Game Guides</h1>
+  <p>Progress is saved on this device. Use the Reset button on any guide to clear it.</p>
+</header>
+
+<main>
+
+  <div class="guide-grid">
+
+    <!--
+      TO ADD A NEW GUIDE:
+      1. Create a new folder with the game name (e.g. silent-hill/)
+      2. Put checklist.html and cover.webp inside it
+      3. Copy a card block below, update the folder name, title, platform, and year
+      4. Insert it in alphabetical order
+      data-status: "complete" | "wip" | "planned"
+    -->
+
+    <!-- K -->
+    <a class="guide-card" href="koudelka/checklist.html" data-status="complete">
+      <div class="card-inner">
+        <img class="card-cover" src="koudelka/cover.webp" alt="Koudelka">
+        <div class="card-info">
+          <div class="card-title">Koudelka</div>
+          <div class="card-platform">PlayStation 1<br>1999</div>
+          <div class="card-summary" id="sum-koudelka">A young gypsy woman investigates an old monastery where rumors of supernatural creatures prove true. She joins forces with a priest and a thief as the three find themselves hunted by monsters in this survival horror RPG with turn-based combat.</div>
+          <button class="show-more" onclick="toggleSummary(event, 'sum-koudelka', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-koudelka" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-koudelka">Not started</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- ADD MORE GUIDES HERE IN ALPHABETICAL ORDER -->
+
+  </div>
+
+</main>
+
+<footer>
+  If a guide helped you, consider <a href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">buying me a coffee ☕</a>
+</footer>
+
+<script>
+  function toggleSummary(e, id, btn) {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    const expanded = el.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Show less' : 'Show more';
+  }
+
+  function loadProgress(key, barId, labelId) {
+    try {
+      const meta = JSON.parse(localStorage.getItem('wapo-guides-meta') || '{}');
+      const data = meta[key];
+      if (!data) return;
+      document.getElementById(barId).style.width = data.pct + '%';
+      const label = document.getElementById(labelId);
+      if (data.pct === 0) label.textContent = 'Not started';
+      else if (data.pct === 100) label.textContent = 'Complete!';
+      else label.textContent = `${data.checked} / ${data.total} steps — ${data.pct}%`;
+    } catch(e) {}
+  }
+
+  loadProgress('koudelka-checklist', 'prog-koudelka', 'prog-label-koudelka');
+</script>
+</body>
+</html>
