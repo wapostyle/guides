@@ -94,6 +94,9 @@
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+    position: sticky;
+    top: 52px;
+    z-index: 50;
   }
   #toc a {
     color: var(--h1-color);
@@ -121,10 +124,6 @@
     margin: 36px 0 12px;
     padding: 8px 10px;
     border-bottom: 2px solid var(--border);
-    position: sticky;
-    top: 90px;
-    z-index: 50;
-    background: var(--bg);
   }
   .disc-header:first-child { margin-top: 0; }
 
@@ -134,10 +133,6 @@
     color: var(--h2-color);
     margin: 20px 0 6px;
     padding: 4px 10px;
-    position: sticky;
-    top: 134px;
-    z-index: 49;
-    background: var(--bg);
   }
 
   /* ── Achievement lines ── */
@@ -297,6 +292,7 @@
 
 <div id="site-header">
   <h1><a href="../index.html">← Wapo's Game Guides</a></h1>
+  <span style="color:var(--h2-color);font-size:16px;font-weight:600;">Koudelka</span>
   <div class="header-controls">
     <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
     <button class="btn" id="toggle-done">Hide Completed</button>
