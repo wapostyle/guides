@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koudelka – Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --ach-color: #6fbf8e;
+    --warn-color:#e8b84a;
+    --note-color:#999;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+    --ext-color: #777;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 51px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #toc-kofi { margin-left: auto; }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); }
+  .disc-header:first-child { margin-top: 0; }
+  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; position: sticky; top: 90px; z-index: 49; background: var(--bg); }
+  .ach { color: var(--ach-color); font-size: 12.5px; padding: 2px 0 2px 4px; margin: 2px 0; cursor: pointer; border-left: 2px solid transparent; border-radius: 3px; }
+  .ach:hover { background: var(--bg2); border-left-color: var(--ach-color); }
+  .ach.ach-done { color: var(--done-text); text-decoration: line-through; border-left-color: var(--check-checked); }
+  body.hide-done .ach.ach-done { display: none; }
+  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 2px 0 2px 4px; margin: 2px 0; }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '⚠ '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  .item-ref { font-size: 13px; padding: 3px 0 3px 4px; margin: 2px 0; color: var(--text); }
+  .item-ref b { color: var(--h2-color); }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
+<div id="site-header">
+  <h1><a href="../index.html">← Wapo's Game Guides</a></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+  </div>
+</div>
+<div id="progress-bar" style="height:3px;background:var(--border);"><div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div></div>
+<div id="toc">
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#disc1">Disc 1</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#disc2">Disc 2</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#disc3">Disc 3</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#disc4">Disc 4</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#optional">Optional</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#collectibles">Collectibles</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#grind">Grind</a>
+  <a href="https://guides.cookseyonline.com/koudelka/checklist#items">Key Items</a>
+  <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+</div>
+<div id="content">
+
+<!-- ═══════════════════════════════════════════ DISC 1 -->
+<div class="disc-header" id="disc1">DISC 1</div>
+
+<div class="section-header">Opening</div>
+<div class="ach">🏆 <b>I'm no Angel</b> — Defeat Werewolf and save Edward from certain death</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Fight the Werewolf — shoot it, move to the right corner. Shoot again, run left. One more shot finishes it.</label></div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">Talk to Edward — he joins the party</label></div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">Head through the door Edward was slumped against</label></div>
+<div class="check-item"><input type="checkbox" id="c4"><label for="c4">Examine the small red item on the ground — pick up the Potion</label></div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Go through the lower door (other door is locked)</label></div>
+<div class="check-item"><input type="checkbox" id="c6"><label for="c6">Pick up Pistol Rounds — reload Koudelka's gun if needed</label></div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Go through the door on the right</label></div>
+
+<div class="section-header">Caretaker's Quarter</div>
+<div class="ext">[ Exterminator I ] Win 22 consecutive battles in Caretakers Quarters without fleeing — single session</div>
+<div class="ach">🏆 <b>Exterminator I: Caretakers Quarters</b> — Win 22 consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Monastery Map</b> — Obtain Monastery Map</div>
+<div class="ach">🏆 <b>They're all of Princess Alice!</b> — Watch (do NOT skip) optional FMV in Caretakers Quarters: 1F Study</div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Check the painting — pick up the Dirk</label></div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Climb the left ladder — pick up the Monastery Map from the barrel</label></div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Go downstairs — enter the first door for the Keepers scene. Receive Pistol Rounds at end of scene.</label></div>
+<div class="ach">🏆 <b>Caretakers</b> — Meet kind elderly couple taking care of monastery</div>
+<div class="note">Do NOT skip the FMV in the 1F Study room — just watch it</div>
+
+<div class="section-header">Kitchen</div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Keeper's room is locked (needs Red Key) — continue down the hallway and enter the other door</label></div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">Watch the scene — Edward falls ill from the soup</label></div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">Head left for an item, then backtrack and go up through the door here</label></div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14">Follow the path and grab any items on the ground</label></div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15">Backtrack to the kitchen — go through the right door</label></div>
+<div class="check-item"><input type="checkbox" id="c16"><label for="c16">Go down the small steps — examine the table near the screen for Listel and Vital Hammer</label></div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17">Examine the ground near the stoves for a Pipe</label></div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18">Head up past the ovens and go through the door</label></div>
+
+<div class="section-header">Herb Garden</div>
+<div class="ach">🏆 <b>It wasn't the Kind of Problem that Faith Alone Could Solve</b> — Defeat Giant Plant and join with James</div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19">Equip Vital Hammer or Knife on Edward — examine the left side of the room until the Evil Plant attacks</label></div>
+<div class="note">Boss – Evil Plant | Weak to Fire. Vital Hammer recommended — heals Edward on each hit. Koudelka casts Flare. When Edward deals 0 damage, one more Flare finishes it.</div>
+<div class="check-item"><input type="checkbox" id="c20"><label for="c20">Talk to the collapsed man — James joins the party</label></div>
+<div class="check-item"><input type="checkbox" id="c21"><label for="c21">Use the water behind James to save — grind a few levels for James here before continuing</label></div>
+
+<div class="section-header">Backtrack — 2nd Floor</div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22">Backtrack to the hall with the Keepers — go up the stairs</label></div>
+<div class="check-item"><input type="checkbox" id="c23"><label for="c23">Open the door at end of hall — grab the Listel inside — go through the door on the other side</label></div>
+<div class="check-item"><input type="checkbox" id="c24"><label for="c24">You are now outside — fight Knights here to obtain L Mails if possible</label></div>
+<div class="check-item"><input type="checkbox" id="c25"><label for="c25">Go through the upper door — head up through the sniper scene — go through the door at the end</label></div>
+<div class="check-item"><input type="checkbox" id="c26"><label for="c26">Head down the stairs — examine the door on the right to trigger the Seeker Trio boss fight</label></div>
+
+<div class="section-header">Seeker Trio</div>
+<div class="ach">🏆 <b>Seeker Trio</b> — Defeat Seeker Trio</div>
+<div class="note">Boss – Red Idol / Blue Idol / Green Idol. Kill order: Green first (Edward attacks + Koudelka Flare), then Blue, then Red last. Do NOT use Flare on Red Idol — physical attacks only. If Red turns horizontal it will unleash a big attack — try to finish it that turn. L Mail on Edward helps.</div>
+<div class="check-item"><input type="checkbox" id="c27"><label for="c27">James uses Fortify INT on Koudelka and Fortify STR on Edward throughout the fight</label></div>
+<div class="check-item"><input type="checkbox" id="c28"><label for="c28">Optional: backtrack to the Herb Garden save point to refill HP/MP before continuing</label></div>
+<div class="check-item"><input type="checkbox" id="c29"><label for="c29">Go through the door after the fight</label></div>
+
+<div class="section-header">Dungeon — Upper Floor</div>
+<div class="ext">[ Exterminator II ] Win 22 consecutive battles in Dungeon area without fleeing — single session (spans Disc 1 and Disc 2)</div>
+<div class="ach">🏆 <b>Exterminator II: Dungeon</b> — Win 22 consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Mummy Bride</b> — Defeat Mummy Bride</div>
+<div class="warn-line">Grind to at least Level 6 before the Doppelgangers — they are significantly harder</div>
+<div class="check-item"><input type="checkbox" id="c30"><label for="c30">Head up and right — take the door on the left — watch the scene, then examine the closet on the right to trigger boss</label></div>
+<div class="note">Boss – Mira (Mummy Bride) | Undead — cast Heal directly on her to deal damage. Equip Koudelka's J Ring first for boosted Heal damage. Two or three rounds of Heal from Koudelka and James finishes her.</div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31">Open the closet AGAIN after the fight — pick up the Rope Ladder</label></div>
+<div class="check-item"><input type="checkbox" id="c32"><label for="c32">Head back to the hallway and continue following the path — watch the FMV with the little girl (Charlotte)</label></div>
+<div class="check-item"><input type="checkbox" id="c33"><label for="c33">Use the Rope Ladder at the platform edge — climb down</label></div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34">Go up past the rope ladder and left, then all the way up — examine the corpse for Pistol Rounds and Dried Food</label></div>
+<div class="check-item"><input type="checkbox" id="c35"><label for="c35">Go back and take the door on the left — go through the next door</label></div>
+
+<div class="section-header">Priest's Quarters</div>
+<div class="ach">🏆 <b>Guard's Diary</b> — Obtain Guard's Diary</div>
+<div class="ach">🏆 <b>Doppelgangers</b> — Defeat Doppelgangers</div>
+<div class="check-item"><input type="checkbox" id="c36"><label for="c36">Pick up the Red Glass Part from the floor near the Stained Glass Window</label></div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37">Save at the holy water — step onto the platform in front of the window to trigger boss fight</label></div>
+<div class="note">Boss – Doppelgangers. Kill D. James first — he heals the others. Then D. Edward (most physical damage). D. Koudelka last. Focus all attacks on one at a time, keep someone healing. Struggling? Raise Koudelka's PIE to reduce magic damage taken.</div>
+<div class="check-item"><input type="checkbox" id="c38"><label for="c38">Save at the holy water after the fight — step back down — scene triggers</label></div>
+<div class="check-item"><input type="checkbox" id="c39"><label for="c39">Head through the door on the right — FMV triggers — floor gives way — switch to Disc 2</label></div>
+
+<!-- ═══════════════════════════════════════════ DISC 2 -->
+<div class="disc-header" id="disc2">DISC 2</div>
+
+<div class="section-header">Dungeon Cell</div>
+<div class="ach">🏆 <b>Jailer</b> — Defeat the Jailer</div>
+<div class="check-item"><input type="checkbox" id="c40"><label for="c40">Examine around the cell until you get a message containing the word "Corpses"</label></div>
+<div class="check-item"><input type="checkbox" id="c41"><label for="c41">Head up to the bars — scene triggers with James, Edward, and Charlotte — Charlotte sends the Jailer</label></div>
+<div class="note">Boss – Jailer | James uses Fortify STR on Edward. Koudelka casts Flare (~450 damage). Take him down before he gets close.</div>
+<div class="check-item"><input type="checkbox" id="c42"><label for="c42">After the fight, go through the crumbled wall passage that opens to the left</label></div>
+<div class="check-item"><input type="checkbox" id="c43"><label for="c43">Examine the room — pick up the Mace and Knuckles</label></div>
+<div class="check-item"><input type="checkbox" id="c44"><label for="c44">Head around the table — go through the door on the left</label></div>
+<div class="warn-line">There is a door locked with a Green Key and the key is RIGHT NEXT TO IT — DO NOT pick up the Green Key. It triggers an unwinnable battle.</div>
+<div class="check-item"><input type="checkbox" id="c45"><label for="c45">Continue down the hallway — enter the door you come across</label></div>
+<div class="check-item"><input type="checkbox" id="c46"><label for="c46">Examine the left side of the room — pick up the Whiskey</label></div>
+<div class="check-item"><input type="checkbox" id="c47"><label for="c47">Continue down the path to an intersection — take the LEFT path until you get the "Something's Not Right…" message</label></div>
+
+<div class="section-header">Underground Shrine — Mad Fly</div>
+<div class="ext">[ Exterminator III ] Win battles in Underground Shrine area without fleeing</div>
+<div class="ach">🏆 <b>Mad Fly</b> — Defeat Mad Fly</div>
+<div class="ach">🏆 <b>Exterminator III: Underground Shrine</b> — Win consecutive battles without fleeing</div>
+<div class="note">Boss – Mad Fly | HP 3,050. He moves fast — keep him away from Koudelka (he can Silence her). Buff Edward with Fortify STR and VIT first. James heals Edward throughout. Koudelka uses Flare or Level 2 spell. He has a multi-hit attack for ~700 damage total.</div>
+<div class="check-item"><input type="checkbox" id="c48"><label for="c48">After the fight, use the holy water to heal and save</label></div>
+<div class="check-item"><input type="checkbox" id="c49"><label for="c49">Go back down — take the OTHER path (right at the intersection) — go through the door</label></div>
+<div class="check-item"><input type="checkbox" id="c50"><label for="c50">Examine the RIGHT side of this room for Pistol Rounds before going through the door</label></div>
+
+<div class="section-header">Treasure Room</div>
+<div class="check-item"><input type="checkbox" id="c51"><label for="c51">Enter the treasure room — watch the scene — grab the Crossbow from the table to the LEFT of the treasure</label></div>
+<div class="check-item"><input type="checkbox" id="c52"><label for="c52">Grab the crossbow arrows from across the room (opposite side from the Crossbow)</label></div>
+<div class="check-item"><input type="checkbox" id="c53"><label for="c53">Go through the door on the LEFT wall (the other door is locked — you will open it later with the Red Key)</label></div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54">Go up the stairs — grab the Listel from the table at the top</label></div>
+<div class="check-item"><input type="checkbox" id="c55"><label for="c55">Check the corner of the wall near the stairs — examine the four symbols carved there</label></div>
+<div class="ach">🏆 <b>Design on the Floor</b> — Examine the four symbols near the stairs</div>
+<div class="check-item"><input type="checkbox" id="c56"><label for="c56">Go through the door — pick up all items scattered across the room — go through the next door</label></div>
+
+<div class="section-header">Storage Rooms — Dark Young</div>
+<div class="ext">[ Exterminator IV ] Win battles in Storage Rooms area without fleeing</div>
+<div class="ach">🏆 <b>Old Letter</b> — Obtain the Old Letter (obtained after Greek chest opens — see Library section)</div>
+<div class="ach">🏆 <b>Dark Young</b> — Defeat Dark Young</div>
+<div class="ach">🏆 <b>Exterminator IV: Storage Rooms</b> — Win consecutive battles without fleeing</div>
+<div class="check-item"><input type="checkbox" id="c57"><label for="c57">Head to the center piece to trigger the Dark Young boss fight</label></div>
+<div class="note">Boss – Dark Young | HP 2,900, Weak to Fire. Can silence your entire party. Flare does 600–700 at Level 2. Keep Silence off with Panaceas. James heals and cures Silence; Edward attacks; Koudelka casts Flare.</div>
+<div class="check-item"><input type="checkbox" id="c58"><label for="c58">Use the center piece to heal and save after the fight</label></div>
+<div class="check-item"><input type="checkbox" id="c59"><label for="c59">Go through the door on the RIGHT side of the room — watch the FMV (chandelier falls)</label></div>
+<div class="check-item"><input type="checkbox" id="c60"><label for="c60">Pick up the arm on the floor — head up the stairs</label></div>
+
+<div class="section-header">Alias Fight</div>
+<div class="ach">🏆 <b>Alias</b> — Defeat Alias</div>
+<div class="note">Boss – Alias | HP 2,100 + Crates (1,000) + Barrels (1,000). First use one Flare to destroy both Crates and Barrels. Equip Edward with the Crossbow (already in inventory) — reload every other turn but does massive damage. High enough STR kills Alias in 2 shots. Heal Edward from gun attacks.</div>
+<div class="check-item"><input type="checkbox" id="c61"><label for="c61">Talk to Alias slumped against the wall after the fight — watch the scene</label></div>
+<div class="check-item"><input type="checkbox" id="c62"><label for="c62">Examine Alias's body for Pistol Rounds</label></div>
+
+<div class="section-header">Backtrack — Red Key Doors &amp; Mask</div>
+<div class="ach">🏆 <b>Mask</b> — Obtain the Mask</div>
+<div class="check-item"><input type="checkbox" id="c63"><label for="c63">Backtrack to the treasure room — use the Red Key to unlock the other door — grab all items inside</label></div>
+<div class="check-item"><input type="checkbox" id="c64"><label for="c64">Return to the chandelier room — go to the crate LEFT of the stairs — climb up it twice — go through the door (choose Yes)</label></div>
+<div class="check-item"><input type="checkbox" id="c65"><label for="c65">You are now near the beginning of the game — go through the bottom door then through the door on the right</label></div>
+<div class="check-item"><input type="checkbox" id="c66"><label for="c66">Go down the stairs — enter the Keepers room (Red Key is discarded here automatically)</label></div>
+<div class="check-item"><input type="checkbox" id="c67"><label for="c67">Examine the table inside for an item — go down</label></div>
+<div class="check-item"><input type="checkbox" id="c68"><label for="c68">Take the door on the right — head right — examine the painting on the wall to trigger the FMV (ship / Charlotte underwater / bodies on shore)</label></div>
+<div class="check-item"><input type="checkbox" id="c69"><label for="c69">Go down — examine the table for a doll (Doll 1)</label></div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">Head right — examine the couch for the Mask</label></div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">Backtrack all the way to the Alias area — go through the door next to Alias</label></div>
+
+<div class="section-header">Triangle Puzzle Room</div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72">Examine the table for Shotgun Shells</label></div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Step on the triangle — follow these steps exactly: 1 Left, 2 Up, 1 Down, 2 Left, 2 Down — a clicking sound confirms success</label></div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Go through the now-unlocked door — go down the stairs</label></div>
+<div class="check-item"><input type="checkbox" id="c75"><label for="c75">Head to the right section — grab the High Potion near the bookcase</label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Enter the door — grab all items in the room</label></div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">Use the printing machine at the bottom — the wall behind you crumbles</label></div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">Go through the crumbled wall — grab both items in this room</label></div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79">Exit and take the door to the LEFT of the bed-like structure — grab the items inside</label></div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">Examine the door — place the two statues you have. A third is still needed.</label></div>
+
+<div class="section-header">Library — Third Statue &amp; Greek Chest</div>
+<div class="ext">[ Exterminator V ] Win battles in Library area without fleeing</div>
+<div class="ach">🏆 <b>Exterminator V: Library</b> — Win consecutive battles without fleeing</div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81">Backtrack to the Dark Young room — go through the LEFT door — down the stairs — examine the stone tablet on the wall to get the third statue</label></div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Head back to the Library entrance — go LEFT from the entrance — through the door here</label></div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Grab items in the room — find the locked Greek alphabet chest — note its location (cannot open yet)</label></div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Return to the Library — go down the stairs into the two-statue room — place the third statue</label></div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">Go through the door — head up to the center piece to trigger the Chimera fight</label></div>
+
+<div class="section-header">Chimera</div>
+<div class="ach">🏆 <b>Chimera</b> — Defeat Chimera</div>
+<div class="note">Boss – Chimera | HP 5,000, Weak to Earth. Fast and can silence your whole party. Keep Chimera away from Koudelka and James. Koudelka casts Megalith (Level 2 does ~1,700 damage). James uses Fortify STR/VIT on Edward and heals. Edward attacks with your strongest weapon.</div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86">After the fight, step down to the right to trigger a scene</label></div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87">Backtrack to the crumbled wall room (from the printing machine) — go through the door the wall revealed — head right — go through the bottom door — you are now outside</label></div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">Go LEFT to enter the Church Nave</label></div>
+
+<div class="section-header">Church Nave — Stained Glass (First Visit)</div>
+<div class="ext">[ Exterminator VI ] Win battles in Church Nave area without fleeing</div>
+<div class="ach">🏆 <b>Exterminator VI: Church Nave</b> — Win consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Creature's Hint I</b> — Find the first creature clue in the Nave area</div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89">Grab the item sitting in the middle of the light (center of the Nave)</label></div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">Go through the door to the LEFT — examine the Stained Glass window</label></div>
+<div class="note">On this first visit you can only place the Red Glass Part (and Brown Glass Part if it dropped from Alias). The Green Glass Part is obtained later — do NOT leave without placing what you have.</div>
+<div class="check-item"><input type="checkbox" id="c91"><label for="c91">Place available glass pieces in the window</label></div>
+<div class="check-item"><input type="checkbox" id="c92"><label for="c92">Backtrack to the clock — go to the RIGHT of the clock and climb up it</label></div>
+<div class="check-item"><input type="checkbox" id="c93"><label for="c93">At the top, press action to place the Nave item in the slot — a path opens</label></div>
+
+<div class="section-header">Music Box Puzzle &amp; Roger Bacon</div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94">Solve the music box floor puzzle: step on the TOP icon → then the icon STRAIGHT ACROSS (past the middle) → then the icon to the LEFT → then the icon ACROSS from where you are — door behind you unlocks</label></div>
+<div class="check-item"><input type="checkbox" id="c95"><label for="c95">Open the door — watch the FMV (old man in coffin / Emigre Document)</label></div>
+<div class="check-item"><input type="checkbox" id="c96"><label for="c96">Watch the scene — James reveals he is from the Vatican on a mission to retrieve the Emigre Document</label></div>
+<div class="check-item"><input type="checkbox" id="c97"><label for="c97">Pick up the Green Glass Part from the ground</label></div>
+
+<div class="section-header">Stained Glass — Complete &amp; Greek Chest</div>
+<div class="ach">🏆 <b>Hymn to the Angels</b> — Complete the Stained Glass window</div>
+<div class="ach">🏆 <b>Old Letter</b> — Obtain the Old Letter from the Greek chest</div>
+<div class="check-item"><input type="checkbox" id="c98"><label for="c98">Backtrack all the way to the Stained Glass room in the Nave — place the Green Glass Part to complete the window</label></div>
+<div class="check-item"><input type="checkbox" id="c99"><label for="c99">A glimpse of the Greek chest appears — backtrack to it in the Library area — it auto-opens — receive and read the Old Letter</label></div>
+
+<div class="section-header">Nave — Gargoyle (Flee!)</div>
+<div class="check-item"><input type="checkbox" id="c100"><label for="c100">Return to the Nave — go through the now-unlocked door</label></div>
+<div class="check-item"><input type="checkbox" id="c101"><label for="c101">Head up — watch the FMV — the Gargoyle forms and separates Koudelka from Edward and James</label></div>
+<div class="warn-line">You CANNOT win this fight — FLEE immediately with Koudelka. Do not waste time attacking.</div>
+<div class="check-item"><input type="checkbox" id="c102"><label for="c102">Take a step down after regaining control — switch to Disc 3</label></div>
+
+<!-- ═══════════════════════════════════════════ DISC 3 -->
+<div class="disc-header" id="disc3">DISC 3</div>
+
+<div class="section-header">Underground Passage — Statues &amp; Pendant</div>
+<div class="ext">[ Exterminator VII ] Win battles in Inner Grounds area without fleeing</div>
+<div class="ext">[ Exterminator VIII ] Win battles in Underground Passage area without fleeing</div>
+<div class="ach">🏆 <b>Exterminator VII: Inner Grounds</b> — Win consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Exterminator VIII: Underground Passage</b> — Win consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Pendant</b> — Obtain the Pendant from the fountain</div>
+<div class="note">Koudelka is alone for most of Disc 3. Tornado at Level 2 does ~1,600 damage and is your primary attack.</div>
+<div class="check-item"><input type="checkbox" id="c103"><label for="c103">Head down — at the split take the LEFT path — find the statue and place the correct Icon item on it</label></div>
+<div class="check-item"><input type="checkbox" id="c104"><label for="c104">Search for all other statues in the area and place Icon items on each one</label></div>
+<div class="check-item"><input type="checkbox" id="c105"><label for="c105">Go back to the split — take the other path — examine the RIGHT of the (now dry) waterfall area for an item</label></div>
+<div class="check-item"><input type="checkbox" id="c106"><label for="c106">Head right — go up the stairs — find the save fountain. If all statues are filled the water is gone — press action around the fountain to find the Pendant</label></div>
+<div class="warn-line">Make room in your inventory for the Pendant — it is required to finish the game. Do not drop it.</div>
+<div class="ach">🏆 <b>Creature's Hint II</b> — Find the second creature clue in the underground passage area</div>
+<div class="check-item"><input type="checkbox" id="c107"><label for="c107">Head to where the waterfall was — go through to find the guillotine room</label></div>
+<div class="check-item"><input type="checkbox" id="c108"><label for="c108">Examine the room for Rifle Ammo</label></div>
+<div class="check-item"><input type="checkbox" id="c109"><label for="c109">Go behind the guillotine — head down the stairs — watch the FMV (Ogden and Bessy scene)</label></div>
+<div class="check-item"><input type="checkbox" id="c110"><label for="c110">After the scene, examine Bessy's body — pick up the Blue Key and the Rifle</label></div>
+<div class="check-item"><input type="checkbox" id="c111"><label for="c111">Go down the stairs again behind the guillotine — examine the back of the torture table for a bottle of blood</label></div>
+<div class="check-item"><input type="checkbox" id="c112"><label for="c112">Head to the door on the right — trigger the scene with Edward and James (meet in the Library)</label></div>
+<div class="check-item"><input type="checkbox" id="c113"><label for="c113">Head back toward the ladder area — go through the door — follow the path upward to a room with two doors</label></div>
+
+<div class="section-header">Graveyard Area — Gug</div>
+<div class="ext">[ Exterminator IX ] Win battles in Graveyard area without fleeing</div>
+<div class="ach">🏆 <b>Gug</b> — Defeat Gug</div>
+<div class="ach">🏆 <b>Exterminator IX: Graveyard</b> — Win consecutive battles without fleeing</div>
+<div class="check-item"><input type="checkbox" id="c114"><label for="c114">Take the upper door — head up to trigger the Gug boss fight</label></div>
+<div class="note">Boss – Gug | HP 5,200, Weak to Wind. Koudelka is alone — spam Tornado (Level 2 does ~1,600 damage). Your HP/VIT should be high enough to tank hits. Just keep casting.</div>
+<div class="check-item"><input type="checkbox" id="c115"><label for="c115">Use the save point after the fight</label></div>
+<div class="check-item"><input type="checkbox" id="c116"><label for="c116">Go through the left door — use the bottle of blood on the LEFT wall — a small passage forms</label></div>
+<div class="ach">🏆 <b>Whispers in the Dark</b> — Examine the dead body and learn the monastery's history</div>
+<div class="check-item"><input type="checkbox" id="c117"><label for="c117">Examine the dead body inside the passage</label></div>
+<div class="check-item"><input type="checkbox" id="c118"><label for="c118">Head back — continue going up — cross the bridge — grab the Rifle Ammo at the end — climb up the stairs</label></div>
+<div class="check-item"><input type="checkbox" id="c119"><label for="c119">Go LEFT past the gate — examine the gravestone — choose to PRAY — watch the scene (Roger Bacon unlocks the gate)</label></div>
+<div class="check-item"><input type="checkbox" id="c120"><label for="c120">Examine below the gravestone — pick up the second doll (Doll 2 — needed for the Green Key)</label></div>
+<div class="ach">🏆 <b>Creature's Hint III</b> — Examine Charlotte's tombstone</div>
+<div class="check-item"><input type="checkbox" id="c121"><label for="c121">Head right and up — find Charlotte's tombstone — examine it</label></div>
+<div class="check-item"><input type="checkbox" id="c122"><label for="c122">Go back through the now-unlocked gate — through the Library gate — through the right door — through the passageway door — find Edward and James — watch the scene</label></div>
+
+<div class="section-header">Charlotte's Cell — Chairs &amp; Cupboard</div>
+<div class="ach">🏆 <b>Charlotte's Wrath</b> — Defeat the Chairs and Cupboard</div>
+<div class="ach">🏆 <b>You are Loved!</b> — Witness Charlotte's scene after the fight</div>
+<div class="check-item"><input type="checkbox" id="c123"><label for="c123">Backtrack all the way to the start of Disc 2 — find the door locked with the Green Key</label></div>
+<div class="check-item"><input type="checkbox" id="c124"><label for="c124">Examine the corpses near the door — give back both dolls — receive the Green Key — unlock the door</label></div>
+<div class="check-item"><input type="checkbox" id="c125"><label for="c125">Go up the stairs — through the door — move to the LEFT of the table to trigger the boss fight</label></div>
+<div class="warn-line">These are boss-level enemies, not regular encounters. Kill Cupboard first (it poisons). Then kill Chair (it silences).</div>
+<div class="note">Boss – Cupboard (HP 4,600) + Chair (HP 4,500). Strongest magic spell (~2,000 damage) on Cupboard first. Keep both away from Koudelka and James. Once Cupboard is dead, focus all on the Chair.</div>
+<div class="check-item"><input type="checkbox" id="c126"><label for="c126">After the fight, watch the FMV with Charlotte</label></div>
+<div class="check-item"><input type="checkbox" id="c127"><label for="c127">Examine the item on the ground — pick up the Flare Brooch</label></div>
+<div class="check-item"><input type="checkbox" id="c128"><label for="c128">Go back through the door — you are in a different hallway — go ALL THE WAY UP</label></div>
+<div class="check-item"><input type="checkbox" id="c129"><label for="c129">Use the Blue Key to unlock the door</label></div>
+<div class="check-item"><input type="checkbox" id="c130"><label for="c130">Go left of the stairs — head up — grab the Shotgun Shells — go up through the door</label></div>
+<div class="check-item"><input type="checkbox" id="c131"><label for="c131">Insert the disc onto the box near the end of the hallway — grab the item that becomes available — go through the door</label></div>
+
+<div class="section-header">Apostle Boss</div>
+<div class="ext">[ Exterminator X ] Win battles in Patrick's Quarters area without fleeing</div>
+<div class="ach">🏆 <b>Apostle</b> — Defeat the Apostle</div>
+<div class="ach">🏆 <b>Exterminator X: Patrick's Quarters</b> — Win consecutive battles without fleeing</div>
+<div class="check-item"><input type="checkbox" id="c132"><label for="c132">Get the "Something's Not Right…" message — head up to the center piece to trigger the boss</label></div>
+<div class="note">Boss – Apostle | HP 9,400, Weak to Fire. Very fast, targets Koudelka, can Silence from range. Buff Edward's STR for 2 turns first (very high physical defense). Flare at Level 2+ does ~2,200. James heals; keep Silence off Koudelka; Edward takes ~800-damage hits.</div>
+<div class="check-item"><input type="checkbox" id="c133"><label for="c133">Heal and save after the fight</label></div>
+<div class="ach">🏆 <b>Creature's Hint IV</b> — Find a creature clue near the Apostle fight area</div>
+<div class="check-item"><input type="checkbox" id="c134"><label for="c134">Before leaving — go to the door ACROSS from the entrance — trigger the Elaine soul-calling scene (Koudelka calls Elaine's spirit)</label></div>
+<div class="check-item"><input type="checkbox" id="c135"><label for="c135">Exit to the stairs room — go to the stairs but DON'T go up — unbolt the door across from them (reopens the Disc 3 start path)</label></div>
+
+<div class="section-header">Patrick's Mansion — Acid, Bomb Prep &amp; Scale</div>
+<div class="ach">🏆 <b>Creature's Hint V</b> — Find a creature clue in Patrick's Mansion</div>
+<div class="ach">🏆 <b>Don't Ask a Girl Her Weight</b> — Solve the counterweight scale puzzle</div>
+<div class="ach">🏆 <b>Lifedrinker</b> — Trigger the Lifedrinker event in Patrick's area</div>
+<div class="check-item"><input type="checkbox" id="c136"><label for="c136">Get the Pendant if you haven't already — it's in the fountain in the underground passage (Disc 3 start area)</label></div>
+<div class="check-item"><input type="checkbox" id="c137"><label for="c137">From Patrick's mansion stairs — go RIGHT and UP — climb the set of boxes — open the door — talk to Roger Bacon — exit</label></div>
+<div class="ach">🏆 <b>Creature's Hint VI</b> — Hear Roger Bacon's creature hint</div>
+<div class="check-item"><input type="checkbox" id="c138"><label for="c138">Head up the stairs — the right door is locked — go through the LEFT door</label></div>
+<div class="check-item"><input type="checkbox" id="c139"><label for="c139">Examine the shelf near the entrance</label></div>
+<div class="check-item"><input type="checkbox" id="c140"><label for="c140">Head down — check the cupboard to the left — pick up the Empty Bottle</label></div>
+<div class="warn-line">Before continuing: backtrack to the Mad Fly fight area and fill the Empty Bottle at the Acid Tank. This Acid is required to make the bomb and get past Patrick's door.</div>
+<div class="check-item"><input type="checkbox" id="c141"><label for="c141">Return to Patrick's room — examine Patrick's desk — pick up Patrick's Memo, Rifle Ammo, and Roman Nuts</label></div>
+<div class="check-item"><input type="checkbox" id="c142"><label for="c142">Examine the Fireplace — a ladder appears — go down</label></div>
+<div class="check-item"><input type="checkbox" id="c143"><label for="c143">Step on the scale — enter Counterweight value of 25 — the door unlocks</label></div>
+<div class="check-item"><input type="checkbox" id="c144"><label for="c144">Open the door — examine the corpse — pick up the Tindex Box</label></div>
+<div class="check-item"><input type="checkbox" id="c145"><label for="c145">Keep going down — cross the plank — examine the door (you need something to dispose of Elaine's body)</label></div>
+<div class="check-item"><input type="checkbox" id="c146"><label for="c146">Return to Roger's room (climb the boxes in Patrick's mansion) — talk to Roger again</label></div>
+<div class="ach">🏆 <b>Creature's Hint VII</b> — Hear Roger's second hint after the Elaine soul reveal</div>
+
+<div class="section-header">Doll Puzzle &amp; Scapegoat</div>
+<div class="ach">🏆 <b>Scapegoat</b> — Defeat Scapegoat</div>
+<div class="check-item"><input type="checkbox" id="c147"><label for="c147">Head back to the bomb door — go straight ahead — check left and right sides of the center piece for Roman Nuts and Pistol Rounds</label></div>
+<div class="check-item"><input type="checkbox" id="c148"><label for="c148">Examine the center piece — solve the doll puzzle: two LEFT dolls face RIGHT, two RIGHT dolls face LEFT — door opens</label></div>
+<div class="check-item"><input type="checkbox" id="c149"><label for="c149">Go through the left door — grab Shotgun Shells — go through the door in this room</label></div>
+<div class="check-item"><input type="checkbox" id="c150"><label for="c150">Head up — get the "Something's Not Right…" message — continue up — step onto the center piece to trigger the boss</label></div>
+<div class="note">Boss – Scapegoat | HP 9,200. Back-row strategy: Edward snipes from afar, use Panaceas for Silence. If his body moves erratically, use physical attacks. If he barely moves, use magic.</div>
+<div class="check-item"><input type="checkbox" id="c151"><label for="c151">Heal and save after the fight</label></div>
+<div class="ach">🏆 <b>Creature's Hint VIII</b> — Find a creature clue near the Scapegoat area</div>
+<div class="check-item"><input type="checkbox" id="c152"><label for="c152">Head back down — go LEFT to find a new door — trigger the cutscene — switch to Disc 4</label></div>
+
+<!-- ═══════════════════════════════════════════ DISC 4 -->
+<div class="disc-header" id="disc4">DISC 4</div>
+
+<div class="section-header">Patrick's Room — Drunk Scene &amp; Organ Puzzle</div>
+<div class="ext">[ Exterminator XI ] Win battles in Vestry area without fleeing</div>
+<div class="ext">[ Exterminator XII ] Win battles in Church area without fleeing</div>
+<div class="ext">[ Exterminator XIII ] Win battles in Bell Tower area without fleeing</div>
+<div class="ach">🏆 <b>Exterminator XI: Vestry</b> — Win consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Exterminator XII: Church</b> — Win consecutive battles without fleeing</div>
+<div class="ach">🏆 <b>Exterminator XIII: Bell Tower</b> — Win consecutive battles without fleeing</div>
+<div class="check-item"><input type="checkbox" id="c153"><label for="c153">Backtrack to Patrick's room — trigger the long drunk scene with Koudelka and Edward</label></div>
+<div class="check-item"><input type="checkbox" id="c154"><label for="c154">Head back to the bomb door — watch the FMV (Edward shoots the bomb, door explodes)</label></div>
+<div class="check-item"><input type="checkbox" id="c155"><label for="c155">Go through the door — watch the FMV with the tree</label></div>
+<div class="check-item"><input type="checkbox" id="c156"><label for="c156">Go RIGHT and continue UP — climb the stairs until you reach the organ</label></div>
+<div class="ach">🏆 <b>Creature's Hint IX</b> — Find a creature clue near the organ area</div>
+<div class="check-item"><input type="checkbox" id="c157"><label for="c157">Solve the organ puzzle — press keys in this order: SECRET → PAIN → PEOPLE → LIGHT</label></div>
+<div class="note">The answer is in the Old Letter. If you lost it: SECRET, PAIN, PEOPLE, LIGHT — in that exact order.</div>
+<div class="check-item"><input type="checkbox" id="c158"><label for="c158">Go back down — head up the small stairs to the center — go down the newly formed stairs — watch the FMV (Patrick's corpse)</label></div>
+<div class="warn-line">Last chance to grind levels, complete optional content, and collect any remaining items before the point of no return.</div>
+<div class="check-item"><input type="checkbox" id="c159"><label for="c159">When ready — examine the object near you — choose to throw in Daniel's arm — watch the FMV (James burns the Monastery)</label></div>
+
+<div class="section-header">Outside — Vine Fights</div>
+<div class="ach">🏆 <b>Vines</b> — Defeat the first vine encounter outside the Monastery</div>
+<div class="ach">🏆 <b>Patrick's Vine</b> — Defeat the vine holding Patrick's corpse</div>
+<div class="check-item"><input type="checkbox" id="c160"><label for="c160">Climb the stairs to the LEFT — head RIGHT — fight the first vine group (use Flare)</label></div>
+<div class="check-item"><input type="checkbox" id="c161"><label for="c161">Continue RIGHT — climb the stairs — follow the path — fight the second vine group (one vine holds Patrick's corpse — slightly stronger but same strategy)</label></div>
+<div class="check-item"><input type="checkbox" id="c162"><label for="c162">Keep climbing — reach the 4th floor — head RIGHT to the middle — climb DOWN the wall — enter the Church</label></div>
+<div class="ach">🏆 <b>Creature's Hint X</b> — Find the final creature clue inside the Church</div>
+<div class="warn-line">This is the LAST SAVE POINT. Save now.</div>
+<div class="check-item"><input type="checkbox" id="c163"><label for="c163">Save at the save point inside the Church</label></div>
+
+<div class="section-header">Gargoyle (Rematch — Can Win Now)</div>
+<div class="ach">🏆 <b>Gargoyle</b> — Defeat the Gargoyle</div>
+<div class="ach">🏆 <b>Gargoyle Hard Way</b> — Defeat the Gargoyle under special challenge conditions</div>
+<div class="check-item"><input type="checkbox" id="c164"><label for="c164">Head up and around the huge flower — encounter the Gargoyle (the full party can fight it this time)</label></div>
+<div class="note">Check the RA achievement page for Gargoyle Hard Way conditions before starting this fight if you want both achievements.</div>
+
+<div class="section-header">Pendant — Cat Theft</div>
+<div class="ach">🏆 <b>Cat Got My Pendant!</b> — Lose the Pendant to the cat</div>
+<div class="ach">🏆 <b>Where is the Pendant You Dropped?</b> — Retrieve the Pendant from the cat</div>
+<div class="check-item"><input type="checkbox" id="c165"><label for="c165">In the Bell Tower / Church interior — a cat steals the Pendant — let it happen (required for both achievements)</label></div>
+<div class="check-item"><input type="checkbox" id="c166"><label for="c166">Find and retrieve the Pendant from the cat</label></div>
+
+<div class="section-header">Final Boss — Elaine (Three Forms)</div>
+<div class="ach">🏆 <b>Bested Elaine</b> — Defeat Elaine (Form 1)</div>
+<div class="ach">🏆 <b>Bested Evolved Elaine</b> — Defeat Elaine (Form 2)</div>
+<div class="check-item"><input type="checkbox" id="c167"><label for="c167">After the Gargoyle, watch the FMV — Elaine emerges from the flower — keep running up the stairs</label></div>
+<div class="note">Boss – Elaine Form 1 | HP 9,000, Weak to Wind. Physical attacks do NOT hurt her — keep Edward in back row using only Fortify buffs. Stay in back row, she uses ~400-damage magic. Buff Koudelka/James INT for 2 turns, then spam Tornado (~1,600+ damage). Her magic can poison — heal as needed.</div>
+<div class="check-item"><input type="checkbox" id="c168"><label for="c168">Keep running up the stairs — Elaine catches up again (Form 2)</label></div>
+<div class="note">Boss – Elaine Form 2 | HP 12,000, Weak to Earth. Now physical attacks hurt more than magic. Equip Edward with the Crossbow — 2,000+ damage per shot at high STR. Third character uses Megalith. Everyone stays in back row.</div>
+<div class="check-item"><input type="checkbox" id="c169"><label for="c169">Keep climbing — reach the rooftop — watch the scene (Elaine transforms into a giant spider) — Form 3 begins</label></div>
+<div class="note">Boss – Elaine Form 3 | HP 17,000. KEEP EVERYONE IN THE BACK ROW — do not scatter. Crossbow on Edward. Her all-party attack does ~3,000 to Edward and ~1,000 to others. Best Heal user must act every turn. This fight takes several minutes. Win for the true ending — losing gets the second ending.</div>
+<div class="check-item"><input type="checkbox" id="c170"><label for="c170">Watch the ending</label></div>
+<div class="ach">🏆 <b>Sacnoth</b> — Witness the Sacnoth revelation</div>
+<div class="ach">🏆 <b>Let's Go Home James!</b> — Win Form 3 and get the true ending</div>
+<div class="ach">🏆 <b>Dead People Don't Speak</b> — Get the second ending (lose or give up at Form 3)</div>
+
+<!-- ═══════════════════════════════════════════ OPTIONAL -->
+<div class="disc-header" id="optional">OPTIONAL</div>
+
+<div class="section-header">Secret Items (Clock Triggers)</div>
+<div class="note">These items require the in-game clock to show a specific time AND your inventory slot count to be 10, 21, 32, or 43 at save time. Check the in-game clock carefully before saving.</div>
+<div class="check-item"><input type="checkbox" id="c171"><label for="c171">Save at 01:11:11 with inventory slot count of 10, 21, 32, or 43</label></div>
+<div class="check-item"><input type="checkbox" id="c172"><label for="c172">Save at 02:22:22 with correct inventory slot count</label></div>
+<div class="check-item"><input type="checkbox" id="c173"><label for="c173">Save at 03:33:33 with correct inventory slot count</label></div>
+<div class="check-item"><input type="checkbox" id="c174"><label for="c174">Save at 04:44:44 with correct inventory slot count</label></div>
+<div class="check-item"><input type="checkbox" id="c175"><label for="c175">Save at 05:55:55 with correct inventory slot count</label></div>
+<div class="check-item"><input type="checkbox" id="c176"><label for="c176">Save at 10:10:10 with correct inventory slot count</label></div>
+<div class="check-item"><input type="checkbox" id="c177"><label for="c177">Save at 11:11:11 with correct inventory slot count</label></div>
+<div class="check-item"><input type="checkbox" id="c178"><label for="c178">Save at 22:22:22 with correct inventory slot count</label></div>
+
+<div class="section-header">Rare Equipment Drops</div>
+<div class="ach">🏆 <b>Bessy's Ring</b> — Obtain Bessy's Ring</div>
+<div class="ach">🏆 <b>Ogden's Shirt</b> — Obtain Ogden's Shirt</div>
+<div class="ach">🏆 <b>Ogden's Axe</b> — Obtain Ogden's Axe</div>
+<div class="ach">🏆 <b>Gargoyle Killer</b> — Obtain the Gargoyle Killer weapon</div>
+<div class="ach">🏆 <b>Roger's Staff</b> — Obtain Roger's Staff</div>
+<div class="ach">🏆 <b>Cat's Eye</b> — Obtain the Cat's Eye accessory</div>
+<div class="ach">🏆 <b>Girdle Sword</b> — Obtain the Girdle Sword</div>
+<div class="ach">🏆 <b>Galahad Sword</b> — Obtain the Galahad Sword</div>
+<div class="ach">🏆 <b>Clothes</b> — Obtain the specific Clothes item</div>
+<div class="ach">🏆 <b>Armor</b> — Obtain the specific Armor item</div>
+<div class="check-item"><input type="checkbox" id="c179"><label for="c179">Farm rare drops from enemies — check RA achievement descriptions for which enemies drop each specific item</label></div>
+
+<div class="section-header">Elemental &amp; Stat Accessories</div>
+<div class="ach">🏆 <b>Power of the Efreet</b> — Obtain the Efreet elemental accessory</div>
+<div class="ach">🏆 <b>Power of the Marid</b> — Obtain the Marid elemental accessory</div>
+<div class="ach">🏆 <b>Power of the Dao</b> — Obtain the Dao elemental accessory</div>
+<div class="ach">🏆 <b>Power of the Djinn</b> — Obtain the Djinn elemental accessory</div>
+<div class="ach">🏆 <b>Atlas' Strength</b> — Obtain Atlas' Strength accessory</div>
+<div class="ach">🏆 <b>Hercules' Vitality</b> — Obtain Hercules' Vitality accessory</div>
+<div class="ach">🏆 <b>Hermes' Agility</b> — Obtain Hermes' Agility accessory</div>
+<div class="ach">🏆 <b>Artemis' Dexterity</b> — Obtain Artemis' Dexterity accessory</div>
+<div class="ach">🏆 <b>Fides' Piety</b> — Obtain Fides' Piety accessory</div>
+<div class="ach">🏆 <b>Apollo's Mind</b> — Obtain Apollo's Mind accessory</div>
+<div class="ach">🏆 <b>Athena's Intelligence</b> — Obtain Athena's Intelligence accessory</div>
+<div class="ach">🏆 <b>Tyche's Luck</b> — Obtain Tyche's Luck accessory</div>
+<div class="check-item"><input type="checkbox" id="c180"><label for="c180">Find or farm all elemental and stat accessories — check RA descriptions for locations</label></div>
+
+<!-- ═══════════════════════════════════════════ COLLECTIBLES -->
+<div class="disc-header" id="collectibles">COLLECTIBLES</div>
+
+<div class="section-header">Charlotte-Related Items</div>
+<div class="ach">🏆 <b>Cat Foodod</b> — Obtain Cat Foodod</div>
+<div class="ach">🏆 <b>Charlotte's Book</b> — Obtain Charlotte's Book</div>
+<div class="ach">🏆 <b>Tamako's Soup</b> — Obtain Tamako's Soup</div>
+<div class="check-item"><input type="checkbox" id="c181"><label for="c181">These items are tied to Charlotte's Cell area and the Chairs/Cupboard encounter — examine everything thoroughly and check RA descriptions for exact triggers</label></div>
+
+<!-- ═══════════════════════════════════════════ GRIND -->
+<div class="disc-header" id="grind">GRIND</div>
+
+<div class="section-header">Combat &amp; Exploration Achievements</div>
+<div class="ach">🏆 <b>Ninety Nine</b> — Reach Level 99 with any character</div>
+<div class="ach">🏆 <b>Explorer</b> — Discover all areas on the map</div>
+<div class="ach">🏆 <b>Exorcist</b> — Defeat a set total number of enemies</div>
+<div class="ach">🏆 <b>Monster Hunter</b> — Defeat every enemy type at least once</div>
+<div class="ach">🏆 <b>Treasure Hunter</b> — Find all treasures and items</div>
+<div class="check-item"><input type="checkbox" id="c182"><label for="c182">Ninety Nine — grind any character to Level 99 (best in Disc 4 where enemies award the most XP)</label></div>
+<div class="check-item"><input type="checkbox" id="c183"><label for="c183">Explorer — visit every room and area throughout the full playthrough</label></div>
+<div class="check-item"><input type="checkbox" id="c184"><label for="c184">Exorcist — defeat the required number of enemies (accumulates naturally; Exterminator grinds help)</label></div>
+<div class="check-item"><input type="checkbox" id="c185"><label for="c185">Monster Hunter — fight every enemy type at least once — use grinding sessions to seek out rare encounters</label></div>
+<div class="check-item"><input type="checkbox" id="c186"><label for="c186">Treasure Hunter — collect every chest and item pickup during the playthrough</label></div>
+
+<div class="section-header">Weapon &amp; Magic Proficiency</div>
+<div class="note">All weapon and magic proficiency achievements are 10pt each. Best farmed during long grinding sessions — equip the weapon or spell you want to level and run battles repeatedly.</div>
+<div class="check-item"><input type="checkbox" id="c187"><label for="c187">Max proficiency for each weapon type (Pistol, Rifle, Crossbow, Knuckles, Mace, Axe, Sword, etc.) — use each exclusively until its proficiency caps</label></div>
+<div class="check-item"><input type="checkbox" id="c188"><label for="c188">Max proficiency for each magic school — have Koudelka and James cast each spell type repeatedly throughout the game</label></div>
+
+<!-- ═══════════════════════════════════════════ KEY ITEMS -->
+<div class="disc-header" id="items">KEY ITEMS</div>
+
+<div class="section-header">Must-Have Items Reference</div>
+<div class="item-ref"><b>Pendant</b> — Disc 3: fountain after filling all Icon statues in the underground passage. Required to finish the game — never drop it.</div>
+<div class="item-ref"><b>Red Glass Part</b> — Disc 1/2 border: on the floor near the Stained Glass Window in Priest's Quarters.</div>
+<div class="item-ref"><b>Brown Glass Part</b> — Drops from Alias. Check inventory after that fight.</div>
+<div class="item-ref"><b>Green Glass Part</b> — Disc 2: on the ground after the Roger Bacon / music box scene.</div>
+<div class="item-ref"><b>Rope Ladder</b> — Disc 1: open Mira's wardrobe a SECOND TIME after defeating her.</div>
+<div class="item-ref"><b>Red Key</b> — Disc 2: dropped by Alias. Opens the second treasure room door and the Keepers room.</div>
+<div class="item-ref"><b>Blue Key</b> — Disc 3: on Bessy's body after the guillotine scene.</div>
+<div class="item-ref"><b>Green Key</b> — Disc 3: give both dolls back to the children guarding the locked door.</div>
+<div class="item-ref"><b>Doll 1</b> — Disc 2: examine the table during the Keeper's room backtrack (after getting the Red Key).</div>
+<div class="item-ref"><b>Doll 2</b> — Disc 3: examine below the gravestone after Roger unlocks the gate.</div>
+<div class="item-ref"><b>Crossbow</b> — Disc 2: picked up from the table in the treasure room. Have it equipped when you reach Alias.</div>
+<div class="item-ref"><b>Empty Bottle + Acid</b> — Disc 3: bottle from the cupboard in Patrick's room area; fill it at the Acid Tank near the Mad Fly fight area. Required to make the bomb.</div>
+<div class="item-ref"><b>Tindex Box</b> — Disc 3: examine the corpse below the counterweight room. Part of the bomb.</div>
+<div class="item-ref"><b>Daniel's Arm</b> — Disc 2: picked up from the floor after the chandelier FMV. Used in Disc 4 to trigger the finale.</div>
+
+</div><!-- #content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+(function(){
+  const STORE = 'koudelka-checklist';
+  const boxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const total = boxes.length;
+
+  function save(){
+    const state = {};
+    boxes.forEach(b => { if(b.checked) state[b.id] = 1; });
+    localStorage.setItem(STORE, JSON.stringify(state));
+  }
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+  }
+
+  function updateProgress(){
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+  }
+
+  function applyDone(){
+    boxes.forEach(b => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+    });
+  }
+
+  const stored = load();
+  boxes.forEach(b => {
+    if(stored[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      save();
+      updateProgress();
+    });
+    b.closest('.check-item').addEventListener('click', function(e){
+      if(e.target === b || e.target.tagName === 'LABEL') return;
+      b.checked = !b.checked;
+      b.dispatchEvent(new Event('change'));
+    });
+  });
+
+  const achs = Array.from(document.querySelectorAll('.ach'));
+  const achStore = JSON.parse(localStorage.getItem(STORE+'-ach') || '{}');
+  achs.forEach((el, i) => {
+    const key = 'a'+i;
+    if(achStore[key]) el.classList.add('ach-done');
+    el.addEventListener('click', function(){
+      this.classList.toggle('ach-done');
+      achStore[key] = this.classList.contains('ach-done') ? 1 : 0;
+      localStorage.setItem(STORE+'-ach', JSON.stringify(achStore));
+    });
+  });
+
+  applyDone();
+  updateProgress();
+
+  document.getElementById('toggle-done').addEventListener('click', function(){
+    document.body.classList.toggle('hide-done');
+    this.textContent = document.body.classList.contains('hide-done') ? 'Show Completed' : 'Hide Completed';
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    if(!confirm('Reset all checkboxes?')) return;
+    boxes.forEach(b => { b.checked = false; });
+    applyDone();
+    save();
+    updateProgress();
+  });
+
+  window.addEventListener('scroll', function(){
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+})();
+</script>
+</body>
+</html>
