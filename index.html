@@ -204,6 +204,21 @@
       data-status: "complete" | "wip" | "planned"
     -->
 
+    <!-- F -->
+    <a class="guide-card" href="ff4-advance/checklist.html" data-status="complete">
+      <div class="card-inner">
+        <img class="card-cover" src="ff4-advance/cover.webp" alt="Final Fantasy IV Advance">
+        <div class="card-info">
+          <div class="card-title">Final Fantasy IV Advance Bestiary Checklist</div>
+          <div class="card-platform">Game Boy Advance<br>2005</div>
+          <div class="card-summary" id="sum-ff4-advance">A complete bestiary checklist for the GBA version of Final Fantasy IV. Track all 253 enemies including missables, rare spawns, and boss-only entries across every dungeon, the Underworld, the Moon, and the Lunar Ruins.</div>
+          <button class="show-more" onclick="toggleSummary(event, 'sum-ff4-advance', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-ff4-advance" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-ff4-advance">Not started</div>
+        </div>
+      </div>
+    </a>
+
     <!-- K -->
     <a class="guide-card" href="koudelka/checklist.html" data-status="complete">
       <div class="card-inner">
@@ -250,6 +265,7 @@
     } catch(e) {}
   }
 
+  loadProgress('ff4-advance-bestiary', 'prog-ff4-advance', 'prog-label-ff4-advance');
   loadProgress('koudelka-checklist', 'prog-koudelka', 'prog-label-koudelka');
 </script>
 </body>
