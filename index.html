@@ -35,102 +35,119 @@
     border-bottom: 1px solid var(--border);
     padding: 20px 24px;
   }
-  header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-  }
-  header p {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 4px;
-  }
+  header h1 { font-size: 22px; font-weight: 700; color: var(--accent); }
+  header p { color: var(--muted); font-size: 13px; margin-top: 4px; }
 
   main {
-    max-width: 860px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 32px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .guide-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 14px;
-    margin-bottom: 40px;
-  }
-
-  .guide-card {
-    display: block;
+  /* ── Game Group ── */
+  .game-group {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 16px 18px;
-    text-decoration: none;
-    color: var(--text);
-    transition: border-color 0.15s, background 0.15s;
-    position: relative;
-  }
-  .guide-card:hover {
-    border-color: var(--accent);
-    background: var(--bg3);
-  }
-  .guide-card[data-status="planned"] {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: default;
-  }
-  .guide-card[data-status="wip"] {
-    border-style: dashed;
+    overflow: hidden;
   }
 
-  .card-inner {
+  .game-header {
     display: flex;
-    gap: 12px;
-    align-items: flex-start;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
   }
+  .game-header:hover { background: var(--bg3); }
 
-  .card-cover {
-    width: 112px;
-    min-width: 112px;
-    height: 144px;
+  .game-cover {
+    width: 56px;
+    min-width: 56px;
+    height: 72px;
     object-fit: cover;
     border-radius: 3px;
     border: 1px solid var(--border);
     background: var(--bg3);
   }
-  .card-cover-placeholder {
-    width: 112px;
-    min-width: 112px;
-    height: 144px;
+  .game-cover-placeholder {
+    width: 56px;
+    min-width: 56px;
+    height: 72px;
     border-radius: 3px;
     border: 1px solid var(--border);
     background: var(--bg3);
   }
 
-  .card-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .card-title {
-    font-size: 15px;
+  .game-meta { flex: 1; min-width: 0; }
+  .game-title {
+    font-size: 16px;
     font-weight: 700;
     color: var(--accent2);
-    margin-bottom: 4px;
   }
-  .card-platform {
+  .game-platform {
     font-size: 11px;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     line-height: 1.6;
+    margin-top: 2px;
+  }
+
+  .game-toggle {
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .game-group.collapsed .game-toggle { transform: rotate(-90deg); }
+
+  .game-guides {
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+  }
+  .game-group.collapsed .game-guides { display: none; }
+
+  /* ── Guide Card (no cover — lives in group) ── */
+  .guide-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--bg2);
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.15s;
+  }
+  .guide-card:hover { background: var(--bg3); }
+  .guide-card[data-status="planned"] {
+    opacity: 0.45;
+    pointer-events: none;
+    cursor: default;
+  }
+  .guide-card[data-status="wip"] { opacity: 0.7; }
+
+  .guide-card-info { flex: 1; min-width: 0; }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent2);
+    margin-bottom: 2px;
   }
 
   .card-summary {
     font-size: 12px;
     color: var(--muted);
     line-height: 1.5;
-    margin-top: 8px;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -138,24 +155,23 @@
   }
   .card-summary.expanded {
     display: block;
-    -webkit-line-clamp: unset;
   }
 
   .show-more {
-    display: inline-block;
-    margin-top: 5px;
+    display: none;
+    margin-top: 4px;
     font-size: 11px;
     color: var(--accent);
     cursor: pointer;
     background: none;
     border: none;
     padding: 0;
-    text-decoration: none;
   }
+  .show-more.visible { display: inline-block; }
   .show-more:hover { text-decoration: underline; }
 
   .card-progress {
-    margin-top: 10px;
+    margin-top: 8px;
     height: 3px;
     background: var(--border);
     border-radius: 2px;
@@ -163,21 +179,22 @@
   }
   .card-progress-fill {
     height: 100%;
-    background: #5a9e6f;
+    background: var(--green);
     border-radius: 2px;
     transition: width 0.3s;
   }
   .card-progress-label {
     font-size: 10px;
     color: var(--muted);
-    margin-top: 4px;
+    margin-top: 3px;
   }
 
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
+  .card-arrow {
+    font-size: 16px;
+    color: var(--muted);
+    flex-shrink: 0;
   }
-  footer a:hover { text-decoration: underline; }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 16px 24px;
@@ -185,6 +202,8 @@
     color: var(--muted);
     font-size: 12px;
   }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -196,64 +215,78 @@
 
 <main>
 
-  <div class="guide-grid">
+  <!--
+    TO ADD A NEW GAME:
+    1. Create a new folder (e.g. silent-hill/)
+    2. Put your guide html and cover.webp inside it
+    3. Copy a game-group block below, update the details
+    4. Insert in alphabetical order by game title
+  -->
 
-    <!--
-      TO ADD A NEW GUIDE:
-      1. Create a new folder with the game name (e.g. silent-hill/)
-      2. Put checklist.html and cover.webp inside it
-      3. Copy a card block below, update the folder name, title, platform, and year
-      4. Insert it in alphabetical order
-      data-status: "complete" | "wip" | "planned"
-    -->
+  <!-- ═══════ F ═══════ -->
+  <div class="game-group" id="group-ff4">
+    <div class="game-header" onclick="toggleGroup('group-ff4')">
+      <img class="game-cover" src="ff4-advance/cover.webp" alt="Final Fantasy IV Advance">
+      <div class="game-meta">
+        <div class="game-title">Final Fantasy IV Advance</div>
+        <div class="game-platform">Game Boy Advance · 2005</div>
+      </div>
+      <span class="game-toggle">▾</span>
+    </div>
+    <div class="game-guides">
 
-    <!-- F -->
-    <a class="guide-card" href="ff4-advance/bestiary-checklist.html" data-status="complete">
-      <div class="card-inner">
-        <img class="card-cover" src="ff4-advance/cover.webp" alt="Final Fantasy IV Advance">
-        <div class="card-info">
-          <div class="card-title">Final Fantasy IV Advance - Bestiary Checklist</div>
-          <div class="card-platform">Game Boy Advance<br>2005</div>
-          <div class="card-summary" id="sum-ff4-advance">A complete bestiary checklist for the GBA version of Final Fantasy IV. Track all 253 enemies including missables, rare spawns, and boss-only entries across every dungeon, the Underworld, the Moon, and the Lunar Ruins.</div>
-          <button class="show-more" onclick="toggleSummary(event, 'sum-ff4-advance', this)">Show more</button>
+      <a class="guide-card" href="ff4-advance/bestiary-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Bestiary Checklist</div>
+          <div class="card-summary" id="sum-ff4-advance">Track all 253 enemies including missables, rare spawns, and boss-only entries across every dungeon, the Underworld, the Moon, and the Lunar Ruins.</div>
+          <button class="show-more" id="btn-ff4-advance" onclick="toggleSummary(event, 'sum-ff4-advance', this)">Show more</button>
           <div class="card-progress"><div class="card-progress-fill" id="prog-ff4-advance" style="width:0%"></div></div>
           <div class="card-progress-label" id="prog-label-ff4-advance">Not started</div>
         </div>
-      </div>
-    </a>
+        <span class="card-arrow">›</span>
+      </a>
 
-    <a class="guide-card" href="ff4-advance/walkthrough-checklist.html" data-status="complete">
-      <div class="card-inner">
-        <img class="card-cover" src="ff4-advance/cover.webp" alt="Final Fantasy IV Advance">
-        <div class="card-info">
-          <div class="card-title">Final Fantasy IV Advance - Walkthrough</div>
-          <div class="card-platform">Game Boy Advance<br>2005</div>
-          <div class="card-summary" id="sum-ff4-walkthrough">A step-by-step walkthrough checklist for the GBA version of Final Fantasy IV. Covers the full main story, all optional quests including Excalibur, Odin, Asura and Leviathan, the Cave of Trials, and the post-game Lunar Ruins.</div>
-          <button class="show-more" onclick="toggleSummary(event, 'sum-ff4-walkthrough', this)">Show more</button>
+      <a class="guide-card" href="ff4-advance/walkthrough-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Walkthrough Checklist</div>
+          <div class="card-summary" id="sum-ff4-walkthrough">Step-by-step walkthrough covering the full main story, all optional quests including Excalibur, Odin, Asura and Leviathan, the Cave of Trials, and the post-game Lunar Ruins.</div>
+          <button class="show-more" id="btn-ff4-walkthrough" onclick="toggleSummary(event, 'sum-ff4-walkthrough', this)">Show more</button>
           <div class="card-progress"><div class="card-progress-fill" id="prog-ff4-walkthrough" style="width:0%"></div></div>
           <div class="card-progress-label" id="prog-label-ff4-walkthrough">Not started</div>
         </div>
-      </div>
-    </a>
+        <span class="card-arrow">›</span>
+      </a>
 
-    <!-- K -->
-    <a class="guide-card" href="koudelka/walkthrough-checklist.html" data-status="complete">
-      <div class="card-inner">
-        <img class="card-cover" src="koudelka/cover.webp" alt="Koudelka">
-        <div class="card-info">
-          <div class="card-title">Koudelka - Walkthrough with Retro Achievements</div>
-          <div class="card-platform">PlayStation 1<br>1999</div>
-          <div class="card-summary" id="sum-koudelka">A young gypsy woman investigates an old monastery where rumors of supernatural creatures prove true. She joins forces with a priest and a thief as the three find themselves hunted by monsters in this survival horror RPG with turn-based combat.</div>
-          <button class="show-more" onclick="toggleSummary(event, 'sum-koudelka', this)">Show more</button>
+    </div>
+  </div>
+
+  <!-- ═══════ K ═══════ -->
+  <div class="game-group" id="group-koudelka">
+    <div class="game-header" onclick="toggleGroup('group-koudelka')">
+      <img class="game-cover" src="koudelka/cover.webp" alt="Koudelka">
+      <div class="game-meta">
+        <div class="game-title">Koudelka</div>
+        <div class="game-platform">PlayStation 1 · 1999</div>
+      </div>
+      <span class="game-toggle">▾</span>
+    </div>
+    <div class="game-guides">
+
+      <a class="guide-card" href="koudelka/walkthrough-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Walkthrough with Retro Achievements</div>
+          <div class="card-summary" id="sum-koudelka">A young gypsy woman investigates an old monastery where rumors of supernatural creatures prove true. Walkthrough with full RetroAchievements coverage across all four discs.</div>
+          <button class="show-more" id="btn-koudelka" onclick="toggleSummary(event, 'sum-koudelka', this)">Show more</button>
           <div class="card-progress"><div class="card-progress-fill" id="prog-koudelka" style="width:0%"></div></div>
           <div class="card-progress-label" id="prog-label-koudelka">Not started</div>
         </div>
-      </div>
-    </a>
+        <span class="card-arrow">›</span>
+      </a>
 
-    <!-- ADD MORE GUIDES HERE IN ALPHABETICAL ORDER -->
-
+    </div>
   </div>
+
+  <!-- ADD MORE GAMES HERE IN ALPHABETICAL ORDER -->
 
 </main>
 
@@ -262,12 +295,24 @@
 </footer>
 
 <script>
+  function toggleGroup(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
   function toggleSummary(e, id, btn) {
     e.preventDefault();
     const el = document.getElementById(id);
     const expanded = el.classList.toggle('expanded');
     btn.textContent = expanded ? 'Show less' : 'Show more';
   }
+
+  // Only show the "Show more" button if the text is actually being clipped
+  document.querySelectorAll('.card-summary').forEach(function(el) {
+    if (el.scrollHeight > el.clientHeight) {
+      const btn = el.nextElementSibling;
+      if (btn && btn.classList.contains('show-more')) btn.classList.add('visible');
+    }
+  });
 
   function loadProgress(key, barId, labelId) {
     try {
@@ -278,7 +323,7 @@
       const label = document.getElementById(labelId);
       if (data.pct === 0) label.textContent = 'Not started';
       else if (data.pct === 100) label.textContent = 'Complete!';
-      else label.textContent = `${data.checked} / ${data.total} steps — ${data.pct}%`;
+      else label.textContent = `${data.checked} / ${data.total} — ${data.pct}%`;
     } catch(e) {}
   }
 
