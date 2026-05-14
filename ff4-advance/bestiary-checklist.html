@@ -29,18 +29,15 @@
   #site-header h1 a { color: inherit; text-decoration: none; }
   #site-header h1 a:hover { text-decoration: underline; }
   .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
   #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
   #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
   #toc a:hover { background: var(--bg3); }
   #toc-kofi { margin-left: auto; }
   #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
-  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); }
-  .disc-header:first-child { margin-top: 0; }
-  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; }
-  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
-  .warn-line::before { content: '⚠ '; }
-  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
-  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 4px 0 4px 4px; margin: 4px 0 12px; }
+  .range-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 24px 0 6px; padding: 4px 10px; }
   .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
   .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
   .check-item.done { border-left-color: var(--check-checked); }
@@ -82,105 +79,61 @@
 </div>
 
 <div id="toc">
-  <a href="#overworld">Overworld</a>
-  <a href="#dungeons">Early Dungeons</a>
-  <a href="#zot">Tower of Zot</a>
-  <a href="#underworld">Underworld</a>
-  <a href="#babel">Tower of Babel</a>
-  <a href="#lategame">Late Game</a>
-  <a href="#moon">Moon</a>
-  <a href="#giantbabel">Giant of Babel</a>
-  <a href="#subterrane">Lunar Subterrane</a>
-  <a href="#ruins">Lunar Ruins</a>
-  <a href="#bosses">Bosses</a>
-  <a href="#summons">Summons</a>
+  <a href="#r001">001–050</a>
+  <a href="#r051">051–100</a>
+  <a href="#r101">101–150</a>
+  <a href="#r151">151–200</a>
+  <a href="#r201">201–253</a>
+  <a href="#missable">Missables</a>
   <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
 </div>
 
 <div id="content">
 
+<div class="range-header" id="r001">#001 – #050</div>
 
-<!-- ═══════════════════════════════════════════ OVERWORLD -->
-<div class="disc-header" id="overworld">OVERWORLD &amp; EARLY AREAS</div>
-
-<div class="section-header">Near Baron / Mist Cave</div>
-<div class="check-item"><input type="checkbox" id="c1"><label for="c1"><span class="entry-num">#001</span>Goblin<span class="entry-loc"><span>Overworld near Baron</span><span>Mist Cave</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1"><span class="entry-num">#001</span>Goblin<span class="entry-loc"><span>Overworld near Baron/Mysidia</span><span>Mist Cave</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c2"><label for="c2"><span class="entry-num">#002</span>Helldiver<span class="entry-loc"><span>Overworld near Baron</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c3"><label for="c3"><span class="entry-num">#003</span>Floating Eyeball<span class="entry-loc"><span>Overworld near Baron</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c4"><label for="c4"><span class="entry-num">#004</span>Sword Rat<span class="entry-loc"><span>Overworld near Baron</span><span>Fabul</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c235"><label for="c235"><span class="entry-num">#235</span>Mist Dragon<span class="entry-loc"><span>Mist Cave (boss)</span></span></label></div>
-
-<div class="section-header">Near Kaipo</div>
 <div class="check-item"><input type="checkbox" id="c5"><label for="c5"><span class="entry-num">#005</span>Insectus<span class="entry-loc"><span>Mist Cave</span><span>Overworld near Kaipo</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c6"><label for="c6"><span class="entry-num">#006</span>Desert Sahagin<span class="entry-loc"><span>Overworld near Kaipo</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c7"><label for="c7"><span class="entry-num">#007</span>Flying Eyes<span class="entry-loc"><span>Mist Cave</span><span>Overworld near Kaipo</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c8"><label for="c8"><span class="entry-num">#008</span>Hundlegs<span class="entry-loc"><span>Overworld near Kaipo</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c9"><label for="c9"><span class="entry-num">#009</span>Sand Worm<span class="entry-loc"><span>Overworld near Kaipo</span></span></label></div>
-
-<div class="section-header">Near Mysidia / Troia / Mythril</div>
-<div class="check-item"><input type="checkbox" id="c34"><label for="c34"><span class="entry-num">#034</span>Gatlinger<span class="entry-loc"><span>Overworld near Mysidia</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c37"><label for="c37"><span class="entry-num">#037</span>Zu<span class="entry-loc"><span>Overworld near Mysidia</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c51"><label for="c51"><span class="entry-num">#051</span>Treant<span class="entry-loc"><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c54"><label for="c54"><span class="entry-num">#054</span>Death Flower<span class="entry-loc"><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
-
-<div class="section-header">Near Eblan / Agart</div>
-<div class="check-item"><input type="checkbox" id="c71"><label for="c71"><span class="entry-num">#071</span>Roc Baby<span class="entry-loc"><span>Overworld near Eblan</span>><span>Agart</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c73"><label for="c73"><span class="entry-num">#073</span>Roc<span class="entry-loc"><span>Overworld near Eblan</span><span>Agart</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c74"><label for="c74"><span class="entry-num">#074</span>Mors<span class="entry-loc"><span>Overworld near Eblan</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c100"><label for="c100"><span class="entry-num">#100</span>Fiery Hound<span class="entry-loc"><span>Tower of Zot</span><span>Tower of Babel</span><span>Overworld near Eblan</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ EARLY DUNGEONS -->
-<div class="disc-header" id="dungeons">EARLY DUNGEONS</div>
-
-<div class="section-header">Underground Waterway</div>
-<div class="check-item"><input type="checkbox" id="c10"><label for="c10"><span class="entry-num">#010</span>Red Mousse<span class="entry-loc"><span>Waterway/Underground Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c11"><label for="c11"><span class="entry-num">#011</span>Gigantoad<span class="entry-loc"><span>Waterway/Underground Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c12"><label for="c12"><span class="entry-num">#012</span>Zombie<span class="entry-loc"><span>Waterway/Underground Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c13"><label for="c13"><span class="entry-num">#013</span>Vile Shell<span class="entry-loc"><span>Waterway/Underground Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c14"><label for="c14"><span class="entry-num">#014</span>Toadgre<span class="entry-loc"><span>Waterway/Underground Waterway</span><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c15"><label for="c15"><span class="entry-num">#015</span>Sahagin<span class="entry-loc"><span>Waterway/Underground Waterway</span><span>Kaipo</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c16"><label for="c16"><span class="entry-num">#016</span>Killer Fish<span class="entry-loc"><span>Waterway/Underground Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c17"><label for="c17"><span class="entry-num">#017</span>Tiny Mage<span class="entry-loc"><span>Waterway/Underground Waterway</span><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c18"><label for="c18"><span class="entry-num">#018</span>Water Bug<span class="entry-loc"><span>Waterway/Underground Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c19"><label for="c19"><span class="entry-num">#019</span>Alligator<span class="entry-loc"><span>Waterway/Underground Waterway</span><span>Old Waterway</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c193"><label for="c193"><span class="entry-num">#193</span>Octomammoth<span class="entry-loc"><span>Sunken Lake - B1 (boss)</span></span></label></div>
-
-<div class="section-header">Kaipo Inn</div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10"><span class="entry-num">#010</span>Red Mousse<span class="entry-loc"><span>Waterway / Underground Waterway</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11"><span class="entry-num">#011</span>Gigantoad<span class="entry-loc"><span>Waterway / Underground Waterway</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12"><span class="entry-num">#012</span>Zombie<span class="entry-loc"><span>Waterway / Underground Waterway</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13"><span class="entry-num">#013</span>Vile Shell<span class="entry-loc"><span>Waterway / Underground Waterway</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14"><span class="entry-num">#014</span>Toadgre<span class="entry-loc"><span>Waterway / Underground Waterway</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15"><span class="entry-num">#015</span>Sahagin<span class="entry-loc"><span>Waterway / Underground Waterway</span><span>Kaipo</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c16"><label for="c16"><span class="entry-num">#016</span>Killer Fish<span class="entry-loc"><span>Waterway / Underground Waterway</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17"><span class="entry-num">#017</span>Tiny Mage<span class="entry-loc"><span>Waterway / Underground Waterway</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18"><span class="entry-num">#018</span>Water Bug<span class="entry-loc"><span>Waterway / Underground Waterway</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19"><span class="entry-num">#019</span>Alligator<span class="entry-loc"><span>Waterway / Underground Waterway</span><span>Old Waterway</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c20"><label for="c20"><span class="entry-num">#020</span>Baron Soldier<span class="entry-loc"><span>Kaipo Inn</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c21"><label for="c21"><span class="entry-num">#021</span>General<span class="entry-loc"><span>Kaipo Inn</span></span></label></div>
-
-<div class="section-header">Antlion Cave</div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22"><span class="entry-num">#022</span>Domovoi<span class="entry-loc"><span>Mt. Hobs</span><span>Fabul Castle</span><span>Overworld near Mysidia</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c23"><label for="c23"><span class="entry-num">#023</span>Yellow Jelly<span class="entry-loc"><span>Antlion Cave</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c24"><label for="c24"><span class="entry-num">#024</span>Basilisk<span class="entry-loc"><span>Antlion Cave</span><span>Fabul Castle</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c25"><label for="c25"><span class="entry-num">#025</span>Leshy<span class="entry-loc"><span>Antlion Cave</span><span>Fabul Castle</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c26"><label for="c26"><span class="entry-num">#026</span>Adamantoise<span class="entry-loc"><span>Antlion Cave</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c194"><label for="c194"><span class="entry-num">#194</span>Antlion<span class="entry-loc"><span>Antlion Cave (boss)</span></span></label></div>
-
-<div class="section-header">Mt. Hobs</div>
-<div class="check-item"><input type="checkbox" id="c22"><label for="c22"><span class="entry-num">#022</span>Domovoi<span class="entry-loc"><span>Mt. Hobs</span><span>Fabul Castle</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c27"><label for="c27"><span class="entry-num">#027</span>Bomb<span class="entry-loc"><span>Mt. Hobs</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c28"><label for="c28"><span class="entry-num">#028</span>Spirit<span class="entry-loc"><span>Mt. Hobs</span><span>Mt. Ordeals</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c29"><label for="c29"><span class="entry-num">#029</span>Gray Bomb<span class="entry-loc"><span>Mt. Hobs</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c30"><label for="c30"><span class="entry-num">#030</span>Skeleton<span class="entry-loc"><span>Mt. Hobs</span><span>Mt. Ordeals</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c31"><label for="c31"><span class="entry-num">#031</span>Cockatrice<span class="entry-loc"><span>Mt. Hobs</span>></span></label></div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31"><span class="entry-num">#031</span>Cockatrice<span class="entry-loc"><span>Mt. Hobs</span><span>Overworld near Mysidia</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c32"><label for="c32"><span class="entry-num">#032</span>Gargoyle<span class="entry-loc"><span>Mt. Hobs</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c33"><label for="c33"><span class="entry-num">#033</span>Bloodbones<span class="entry-loc"><span>Mt. Hobs</span><span>Mt. Ordeals</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c195"><label for="c195"><span class="entry-num">#195</span>Mom Bomb<span class="entry-loc"><span>Mt. Hobs - Summit (boss)</span></span></label></div>
-
-<div class="section-header">Fabul Castle</div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34"><span class="entry-num">#034</span>Gatlinger<span class="entry-loc"><span>Overworld near Mysidia</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c35"><label for="c35"><span class="entry-num">#035</span>Baron Warrior<span class="entry-loc"><span>Fabul Castle</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c36"><label for="c36"><span class="entry-num">#036</span>Captain<span class="entry-loc"><span>Fabul Castle</span></span></label></div>
-
-<div class="section-header">Mt. Ordeals</div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37"><span class="entry-num">#037</span>Zu<span class="entry-loc"><span>Overworld near Mysidia</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c38"><label for="c38"><span class="entry-num">#038</span>Soul<span class="entry-loc"><span>Mt. Ordeals</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c39"><label for="c39"><span class="entry-num">#039</span>Ghoul<span class="entry-loc"><span>Mt. Ordeals</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c40"><label for="c40"><span class="entry-num">#040</span>Revenant<span class="entry-loc"><span>Mt. Ordeals</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c41"><label for="c41"><span class="entry-num">#041</span>Lilith<span class="entry-loc"><span>Mt. Ordeals</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c42"><label for="c42"><span class="entry-num">#042</span>Skullnant<span class="entry-loc"><span>Mt. Ordeals</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c213"><label for="c213"><span class="entry-num">#213</span>Scarmiglione<span class="entry-loc"><span>Mt. Ordeals - Summit (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c214"><label for="c214"><span class="entry-num">#214</span>Scarmiglione (2nd form)<span class="entry-loc"><span>Mt. Ordeals - Summit (boss)</span></span></label></div>
-
-<div class="section-header">Old Waterway</div>
 <div class="check-item"><input type="checkbox" id="c43"><label for="c43"><span class="entry-num">#043</span>Splasher<span class="entry-loc"><span>Old Waterway</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c44"><label for="c44"><span class="entry-num">#044</span>Hydra<span class="entry-loc"><span>Old Waterway</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c45"><label for="c45"><span class="entry-num">#045</span>Baron Guard<span class="entry-loc"><span>Baron</span><span>Old Waterway</span></span></label></div>
@@ -188,130 +141,73 @@
 <div class="check-item"><input type="checkbox" id="c47"><label for="c47"><span class="entry-num">#047</span>Gigas Gator<span class="entry-loc"><span>Old Waterway</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c48"><label for="c48"><span class="entry-num">#048</span>Death Shell<span class="entry-loc"><span>Old Waterway</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c49"><label for="c49"><span class="entry-num">#049</span>Flood Worm<span class="entry-loc"><span>Old Waterway</span></span></label></div>
-
-<div class="section-header">Castle Baron</div>
-<div class="check-item"><input type="checkbox" id="c196"><label for="c196"><span class="entry-num">#196</span>Baigan<span class="entry-loc"><span>Castle Baron - First Floor (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c197"><label for="c197"><span class="entry-num">#197</span>Right Arm<span class="entry-loc"><span>Castle Baron - First Floor (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c198"><label for="c198"><span class="entry-num">#198</span>Left Arm<span class="entry-loc"><span>Castle Baron - First Floor (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c215"><label for="c215"><span class="entry-num">#215</span>Cagnazzo<span class="entry-loc"><span>Castle Baron - Throne Room (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c240"><label for="c240"><span class="entry-num">#240</span>Odin<span class="entry-loc"><span>Castle Baron</span><span>East Tower - B2 (summon boss)</span></span></label></div>
-
-<div class="section-header">Magnetic Cave</div>
 <div class="check-item"><input type="checkbox" id="c50"><label for="c50"><span class="entry-num">#050</span>Twin Snake<span class="entry-loc"><span>Magnetic Cave</span><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
+
+<div class="range-header" id="r051">#051 – #100</div>
+<div class="check-item"><input type="checkbox" id="c51"><label for="c51"><span class="entry-num">#051</span>Treant<span class="entry-loc"><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c52"><label for="c52"><span class="entry-num">#052</span>Cait Sith<span class="entry-loc"><span>Magnetic Cave</span><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c53"><label for="c53"><span class="entry-num">#053</span>Hell Needle<span class="entry-loc"><span>Magnetic Cave</span><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54"><span class="entry-num">#054</span>Death Flower<span class="entry-loc"><span>Overworld near Troia</span><span>Mythril</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c55"><label for="c55"><span class="entry-num">#055</span>Draculady<span class="entry-loc"><span>Magnetic Cave</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c56"><label for="c56"><span class="entry-num">#056</span>Cave Naga<span class="entry-loc"><span>Magnetic Cave</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c57"><label for="c57"><span class="entry-num">#057</span>Mind Flayer<span class="entry-loc"><span>Magnetic Cave</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c58"><label for="c58"><span class="entry-num">#058</span>Cave Bat<span class="entry-loc"><span>Magnetic Cave</span><span>Eblan Cave</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c59"><label for="c59"><span class="entry-num">#059</span>Ogre<span class="entry-loc"><span>Magnetic Cave</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c199"><label for="c199"><span class="entry-num">#199</span>Dark Elf<span class="entry-loc"><span>Magnetic Cave - Crystal Room (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c200"><label for="c200"><span class="entry-num">#200</span>Dark Dragon<span class="entry-loc"><span>Magnetic Cave - Crystal Room (boss)</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ TOWER OF ZOT -->
-<div class="disc-header" id="zot">TOWER OF ZOT</div>
-
-<div class="warn-line">Missables in Tower of Zot — Puppet, Centaur Knight, and Gremlin have no Lunar Ruins backup. Get them before leaving.</div>
-
-<div class="section-header">Tower of Zot — Missables</div>
-<div class="check-item missable"><input type="checkbox" id="c61"><label for="c61"><span class="entry-num">#061</span>Puppet<span class="entry-warn">Missable — Tower of Zot only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c64"><label for="c64"><span class="entry-num">#064</span>Centaur Knight<span class="entry-warn">Missable — Tower of Zot only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c65"><label for="c65"><span class="entry-num">#065</span>Gremlin<span class="entry-warn">Missable — Tower of Zot only. No Lunar Ruins backup.</span></label></div>
-
-<div class="section-header">Tower of Zot — General Encounters</div>
 <div class="check-item"><input type="checkbox" id="c60"><label for="c60"><span class="entry-num">#060</span>Purple Bavarois<span class="entry-loc"><span>Tower of Zot</span><span>Moon</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c61"><label for="c61"><span class="entry-num">#061</span>Puppet<span class="entry-warn">⚠ Missable — Tower of Zot only. No Lunar Ruins backup.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c62"><label for="c62"><span class="entry-num">#062</span>Sorceress<span class="entry-loc"><span>Tower of Zot</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c63"><label for="c63"><span class="entry-num">#063</span>Black Knight<span class="entry-loc"><span>Tower of Zot</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c64"><label for="c64"><span class="entry-num">#064</span>Centaur Knight<span class="entry-warn">⚠ Missable — Tower of Zot only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c65"><label for="c65"><span class="entry-num">#065</span>Gremlin<span class="entry-warn">⚠ Missable — Tower of Zot only. No Lunar Ruins backup.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c66"><label for="c66"><span class="entry-num">#066</span>Soldieress<span class="entry-loc"><span>Tower of Zot</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c67"><label for="c67"><span class="entry-num">#067</span>Puppeteer<span class="entry-loc"><span>Tower of Zot</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c68"><label for="c68"><span class="entry-num">#068</span>Ice Lizard<span class="entry-loc"><span>Tower of Zot</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c69"><label for="c69"><span class="entry-num">#069</span>Cold Beast<span class="entry-loc"><span>Tower of Zot</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c70"><label for="c70"><span class="entry-num">#070</span>Hell Turtle<span class="entry-loc"><span>Tower of Zot</span><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c201"><label for="c201"><span class="entry-num">#201</span>Sandy<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c202"><label for="c202"><span class="entry-num">#202</span>Cindy<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c203"><label for="c203"><span class="entry-num">#203</span>Mindy<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c216"><label for="c216"><span class="entry-num">#216</span>Barbariccia<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ UNDERWORLD -->
-<div class="disc-header" id="underworld">UNDERWORLD</div>
-
-<div class="section-header">Near Dwarf Castle</div>
-<div class="check-item"><input type="checkbox" id="c76"><label for="c76"><span class="entry-num">#076</span>Goblin Captain<span class="entry-loc"><span>Tower of Babel</span><span>Underworld</span><span>near Dwarf Castle</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c77"><label for="c77"><span class="entry-num">#077</span>Armadillo<span class="entry-loc"><span>Underworld</span><span>near Dwarf Castle</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c78"><label for="c78"><span class="entry-num">#078</span>Magma Tortoise<span class="entry-loc"><span>Underworld</span><span>near Dwarf Castle</span></span></label></div>
-
-<div class="section-header">Near Kokkol's / Tomra</div>
-<div class="check-item"><input type="checkbox" id="c72"><label for="c72"><span class="entry-num">#072</span>Blood Flower<span class="entry-loc"><span>Underworld</span><span>near Kokkol's</span><span>Tomra</span><span>etc.</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c79"><label for="c79"><span class="entry-num">#079</span>Undergrounder<span class="entry-loc"><span>Underworld</span><span>near Kokkol's</span><span>Tomra</span><span>etc.</span><span>Sylph Cave (chest)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c80"><label for="c80"><span class="entry-num">#080</span>Hell Flapper<span class="entry-loc"><span>Underworld</span><span>near Kokkol's</span><span>Tomra</span><span>etc.</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c81"><label for="c81"><span class="entry-num">#081</span>Chrysalis<span class="entry-loc"><span>Underworld</span><span>near Kokkol's</span><span>Tomra</span><span>etc.</span></span></label></div>
-
-<div class="section-header">Three Step Peninsula</div>
-<div class="check-item"><input type="checkbox" id="c82"><label for="c82"><span class="entry-num">#082</span>Gloomwing<span class="entry-loc"><span>Underworld (three step peninsula)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c83"><label for="c83"><span class="entry-num">#083</span>Gorgon<span class="entry-loc"><span>Underworld (three step peninsula)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c84"><label for="c84"><span class="entry-num">#084</span>Mystery Egg<span class="entry-loc"><span>Tower of Babel</span><span>Underworld (three step peninsula)</span></span><span class="entry-note">Mystery Egg hatchling does NOT register — find Dragons through normal encounters.</span></label></div>
-<div class="check-item"><input type="checkbox" id="c89"><label for="c89"><span class="entry-num">#089</span>Medusa<span class="entry-loc"><span>Tower of Babel</span><span>Underworld (three step peninsula)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c91"><label for="c91"><span class="entry-num">#091</span>Coeurl<span class="entry-loc"><span>Tower of Babel</span><span>Underworld (three step peninsula)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c104"><label for="c104"><span class="entry-num">#104</span>Stone Golem<span class="entry-loc"><span>Underworld (three step peninsula)</span></span><span class="entry-note">Rare spawn — Three Step Peninsula only.</span></label></div>
-<div class="check-item"><input type="checkbox" id="c129"><label for="c129"><span class="entry-num">#129</span>Crawler<span class="entry-loc"><span>Underworld (three step peninsula)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c134"><label for="c134"><span class="entry-num">#134</span>Tarantula<span class="entry-loc"><span>Underworld (three step peninsula)</span><span>Lunar Ruins</span></span></label></div>
-
-<div class="section-header">Dwarf Castle</div>
-<div class="check-item"><input type="checkbox" id="c204"><label for="c204"><span class="entry-num">#204</span>Calco<span class="entry-loc"><span>Dwarf Castle - Crystal Room (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c205"><label for="c205"><span class="entry-num">#205</span>Brina<span class="entry-loc"><span>Dwarf Castle - Crystal Room (boss)</span></span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c206"><label for="c206"><span class="entry-num">#206</span>Calcobrena<span class="entry-loc"><span>Dwarf Castle - Crystal Room (boss)</span></span><span class="entry-warn">Missable — do not kill all Calcos/Brinas before they merge or the Calcobrena entry is missed.</span></label></div>
-<div class="check-item"><input type="checkbox" id="c207"><label for="c207"><span class="entry-num">#207</span>Golbez<span class="entry-loc"><span>Dwarf Castle - Crystal Room (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c208"><label for="c208"><span class="entry-num">#208</span>Shadow Dragon<span class="entry-loc"><span>Dwarf Castle - Crystal Room (boss)</span></span></label></div>
-
-<div class="section-header">Eblan Cave</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71"><span class="entry-num">#071</span>Roc Baby<span class="entry-loc"><span>Overworld near Eblan</span><span>Agart</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72"><span class="entry-num">#072</span>Blood Flower<span class="entry-loc"><span>Underworld near Kokkol's / Tomra</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73"><span class="entry-num">#073</span>Roc<span class="entry-loc"><span>Overworld near Eblan</span><span>Agart</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74"><span class="entry-num">#074</span>Mors<span class="entry-loc"><span>Overworld near Eblan</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c75"><label for="c75"><span class="entry-num">#075</span>Steel Golem<span class="entry-loc"><span>Eblan Cave</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c106"><label for="c106"><span class="entry-num">#106</span>Bloody Bat<span class="entry-loc"><span>Eblan Cave</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c107"><label for="c107"><span class="entry-num">#107</span>Skuldier<span class="entry-loc"><span>Eblan Cave</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ TOWER OF BABEL -->
-<div class="disc-header" id="babel">TOWER OF BABEL</div>
-
-<div class="warn-line">Multiple missables — Naga, Fiery Knight, Chimera, Sorcerer, Grudger, Security Eye are First Visit only. No returns.</div>
-
-<div class="section-header">Tower of Babel — First Visit Missables</div>
-<div class="check-item missable"><input type="checkbox" id="c87"><label for="c87"><span class="entry-num">#087</span>Naga<span class="entry-warn">Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c90"><label for="c90"><span class="entry-num">#090</span>Fiery Knight<span class="entry-warn">Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c93"><label for="c93"><span class="entry-num">#093</span>Chimera<span class="entry-warn">Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c95"><label for="c95"><span class="entry-num">#095</span>Sorcerer<span class="entry-warn">Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c99"><label for="c99"><span class="entry-num">#099</span>Grudger<span class="entry-warn">Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
-<div class="check-item missable"><input type="checkbox" id="c101"><label for="c101"><span class="entry-num">#101</span>Security Eye<span class="entry-warn">Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
-
-<div class="section-header">Tower of Babel — General Encounters</div>
-<div class="check-item"><input type="checkbox" id="c85"><label for="c85"><span class="entry-num">#085</span>Ironback<span class="entry-loc"><span>Tower of Babel</span><span>Overworld (near Eblan)</span><span>Eblan Cave</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76"><span class="entry-num">#076</span>Goblin Captain<span class="entry-loc"><span>Tower of Babel</span><span>Underworld near Dwarf Castle</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77"><span class="entry-num">#077</span>Armadillo<span class="entry-loc"><span>Underworld near Dwarf Castle</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78"><span class="entry-num">#078</span>Magma Tortoise<span class="entry-loc"><span>Underworld near Dwarf Castle</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79"><span class="entry-num">#079</span>Undergrounder<span class="entry-loc"><span>Underworld near Kokkol's / Tomra</span><span>Sylvan Cave (chest)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80"><span class="entry-num">#080</span>Hell Flapper<span class="entry-loc"><span>Underworld near Kokkol's / Tomra</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81"><span class="entry-num">#081</span>Chrysalis<span class="entry-loc"><span>Underworld near Kokkol's / Tomra</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82"><span class="entry-num">#082</span>Gloomwing<span class="entry-loc"><span>Underworld (Three Step Peninsula)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83"><span class="entry-num">#083</span>Gorgon<span class="entry-loc"><span>Underworld (Three Step Peninsula)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84"><span class="entry-num">#084</span>Mystery Egg<span class="entry-loc"><span>Tower of Babel</span><span>Underworld (Three Step Peninsula)</span></span><span class="entry-note">Whatever hatches from a Mystery Egg does NOT register in the Bestiary — find Dragons through normal encounters.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85"><span class="entry-num">#085</span>Ironback<span class="entry-loc"><span>Tower of Babel</span><span>Overworld near Eblan</span><span>Eblan Cave</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c86"><label for="c86"><span class="entry-num">#086</span>White Mousse<span class="entry-loc"><span>Tower of Babel</span><span>Moon</span><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c87"><label for="c87"><span class="entry-num">#087</span>Naga<span class="entry-warn">⚠ Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c88"><label for="c88"><span class="entry-num">#088</span>Evil Doll<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89"><span class="entry-num">#089</span>Medusa<span class="entry-loc"><span>Tower of Babel</span><span>Underworld (Three Step Peninsula)</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c90"><label for="c90"><span class="entry-num">#090</span>Fiery Knight<span class="entry-warn">⚠ Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c91"><label for="c91"><span class="entry-num">#091</span>Coeurl<span class="entry-loc"><span>Tower of Babel</span><span>Underworld (Three Step Peninsula)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c92"><label for="c92"><span class="entry-num">#092</span>Balloon<span class="entry-loc"><span>Tower of Babel</span><span>Moon</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c94"><label for="c94"><span class="entry-num">#094</span>Black Lizard<span class="entry-loc"><span>Tower of Babel</span><span>Overworld (near Eblan)</span><span>Underworld (near Tower of Babel)</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c93"><label for="c93"><span class="entry-num">#093</span>Chimera<span class="entry-warn">⚠ Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94"><span class="entry-num">#094</span>Black Lizard<span class="entry-loc"><span>Tower of Babel</span><span>Overworld near Eblan</span><span>Underworld near Tower of Babel</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c95"><label for="c95"><span class="entry-num">#095</span>Sorcerer<span class="entry-warn">⚠ Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c96"><label for="c96"><span class="entry-num">#096</span>Ghost Knight<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c97"><label for="c97"><span class="entry-num">#097</span>Lamia Matriarch<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c98"><label for="c98"><span class="entry-num">#098</span>Lamia<span class="entry-loc"><span>Tower of Babel</span><span>Eblan Castle</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c99"><label for="c99"><span class="entry-num">#099</span>Grudger<span class="entry-warn">⚠ Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c100"><label for="c100"><span class="entry-num">#100</span>Fiery Hound<span class="entry-loc"><span>Tower of Zot</span><span>Tower of Babel</span><span>Overworld near Eblan</span></span></label></div>
+
+<div class="range-header" id="r101">#101 – #150</div>
+<div class="check-item missable"><input type="checkbox" id="c101"><label for="c101"><span class="entry-num">#101</span>Security Eye<span class="entry-warn">⚠ Missable — Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c102"><label for="c102"><span class="entry-num">#102</span>Mad Ogre<span class="entry-loc"><span>Tower of Babel</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c103"><label for="c103"><span class="entry-num">#103</span>Green Dragon<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span><span class="entry-note">Rare encounter — room before Falcon. Also in Lunar Ruins (Tower floor).</span></label></div>
-<div class="check-item"><input type="checkbox" id="c105"><label for="c105"><span class="entry-num">#105</span>Mythril Golem<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span><span class="entry-note">Rare encounter — room before Falcon. Also in Lunar Ruins (Tower floor).</span></label></div>
-
-<div class="section-header">Tower of Babel — Bosses</div>
-<div class="check-item"><input type="checkbox" id="c209"><label for="c209"><span class="entry-num">#209</span>Doctor<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c210"><label for="c210"><span class="entry-num">#210</span>Barnabas<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c211"><label for="c211"><span class="entry-num">#211</span>Dr. Lugae<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c212"><label for="c212"><span class="entry-num">#212</span>Barnabas-Z<span class="entry-loc"><span>Tower of Babel (boss)</span></span><span class="entry-note">Attack Barnabas first, not Doctor Lugae, to trigger this form.</span></label></div>
-<div class="check-item"><input type="checkbox" id="c217"><label for="c217"><span class="entry-num">#217</span>Rubicante<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ LATE GAME DUNGEONS -->
-<div class="disc-header" id="lategame">LATE GAME DUNGEONS</div>
-
-<div class="section-header">Sylvan Cave</div>
+<div class="check-item"><input type="checkbox" id="c103"><label for="c103"><span class="entry-num">#103</span>Green Dragon<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span><span class="entry-note">Rare encounter — room before the Falcon. Also available in Lunar Ruins.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c104"><label for="c104"><span class="entry-num">#104</span>Stone Golem<span class="entry-loc"><span>Underworld (Three Step Peninsula)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c105"><label for="c105"><span class="entry-num">#105</span>Mythril Golem<span class="entry-loc"><span>Tower of Babel</span><span>Lunar Ruins</span></span><span class="entry-note">Rare encounter — room before the Falcon. Also available in Lunar Ruins.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c106"><label for="c106"><span class="entry-num">#106</span>Bloody Bat<span class="entry-loc"><span>Eblan Cave</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c107"><label for="c107"><span class="entry-num">#107</span>Skuldier<span class="entry-loc"><span>Eblan Cave</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c108"><label for="c108"><span class="entry-num">#108</span>Tiny Toad<span class="entry-loc"><span>Sylvan Cave</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c109"><label for="c109"><span class="entry-num">#109</span>Bog Witch<span class="entry-loc"><span>Sylvan Cave</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c110"><label for="c110"><span class="entry-num">#110</span>Evil Dreamer<span class="entry-loc"><span>Sylvan Cave</span><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c111"><label for="c111"><span class="entry-num">#111</span>Mammon<span class="entry-loc"><span>Sylvan Cave</span><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c112"><label for="c112"><span class="entry-num">#112</span>Malboro<span class="entry-loc"><span>Sylvan Cave</span><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
-
-<div class="section-header">Cave of Summons</div>
 <div class="check-item"><input type="checkbox" id="c113"><label for="c113"><span class="entry-num">#113</span>Belphegor<span class="entry-loc"><span>Cave of Summons</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c114"><label for="c114"><span class="entry-num">#114</span>Bloody Eye<span class="entry-loc"><span>Cave of Summons</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c115"><label for="c115"><span class="entry-num">#115</span>Warrior<span class="entry-loc"><span>Cave of Summons</span><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
@@ -319,43 +215,21 @@
 <div class="check-item"><input type="checkbox" id="c117"><label for="c117"><span class="entry-num">#117</span>Summoner<span class="entry-loc"><span>Cave of Summons</span><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c118"><label for="c118"><span class="entry-num">#118</span>Arachne<span class="entry-loc"><span>Cave of Summons</span><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c119"><label for="c119"><span class="entry-num">#119</span>Thunder Dragon<span class="entry-loc"><span>Cave of Summons</span><span>Cave of Trials</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c241"><label for="c241"><span class="entry-num">#241</span>Leviathan<span class="entry-loc"><span>Land of Summons (summon boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c243"><label for="c243"><span class="entry-num">#243</span>Asura<span class="entry-loc"><span>Land of Summons (summon boss)</span></span></label></div>
-
-<div class="section-header">Sealed Cavern</div>
 <div class="check-item"><input type="checkbox" id="c120"><label for="c120"><span class="entry-num">#120</span>Evil Bat<span class="entry-loc"><span>Sealed Cavern</span><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c121"><label for="c121"><span class="entry-num">#121</span>Screamer<span class="entry-loc"><span>Sealed Cavern</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c122"><label for="c122"><span class="entry-num">#122</span>King Naga<span class="entry-loc"><span>Sealed Cavern</span><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c123"><label for="c123"><span class="entry-num">#123</span>Miss Vamp<span class="entry-loc"><span>Sealed Cavern</span><span>Cave of Trials</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c124"><label for="c124"><span class="entry-num">#124</span>Yellow Dragon<span class="entry-loc"><span>Sealed Cavern</span></span><span class="entry-note">Guaranteed at end (final Trap Door). Also Cave of Trials F1 with Siren.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c124"><label for="c124"><span class="entry-num">#124</span>Yellow Dragon<span class="entry-loc"><span>Sealed Cavern</span><span>Cave of Trials</span></span><span class="entry-note">The final Trap Door in the Sealed Cavern always transforms into one. Cave of Trials F1 with Siren also works.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c125"><label for="c125"><span class="entry-num">#125</span>Chimera Brain<span class="entry-loc"><span>Sealed Cavern</span><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c126"><label for="c126"><span class="entry-num">#126</span>Trap Door<span class="entry-loc"><span>Sealed Cavern</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c218"><label for="c218"><span class="entry-num">#218</span>Demon Wall<span class="entry-loc"><span>Sealed Cavern - B5 (boss)</span></span></label></div>
-
-<div class="section-header">Cave of Trials</div>
-<div class="check-item"><input type="checkbox" id="c142"><label for="c142"><span class="entry-num">#142</span>Great Malboro<span class="entry-loc"><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c143"><label for="c143"><span class="entry-num">#143</span>Golden Toad<span class="entry-loc"><span>Cave of Trials</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c222"><label for="c222"><span class="entry-num">#222</span>Storm Dragon<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c223"><label for="c223"><span class="entry-num">#223</span>Gigas Worm<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c224"><label for="c224"><span class="entry-num">#224</span>Master Flan<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c225"><label for="c225"><span class="entry-num">#225</span>T-Rex<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c226"><label for="c226"><span class="entry-num">#226</span>Death Mech<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ MOON -->
-<div class="disc-header" id="moon">MOON</div>
-
-<div class="section-header">Moon — Random Encounters</div>
 <div class="check-item"><input type="checkbox" id="c127"><label for="c127"><span class="entry-num">#127</span>Lunar Virus<span class="entry-loc"><span>Moon</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c128"><label for="c128"><span class="entry-num">#128</span>Eukaryote<span class="entry-loc"><span>Moon</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c129"><label for="c129"><span class="entry-num">#129</span>Crawler<span class="entry-loc"><span>Underworld (Three Step Peninsula)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c130"><label for="c130"><span class="entry-num">#130</span>Prokaryote<span class="entry-loc"><span>Moon</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c131"><label for="c131"><span class="entry-num">#131</span>Abyss Worm<span class="entry-loc"><span>Moon</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c132"><label for="c132"><span class="entry-num">#132</span>Black Flan<span class="entry-loc"><span>Moon</span><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c133"><label for="c133"><span class="entry-num">#133</span>Dark Grenade<span class="entry-loc"><span>Moon</span><span>Lunar Ruins</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ GIANT OF BABEL -->
-<div class="disc-header" id="giantbabel">GIANT OF BABEL</div>
-
-<div class="section-header">Giant of Babel — Encounters</div>
+<div class="check-item"><input type="checkbox" id="c134"><label for="c134"><span class="entry-num">#134</span>Tarantula<span class="entry-loc"><span>Underworld (Three Step Peninsula)</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c135"><label for="c135"><span class="entry-num">#135</span>Beamer<span class="entry-loc"><span>Giant of Babel</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c136"><label for="c136"><span class="entry-num">#136</span>Centaurion<span class="entry-loc"><span>Giant of Babel</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c137"><label for="c137"><span class="entry-num">#137</span>Mech Soldier<span class="entry-loc"><span>Giant of Babel</span></span></label></div>
@@ -363,48 +237,26 @@
 <div class="check-item"><input type="checkbox" id="c139"><label for="c139"><span class="entry-num">#139</span>Last Arm<span class="entry-loc"><span>Giant of Babel</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c140"><label for="c140"><span class="entry-num">#140</span>Giant Soldier<span class="entry-loc"><span>Giant of Babel</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c141"><label for="c141"><span class="entry-num">#141</span>Mech Dragon<span class="entry-loc"><span>Giant of Babel</span><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c219"><label for="c219"><span class="entry-num">#219</span>Defense Node<span class="entry-loc"><span>Giant of Babel (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c220"><label for="c220"><span class="entry-num">#220</span>Attack Node<span class="entry-loc"><span>Giant of Babel (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c221"><label for="c221"><span class="entry-num">#221</span>CPU<span class="entry-loc"><span>Giant of Babel (boss)</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ LUNAR SUBTERRANE -->
-<div class="disc-header" id="subterrane">LUNAR SUBTERRANE</div>
-
-<div class="section-header">Cave of Bahamut</div>
+<div class="check-item"><input type="checkbox" id="c142"><label for="c142"><span class="entry-num">#142</span>Great Malboro<span class="entry-loc"><span>Cave of Trials</span><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c143"><label for="c143"><span class="entry-num">#143</span>Golden Toad<span class="entry-loc"><span>Cave of Trials</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c144"><label for="c144"><span class="entry-num">#144</span>Selene Guardian<span class="entry-loc"><span>Cave of Bahamut</span><span>Lunar Subterrane</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c145"><label for="c145"><span class="entry-num">#145</span>Dark Sage<span class="entry-loc"><span>Cave of Bahamut</span><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c155"><label for="c155"><span class="entry-num">#155</span>Behemoth<span class="entry-loc"><span>Cave of Bahamut</span><span>Lunar Subterrane</span><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c242"><label for="c242"><span class="entry-num">#242</span>Bahamut<span class="entry-loc"><span>Cave of Bahamut (summon boss)</span></span></label></div>
-
-<div class="section-header">Lunar Subterrane — Encounters</div>
 <div class="check-item"><input type="checkbox" id="c146"><label for="c146"><span class="entry-num">#146</span>Silver Dragon<span class="entry-loc"><span>Lunar Subterrane</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c147"><label for="c147"><span class="entry-num">#147</span>Gold Dragon<span class="entry-loc"><span>Lunar Subterrane</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c148"><label for="c148"><span class="entry-num">#148</span>Bone Dragon<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c149"><label for="c149"><span class="entry-num">#149</span>Dinozombie<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c150"><label for="c150"><span class="entry-num">#150</span>L'il Murderer<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+
+<div class="range-header" id="r151">#151 – #200</div>
 <div class="check-item"><input type="checkbox" id="c151"><label for="c151"><span class="entry-num">#151</span>Giant Warrior<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c152"><label for="c152"><span class="entry-num">#152</span>Blue Dragon<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c153"><label for="c153"><span class="entry-num">#153</span>Red Dragon<span class="entry-loc"><span>Lunar Subterrane</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c154"><label for="c154"><span class="entry-num">#154</span>Ahriman<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c155"><label for="c155"><span class="entry-num">#155</span>Behemoth<span class="entry-loc"><span>Cave of Bahamut</span><span>Lunar Subterrane</span><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c156"><label for="c156"><span class="entry-num">#156</span>Wicked Mask<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c159"><label for="c159"><span class="entry-num">#159</span>Flan Princess<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c227"><label for="c227"><span class="entry-num">#227</span>Lunasaur<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c228"><label for="c228"><span class="entry-num">#228</span>Plague<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c229"><label for="c229"><span class="entry-num">#229</span>White Dragon<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c230"><label for="c230"><span class="entry-num">#230</span>Ogopogo<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c231"><label for="c231"><span class="entry-num">#231</span>Dark Bahamut<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
-
-<div class="section-header">Lunar Subterrane — Bosses</div>
 <div class="check-item"><input type="checkbox" id="c157"><label for="c157"><span class="entry-num">#157</span>Zemus's Mind<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c158"><label for="c158"><span class="entry-num">#158</span>Zemus's Breath<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c232"><label for="c232"><span class="entry-num">#232</span>Zemus<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c233"><label for="c233"><span class="entry-num">#233</span>Zeromus<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c234"><label for="c234"><span class="entry-num">#234</span>Zeromus (2nd form)<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
-
-<!-- ═══════════════════════════════════════════ LUNAR RUINS -->
-<div class="disc-header" id="ruins">LUNAR RUINS</div>
-
-<div class="section-header">Lunar Ruins — General Encounters</div>
+<div class="check-item"><input type="checkbox" id="c159"><label for="c159"><span class="entry-num">#159</span>Flan Princess<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c160"><label for="c160"><span class="entry-num">#160</span>Goblin Prince<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c161"><label for="c161"><span class="entry-num">#161</span>Echidna<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c162"><label for="c162"><span class="entry-num">#162</span>Lamia Queen<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
@@ -423,40 +275,74 @@
 <div class="check-item"><input type="checkbox" id="c175"><label for="c175"><span class="entry-num">#175</span>Catoblepas<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c176"><label for="c176"><span class="entry-num">#176</span>Iron Giant<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c177"><label for="c177"><span class="entry-num">#177</span>King Behemoth<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c178"><label for="c178"><span class="entry-num">#178</span>Gilgamesh<span class="entry-loc"><span>Lunar Ruins</span></span><span class="entry-note">Floors resembling Lunar Subterrane, near single-chest rooms.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c178"><label for="c178"><span class="entry-num">#178</span>Gilgamesh<span class="entry-loc"><span>Lunar Ruins</span></span><span class="entry-note">Found mostly on floors that resemble the Lunar Subterrane, near single-chest rooms.</span></label></div>
 <div class="check-item"><input type="checkbox" id="c179"><label for="c179"><span class="entry-num">#179</span>Proto Phase<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c183"><label for="c183"><span class="entry-num">#183</span>Metamorpha<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c180"><label for="c180"><span class="entry-num">#180</span>Mist Eagle<span class="entry-loc"><span>Lunar Ruins — Rydia's Trial</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c181"><label for="c181"><span class="entry-num">#181</span>Mist Kraken<span class="entry-loc"><span>Lunar Ruins — Rydia's Trial</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c182"><label for="c182"><span class="entry-num">#182</span>Mist Summoner<span class="entry-loc"><span>Lunar Ruins — Rydia's Trial</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c183"><label for="c183"><span class="entry-num">#183</span>Metamorpha<span class="entry-loc"><span>Lunar Ruins — Rosa's Trial</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c184"><label for="c184"><span class="entry-num">#184</span>Specter<span class="entry-loc"><span>Lunar Ruins — Edward's Trial</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c185"><label for="c185"><span class="entry-num">#185</span>Platinum Toad<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c186"><label for="c186"><span class="entry-num">#186</span>Grudge Puppet<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c187"><label for="c187"><span class="entry-num">#187</span>Death Puppet<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c188"><label for="c188"><span class="entry-num">#188</span>Brachioraidos<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c253"><label for="c253"><span class="entry-num">#253</span>Zeromus EG<span class="entry-loc"><span>Lunar Ruins</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c189"><label for="c189"><span class="entry-num">#189</span>Soldier Monk<span class="entry-loc"><span>Lunar Ruins — Yang's Trial</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c190"><label for="c190"><span class="entry-num">#190</span>Super Monk<span class="entry-loc"><span>Lunar Ruins — Yang's Trial</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c191"><label for="c191"><span class="entry-num">#191</span>Drillmaster<span class="entry-loc"><span>Lunar Ruins — Yang's Trial</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c192"><label for="c192"><span class="entry-num">#192</span>Bandit<span class="entry-loc"><span>Lunar Ruins — Cecil's Trial</span></span><span class="entry-warn">⚠ Must choose to fight him during Cecil's Trial — the deed is random. Use Grimoire LO to repeat the trial if needed.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c193"><label for="c193"><span class="entry-num">#193</span>Octomammoth<span class="entry-loc"><span>Sunken Lake - B1 (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c194"><label for="c194"><span class="entry-num">#194</span>Antlion<span class="entry-loc"><span>Antlion Cave (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c195"><label for="c195"><span class="entry-num">#195</span>Mom Bomb<span class="entry-loc"><span>Mt. Hobs — Summit (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c196"><label for="c196"><span class="entry-num">#196</span>Baigan<span class="entry-loc"><span>Castle Baron — First Floor (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c197"><label for="c197"><span class="entry-num">#197</span>Right Arm<span class="entry-loc"><span>Castle Baron — First Floor (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c198"><label for="c198"><span class="entry-num">#198</span>Left Arm<span class="entry-loc"><span>Castle Baron — First Floor (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c199"><label for="c199"><span class="entry-num">#199</span>Dark Elf<span class="entry-loc"><span>Magnetic Cave — Crystal Room (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c200"><label for="c200"><span class="entry-num">#200</span>Dark Dragon<span class="entry-loc"><span>Magnetic Cave — Crystal Room (boss)</span></span></label></div>
 
-<div class="section-header">Rydia's Trial</div>
-<div class="check-item"><input type="checkbox" id="c180"><label for="c180"><span class="entry-num">#180</span>Mist Eagle<span class="entry-loc"><span>Lunar Ruins - Rydia's Trial</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c181"><label for="c181"><span class="entry-num">#181</span>Mist Kraken<span class="entry-loc"><span>Lunar Ruins - Rydia's Trial</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c182"><label for="c182"><span class="entry-num">#182</span>Mist Summoner<span class="entry-loc"><span>Lunar Ruins - Rydia's Trial</span></span></label></div>
-
-<div class="section-header">Edward's Trial</div>
-<div class="check-item"><input type="checkbox" id="c184"><label for="c184"><span class="entry-num">#184</span>Specter<span class="entry-loc"><span>Lunar Ruins - Edward's Trial</span></span></label></div>
-
-<div class="section-header">Yang's Trial</div>
-<div class="check-item"><input type="checkbox" id="c189"><label for="c189"><span class="entry-num">#189</span>Soldier Monk<span class="entry-loc"><span>Lunar Ruins - Yang's Trial</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c190"><label for="c190"><span class="entry-num">#190</span>Super Monk<span class="entry-loc"><span>Lunar Ruins - Yang's Trial</span></span></label></div>
-<div class="check-item"><input type="checkbox" id="c191"><label for="c191"><span class="entry-num">#191</span>Drillmaster<span class="entry-loc"><span>Lunar Ruins - Yang's Trial</span></span></label></div>
-
-<div class="section-header">Cecil's Trial</div>
-<div class="check-item missable"><input type="checkbox" id="c192"><label for="c192"><span class="entry-num">#192</span>Bandit<span class="entry-loc"><span>Lunar Ruins - Cecil's Trial</span></span><span class="entry-warn">Must choose to fight him — deed is random. Use Grimoire LO to repeat trial if needed.</span></label></div>
-
-<!-- ═══════════════════════════════════════════ BOSSES -->
-<div class="disc-header" id="bosses">STANDALONE BOSSES</div>
-<div class="ext">Bosses listed here that don't fit cleanly into an area section above.</div>
-
-<div class="section-header">Lunar Ruins — Boss Encounters</div>
+<div class="range-header" id="r201">#201 – #253</div>
+<div class="check-item"><input type="checkbox" id="c201"><label for="c201"><span class="entry-num">#201</span>Sandy<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c202"><label for="c202"><span class="entry-num">#202</span>Cindy<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c203"><label for="c203"><span class="entry-num">#203</span>Mindy<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c204"><label for="c204"><span class="entry-num">#204</span>Calco<span class="entry-loc"><span>Dwarf Castle — Crystal Room (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c205"><label for="c205"><span class="entry-num">#205</span>Brina<span class="entry-loc"><span>Dwarf Castle — Crystal Room (boss)</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c206"><label for="c206"><span class="entry-num">#206</span>Calcobrena<span class="entry-loc"><span>Dwarf Castle — Crystal Room (boss)</span></span><span class="entry-warn">⚠ Missable — do not kill all Calcos/Brinas before they merge or Calcobrena's entry is missed.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c207"><label for="c207"><span class="entry-num">#207</span>Golbez<span class="entry-loc"><span>Dwarf Castle — Crystal Room (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c208"><label for="c208"><span class="entry-num">#208</span>Shadow Dragon<span class="entry-loc"><span>Dwarf Castle — Crystal Room (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c209"><label for="c209"><span class="entry-num">#209</span>Doctor<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c210"><label for="c210"><span class="entry-num">#210</span>Barnabas<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c211"><label for="c211"><span class="entry-num">#211</span>Dr. Lugae<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
+<div class="check-item missable"><input type="checkbox" id="c212"><label for="c212"><span class="entry-num">#212</span>Barnabas-Z<span class="entry-loc"><span>Tower of Babel (boss)</span></span><span class="entry-warn">⚠ Missable — attack Barnabas first, not the Doctor, to trigger this form.</span></label></div>
+<div class="check-item"><input type="checkbox" id="c213"><label for="c213"><span class="entry-num">#213</span>Scarmiglione<span class="entry-loc"><span>Mt. Ordeals — Summit (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c214"><label for="c214"><span class="entry-num">#214</span>Scarmiglione (2nd form)<span class="entry-loc"><span>Mt. Ordeals — Summit (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c215"><label for="c215"><span class="entry-num">#215</span>Cagnazzo<span class="entry-loc"><span>Castle Baron — Throne Room (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c216"><label for="c216"><span class="entry-num">#216</span>Barbariccia<span class="entry-loc"><span>Tower of Zot (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c217"><label for="c217"><span class="entry-num">#217</span>Rubicante<span class="entry-loc"><span>Tower of Babel (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c218"><label for="c218"><span class="entry-num">#218</span>Demon Wall<span class="entry-loc"><span>Sealed Cavern — B5 (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c219"><label for="c219"><span class="entry-num">#219</span>Defense Node<span class="entry-loc"><span>Giant of Babel (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c220"><label for="c220"><span class="entry-num">#220</span>Attack Node<span class="entry-loc"><span>Giant of Babel (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c221"><label for="c221"><span class="entry-num">#221</span>CPU<span class="entry-loc"><span>Giant of Babel (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c222"><label for="c222"><span class="entry-num">#222</span>Storm Dragon<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c223"><label for="c223"><span class="entry-num">#223</span>Gigas Worm<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c224"><label for="c224"><span class="entry-num">#224</span>Master Flan<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c225"><label for="c225"><span class="entry-num">#225</span>T-Rex<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c226"><label for="c226"><span class="entry-num">#226</span>Death Mech<span class="entry-loc"><span>Cave of Trials (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c227"><label for="c227"><span class="entry-num">#227</span>Lunasaur<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c228"><label for="c228"><span class="entry-num">#228</span>Plague<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c229"><label for="c229"><span class="entry-num">#229</span>White Dragon<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c230"><label for="c230"><span class="entry-num">#230</span>Ogopogo<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c231"><label for="c231"><span class="entry-num">#231</span>Dark Bahamut<span class="entry-loc"><span>Lunar Subterrane</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c232"><label for="c232"><span class="entry-num">#232</span>Zemus<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c233"><label for="c233"><span class="entry-num">#233</span>Zeromus<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c234"><label for="c234"><span class="entry-num">#234</span>Zeromus (2nd form)<span class="entry-loc"><span>Lunar Subterrane (boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c235"><label for="c235"><span class="entry-num">#235</span>Mist Dragon<span class="entry-loc"><span>Mist Cave (boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c236"><label for="c236"><span class="entry-num">#236</span>Ifrit<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c237"><label for="c237"><span class="entry-num">#237</span>Shiva<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c238"><label for="c238"><span class="entry-num">#238</span>Titan<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c239"><label for="c239"><span class="entry-num">#239</span>Ramuh<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c240"><label for="c240"><span class="entry-num">#240</span>Odin<span class="entry-loc"><span>Castle Baron — East Tower B2 (summon boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c241"><label for="c241"><span class="entry-num">#241</span>Leviathan<span class="entry-loc"><span>Land of Summons (summon boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c242"><label for="c242"><span class="entry-num">#242</span>Bahamut<span class="entry-loc"><span>Cave of Bahamut (summon boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c243"><label for="c243"><span class="entry-num">#243</span>Asura<span class="entry-loc"><span>Land of Summons (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c244"><label for="c244"><span class="entry-num">#244</span>Lunar Bahamut<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c245"><label for="c245"><span class="entry-num">#245</span>Lunar Leviathan<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c246"><label for="c246"><span class="entry-num">#246</span>Lunar Odin<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
@@ -466,6 +352,21 @@
 <div class="check-item"><input type="checkbox" id="c250"><label for="c250"><span class="entry-num">#250</span>Lunar Ifrit<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c251"><label for="c251"><span class="entry-num">#251</span>Lunar Ramuh<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
 <div class="check-item"><input type="checkbox" id="c252"><label for="c252"><span class="entry-num">#252</span>Lunar Shiva<span class="entry-loc"><span>Lunar Ruins (summon boss)</span></span></label></div>
+<div class="check-item"><input type="checkbox" id="c253"><label for="c253"><span class="entry-num">#253</span>Zeromus EG<span class="entry-loc"><span>Lunar Ruins (boss)</span></span></label></div>
+
+<div class="range-header" id="missable">Missables</div>
+<div class="check-item missable"><input type="checkbox" id="m61"><label for="m61"><span class="entry-num">#061</span>Puppet<span class="entry-warn">⚠ Tower of Zot only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m64"><label for="m64"><span class="entry-num">#064</span>Centaur Knight<span class="entry-warn">⚠ Tower of Zot only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m65"><label for="m65"><span class="entry-num">#065</span>Gremlin<span class="entry-warn">⚠ Tower of Zot only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m87"><label for="m87"><span class="entry-num">#087</span>Naga<span class="entry-warn">⚠ Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m90"><label for="m90"><span class="entry-num">#090</span>Fiery Knight<span class="entry-warn">⚠ Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m93"><label for="m93"><span class="entry-num">#093</span>Chimera<span class="entry-warn">⚠ Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m95"><label for="m95"><span class="entry-num">#095</span>Sorcerer<span class="entry-warn">⚠ Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m99"><label for="m99"><span class="entry-num">#099</span>Grudger<span class="entry-warn">⚠ Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m101"><label for="m101"><span class="entry-num">#101</span>Security Eye<span class="entry-warn">⚠ Tower of Babel, First Visit only. No Lunar Ruins backup.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m192"><label for="m192"><span class="entry-num">#192</span>Bandit<span class="entry-warn">⚠ Lunar Ruins — Cecil's Trial. Must choose to fight him — the deed is random. Use Grimoire LO to repeat.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m206"><label for="m206"><span class="entry-num">#206</span>Calcobrena<span class="entry-warn">⚠ Dwarf Castle. Do not kill all Calcos/Brinas before they merge or this entry is missed.</span></label></div>
+<div class="check-item missable"><input type="checkbox" id="m212"><label for="m212"><span class="entry-num">#212</span>Barnabas-Z<span class="entry-warn">⚠ Tower of Babel. Attack Barnabas first, not the Doctor, to trigger this form.</span></label></div>
 
 </div><!-- #content -->
 
@@ -491,12 +392,15 @@
     const done = boxes.filter(b => b.checked).length;
     document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
     document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+    try {
+      const meta = JSON.parse(localStorage.getItem('wapo-guides-meta') || '{}');
+      meta['ff4-advance-bestiary'] = { pct: Math.round(done/total*100), checked: done, total };
+      localStorage.setItem('wapo-guides-meta', JSON.stringify(meta));
+    } catch(e){}
   }
 
   function applyDone(){
-    boxes.forEach(b => {
-      b.closest('.check-item').classList.toggle('done', b.checked);
-    });
+    boxes.forEach(b => { b.closest('.check-item').classList.toggle('done', b.checked); });
   }
 
   const stored = load();
@@ -534,24 +438,14 @@
     e.stopPropagation();
     const menu = document.getElementById('savemenu');
     const rect = this.getBoundingClientRect();
-    if(menu.style.display === 'block'){
-      menu.style.display = 'none';
-    } else {
-      menu.style.display = 'block';
-      menu.style.top = (rect.bottom + 4) + 'px';
-      menu.style.left = rect.left + 'px';
-    }
+    if(menu.style.display === 'block'){ menu.style.display = 'none'; }
+    else { menu.style.display = 'block'; menu.style.top = (rect.bottom + 4) + 'px'; menu.style.left = rect.left + 'px'; }
   });
 
-  document.addEventListener('click', function(){
-    document.getElementById('savemenu').style.display = 'none';
-  });
+  document.addEventListener('click', function(){ document.getElementById('savemenu').style.display = 'none'; });
 
   document.getElementById('export-btn').addEventListener('click', function(){
-    const data = {
-      [STORE]: localStorage.getItem(STORE) || '{}',
-      [STORE+'-ach']: localStorage.getItem(STORE+'-ach') || '{}'
-    };
+    const data = { [STORE]: localStorage.getItem(STORE) || '{}' };
     const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -572,15 +466,12 @@
       try {
         const data = JSON.parse(e.target.result);
         if(data[STORE]) localStorage.setItem(STORE, data[STORE]);
-        if(data[STORE+'-ach']) localStorage.setItem(STORE+'-ach', data[STORE+'-ach']);
         const stored = load();
         boxes.forEach(b => { b.checked = !!stored[b.id]; });
         applyDone();
         updateProgress();
         alert('Save imported successfully.');
-      } catch(err) {
-        alert('Invalid backup file.');
-      }
+      } catch(err) { alert('Invalid backup file.'); }
     };
     reader.readAsText(file);
     this.value = '';
