@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Fantasy IV Advance – Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --warn-color:#e8b84a;
+    --note-color:#999;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; overflow: hidden; height: 54px; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .section-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); }
+  .section-header:first-child { margin-top: 0; }
+  .sub-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '⚠ '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
+
+<div id="site-header">
+  <div id="progress-bar" style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);"><div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div></div>
+  <h1><a href="../index.html">← Wapo's Game Guides</a> <span style="color:var(--muted);font-weight:400;font-size:14px;">/ Final Fantasy IV Advance Walkthrough</span></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+    <div style="position:relative;display:inline-block;">
+      <button class="btn" id="savemenu-btn">Import/Export Progress</button>
+    </div>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+  </div>
+</div>
+
+<div id="savemenu" style="display:none;position:fixed;background:var(--bg3);border:1px solid var(--border);border-radius:4px;min-width:140px;z-index:1000;">
+  <div id="export-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Export</div>
+  <div id="import-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Import</div>
+</div>
+
+<div id="toc">
+  <a href="#delivery">Delivery</a>
+  <a href="#sandrubies">Sand Rubies</a>
+  <a href="#windcrystal">Wind Crystal</a>
+  <a href="#paladin">Born of Light</a>
+  <a href="#airship">To the Skies</a>
+  <a href="#earthcrystal">Earth Crystal</a>
+  <a href="#darkcrystals">Dark Crystals</a>
+  <a href="#finalcrystal">Final Crystal</a>
+  <a href="#moon">The Moon</a>
+  <a href="#finalbattle">Final Battle</a>
+  <a href="#lunarruins">Lunar Ruins</a>
+</div>
+
+<div id="content">
+
+<!-- ═══════════════════════════════════════════ DELIVERY -->
+<div class="section-header" id="delivery">Delivery</div>
+
+<div class="sub-header">Castle Baron</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Talk to Rosa, then Cid — go upstairs and sleep to advance the story</label></div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">Head into Baron, restock if needed, then set out northwest to the Mist Cave</label></div>
+
+<div class="sub-header">Mist Cave</div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">Follow the path — defeat the Mist Dragon — exit north</label></div>
+
+<div class="sub-header">Mist</div>
+<div class="warn-line">Unequip Kain before entering Mist — he leaves permanently here</div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Enter Mist — watch the scene — fight the unwinnable battle (don't waste items) — head northeast to Kaipo</label></div>
+
+<div class="sub-header">Kaipo</div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Enter Kaipo — watch the scene — defeat the General and Baron Soldiers</label></div>
+<div class="note">Do not kill all three soldiers before the General — he will retreat and you lose the EXP. Kill two soldiers, then the General, then the last soldier.</div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Rydia joins — visit Rosa in the northeast house (nothing to do for her yet) — rest and save</label></div>
+
+<!-- ═══════════════════════════════════════════ SAND RUBIES -->
+<div class="section-header" id="sandrubies">Sand Rubies for Rosa</div>
+
+<div class="sub-header">Underground Waterway</div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Exit Kaipo south — enter the Underground Waterway — talk to Tellah inside to have him join — navigate through — defeat Octomammoth — exit north</label></div>
+
+<div class="sub-header">Damcyan Castle</div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">Head up to the third floor — watch the scene — Tellah leaves, Edward joins</label></div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">Re-enter the castle — go outside and follow the east wall to find a small building — enter it and talk to the guard — press the switch west of where he stood — go through the opened doorway to loot the secret room</label></div>
+
+<div class="sub-header">Antlion Cave</div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15">Head northeast from Damcyan with the Hovercraft — enter the Antlion Cave</label></div>
+<div class="check-item"><input type="checkbox" id="c16"><label for="c16">Navigate B1 → B2 → B3 — use the Save Point before descending to B3</label></div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17">Defeat the Antlion — receive the Sand Ruby</label></div>
+<div class="note">Do not attack physically — Antlion counters with Horn. Use Rydia's Chocobo summon and Cecil's Dark Wave only.</div>
+
+<div class="sub-header">Kaipo — Cure Rosa</div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18">Return to Kaipo — talk to Rosa — use the Sand Ruby — Rosa joins</label></div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19">Survive the evening fight as Edward — keep his HP above 30</label></div>
+
+<!-- ═══════════════════════════════════════════ WIND CRYSTAL -->
+<div class="section-header" id="windcrystal">Protect the Wind Crystal</div>
+
+<div class="sub-header">Mount Hobs</div>
+<div class="check-item"><input type="checkbox" id="c21"><label for="c21">Head east from the Antlion Cave area into Mount Hobs</label></div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22">Path is blocked by ice — Rydia learns Fire automatically — use it to melt the ice</label></div>
+<div class="check-item"><input type="checkbox" id="c23"><label for="c23">Yang joins — defeat Mom Bomb — exit east toward Fabul</label></div>
+
+<div class="sub-header">Fabul</div>
+<div class="warn-line">Unequip Rosa before talking to the King of Fabul — she gets kidnapped and loses all equipped gear</div>
+<div class="check-item"><input type="checkbox" id="c24"><label for="c24">Enter Fabul — shop and restock — talk to the King when ready to defend</label></div>
+<div class="check-item"><input type="checkbox" id="c25"><label for="c25">Fight six waves of enemies with Cecil, Yang and Edward — survive the final unwinnable fight</label></div>
+<div class="warn-line">Unequip everyone before boarding the ship east of Fabul — all party members leave soon</div>
+<div class="check-item"><input type="checkbox" id="c26"><label for="c26">Collect Hermes' Shoes, Demon Shield and Deathbringer from the castle — board the ship</label></div>
+
+<!-- ═══════════════════════════════════════════ BORN OF LIGHT -->
+<div class="section-header" id="paladin">Born of Darkness and Light</div>
+
+<div class="sub-header">Mysidia</div>
+<div class="warn-line">Do not talk to residents — many will cast Toad, Pig or Poison on Cecil</div>
+<div class="check-item"><input type="checkbox" id="c27"><label for="c27">Enter Mysidia — talk to the Elder — Palom and Porom join — shop and restock</label></div>
+
+<div class="sub-header">Mount Ordeals</div>
+<div class="check-item"><input type="checkbox" id="c29"><label for="c29">Head northeast to Mount Ordeals — Tellah rejoins partway up — climb to the summit — use the Save Point near the top</label></div>
+<div class="check-item"><input type="checkbox" id="c30"><label for="c30">Defeat Scarmiglione — he reappears as undead — use Fire spells, not Cure, on the second form</label></div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31">Reach the summit — Cecil lays down the Dark Sword and becomes a Paladin</label></div>
+<div class="check-item"><input type="checkbox" id="c33"><label for="c33">Return to Mysidia — talk to the Elder</label></div>
+
+<!-- ═══════════════════════════════════════════ TO THE SKIES -->
+<div class="section-header" id="airship">To Pilfer an Airship</div>
+
+<div class="sub-header">Baron Waterway</div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34">Head to Baron — use the Baron Key on the lone door on the west side of town — navigate through the Old Waterway to Castle Baron</label></div>
+
+<div class="sub-header">Castle Baron</div>
+<div class="warn-line">Unequip Palom and Porom before defeating Baigan — they leave right after</div>
+<div class="check-item"><input type="checkbox" id="c35"><label for="c35">Rest at Cecil's room in the West Tower — head to the center of the castle — defeat Baigan</label></div>
+<div class="note">Do not cast spells directly on Baigan — he Reflects them back. Use Palom's Bluff + Bio to bypass Reflect. Destroy the arms only after Baigan is dead.</div>
+<div class="check-item"><input type="checkbox" id="c36"><label for="c36">Head to the Throne Room — defeat Cagnazzo</label></div>
+<div class="note">When Cagnazzo draws up water torrents, cast Thunder to disperse them before he uses Tsunami. Once torrents are gone, use Blizzard spells.</div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37">Watch the scene — Palom and Porom leave — Cid joins — you appear on the Enterprise</label></div>
+
+<!-- ═══════════════════════════════════════════ OPTIONAL: TAKE TO THE SKIES -->
+<div class="section-header" id="optional">Take to the Skies (Optional)</div>
+<div class="note">This entire section is optional. Skip ahead to Earth Crystal if you want to continue the main story.</div>
+
+<div class="sub-header">Mist</div>
+<div class="check-item"><input type="checkbox" id="c39"><label for="c39">Fly to Mist — enter Rydia's house — walk through the fireplace east to find hidden items including Gold Hairpin, Rod of Change and Ruby Ring</label></div>
+
+<div class="sub-header">Mythril</div>
+<div class="check-item"><input type="checkbox" id="c40"><label for="c40">Fly to Mythril (small island between Baron and Fabul) — search the east and north grass for a free Mythril Staff, Mythril Knife and 5000 Gil before shopping</label></div>
+<div class="check-item"><input type="checkbox" id="c41"><label for="c41">Stock up at the shops — do NOT sell the Wooden Hammer if you buy the Mythril Hammer (needed later)</label></div>
+
+<div class="sub-header">Eblan Castle</div>
+<div class="warn-line">Three chests in Eblan Castle contain very difficult boss fights — keep HP and MP full before opening any chest</div>
+<div class="check-item"><input type="checkbox" id="c42"><label for="c42">Fly to Eblan Castle (southeast of the Tower of Babel) — loot everything — exit through the underground passage</label></div>
+
+<!-- ═══════════════════════════════════════════ EARTH CRYSTAL -->
+<div class="section-header" id="earthcrystal">The Earth Crystal</div>
+
+<div class="sub-header">Troia Castle</div>
+<div class="warn-line">You MUST talk to Edward here — you cannot defeat the Dark Elf without doing so</div>
+<div class="check-item"><input type="checkbox" id="c44"><label for="c44">Fly to Troia Castle (far northwest) — press the switch in the east wing to access the treasure rooms — loot them</label></div>
+<div class="check-item"><input type="checkbox" id="c45"><label for="c45">Take the west door — talk to Edward — he gives you the Twin Harp</label></div>
+<div class="check-item"><input type="checkbox" id="c46"><label for="c46">Head into Troia town — replace all metal equipment with non-metal before the Magnetic Cave</label></div>
+<div class="note">Metal equipment disables your actions in the Magnetic Cave. Bows work for Cecil and Cid. Yang's Claws are fine. Buy non-metal gear from Troia shops if needed.</div>
+
+<div class="sub-header">Chocobo Forest</div>
+<div class="check-item"><input type="checkbox" id="c47"><label for="c47">Find the Chocobo Forest just north of Troia — talk to the Black Chocobo — ride it south then east to the Magnetic Cave entrance</label></div>
+
+<div class="sub-header">Magnetic Cave</div>
+<div class="warn-line">Entering a battle with metal equipment equipped is an automatic Game Over</div>
+<div class="check-item"><input type="checkbox" id="c48"><label for="c48">Navigate B1–B4 — use the Save Point in B3 — reach the Crystal Room</label></div>
+<div class="check-item"><input type="checkbox" id="c49"><label for="c49">Approach the Dark Elf — you cannot win the first encounter — a scene plays — re-equip your normal gear when your party steps back (HP is fully restored)</label></div>
+<div class="check-item"><input type="checkbox" id="c50"><label for="c50">Defeat Dark Elf then Dark Dragon — take the Earth Crystal — Teleport or walk out</label></div>
+
+<div class="sub-header">Troia Castle (Return)</div>
+<div class="check-item"><input type="checkbox" id="c52"><label for="c52">Return to Troia Castle — scene with the Clerics — loot the newly accessible east treasure rooms — board the Enterprise</label></div>
+
+<div class="sub-header">Tower of Zot</div>
+<div class="warn-line">Unequip Tellah before entering the final floor — he will be leaving the party</div>
+<div class="check-item"><input type="checkbox" id="c53"><label for="c53">Navigate floors 1–4 — use the Save Point on floor 5 before the boss</label></div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54">Defeat the Magus Sisters (Sandy, Cindy, Mindy) — kill Cindy first, she revives her sisters</label></div>
+<div class="note">Once Sandy casts Reflect on Cindy, spells aimed at Cindy will bounce back onto your party — kill Cindy with physical attacks before this happens.</div>
+<div class="check-item"><input type="checkbox" id="c55"><label for="c55">Defeat Barbariccia — Rosa rejoins — watch the scene</label></div>
+<div class="note">Only Kain's Jump breaks her whirlwind form — all other attacks miss or deal minimal damage while she is in it.</div>
+<div class="check-item"><input type="checkbox" id="c56"><label for="c56">Back in Baron Castle — Kain gives you the Magma Rock — loot the newly opened chests</label></div>
+
+<!-- ═══════════════════════════════════════════ DARK CRYSTALS -->
+<div class="section-header" id="darkcrystals">The Dark Crystals</div>
+
+<div class="sub-header">Agart — Enter the Underworld</div>
+<div class="check-item"><input type="checkbox" id="c57"><label for="c57">Fly south to Agart — throw the Magma Rock into the well — enter the Underworld</label></div>
+
+<div class="sub-header">Dwarf Castle</div>
+<div class="warn-line">Unequip Cid before entering the Dwarf Castle — he leaves soon</div>
+<div class="check-item"><input type="checkbox" id="c58"><label for="c58">Dwarf Castle is two steps west — talk to King Giott — defeat Calco and Brina, then Calcobrena, then Golbez</label></div>
+<div class="check-item"><input type="checkbox" id="c60"><label for="c60">Rest and restock at the Dwarf Castle shops</label></div>
+
+<div class="sub-header">Tower of Babel (First Run)</div>
+<div class="warn-line">Unequip Yang before entering the cannon control room — he leaves soon</div>
+<div class="check-item"><input type="checkbox" id="c61"><label for="c61">Walk northwest from the Dwarf Castle to the Tower of Babel — navigate floors 1–8</label></div>
+<div class="check-item"><input type="checkbox" id="c62"><label for="c62">Defeat Barnabas first, then Barnabas-Z, then Dr. Lugae</label></div>
+<div class="note">Kill Barnabas before the Doctor — if the Doctor dies first, Barnabas Self-Destructs instantly.</div>
+<div class="check-item"><input type="checkbox" id="c63"><label for="c63">Use Dr. Lugae's Key on the cannon control room — defeat three Goblin Captains — exit the tower</label></div>
+
+<div class="sub-header">Castle Baron — Get the Airship Hook</div>
+<div class="check-item"><input type="checkbox" id="c64"><label for="c64">Return to Castle Baron — talk to Cid's men on the east side — receive the Airship Hook</label></div>
+
+<div class="sub-header">Cave of Eblan</div>
+<div class="check-item"><input type="checkbox" id="c65"><label for="c65">Pick up the Hovercraft from outside Mt. Hobs — head to Eblan — cross the rocks west of Eblan with the Hovercraft — enter the Cave of Eblan</label></div>
+<div class="check-item"><input type="checkbox" id="c66"><label for="c66">Navigate B1 — find the Eblan settlement on B2 — shop and restock — continue through the cave</label></div>
+<div class="check-item"><input type="checkbox" id="c67"><label for="c67">Reach the deepest area — Edge joins — exit the cave</label></div>
+
+<div class="sub-header">Tower of Babel (Second Run)</div>
+<div class="check-item"><input type="checkbox" id="c68"><label for="c68">Use the Hook to attach the Hovercraft to the Enterprise — fly to the Tower of Babel — enter from the roof — navigate down — defeat Rubicante</label></div>
+<div class="check-item"><input type="checkbox" id="c69"><label for="c69">Return to the Dwarf Castle — have the Falcon plated</label></div>
+
+<!-- ═══════════════════════════════════════════ OPTIONAL: BEFORE FINAL CRYSTAL -->
+<div class="section-header" id="optional2">Before the Final Crystal (Optional)</div>
+<div class="note">This entire section is optional but recommended. Skip to Final Crystal if you want to press on.</div>
+
+<div class="sub-header">Tomra</div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">Head southwest from the Dwarf Castle to Tomra — shop for Diamond equipment upgrades — loot the warehouse in the northwest corner</label></div>
+
+<div class="sub-header">Sylvan Cave</div>
+<div class="warn-line">Cast Float on your party on every floor to avoid ground damage</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">Sylvan Cave is in the far northwest corner of the Underworld — navigate B1–B3 — find Yang unconscious in B3</label></div>
+
+<div class="sub-header">Cave of Summons</div>
+<div class="warn-line">Cast Float on your party on every floor to avoid ground damage</div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72">Cave of Summons is in the Underworld — navigate B1–B4 — on B4 find the pad, step on it, then immediately step back on the return pad — this loops you to the Rat Tail chest (needed for Excalibur)</label></div>
+
+<div class="sub-header">Land of Summons</div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Continue through the Cave of Summons to the Land of Summons — defeat Asura — defeat Leviathan — Rydia learns both summons</label></div>
+
+<!-- ═══════════════════════════════════════════ FINAL CRYSTAL -->
+<div class="section-header" id="finalcrystal">The Final Crystal</div>
+
+<div class="sub-header">Sealed Cavern</div>
+<div class="warn-line">Unequip Kain before exiting the Sealed Cavern — he leaves here</div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Sealed Cavern is southwest of the Dwarf Castle — use Luca's Necklace to enter — navigate B1–B5 — take the Dark Crystal</label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Walk back out — defeat the Demon Wall on the bridge — go all out, don't hold back</label></div>
+<div class="note">Demon Wall moves toward you each turn — if it reaches you it uses Crush, an instant KO on one character.</div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">Exit the cavern — Kain betrays the party — return to the Dwarf Castle</label></div>
+
+<div class="sub-header">Dwarf Castle — Escape the Underworld</div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">Report to King Giott — receive the Drill — board the Falcon — drill out through the northeast corner of the Underworld</label></div>
+
+<div class="sub-header">Optional: Quest for the Knife (Edge's Weapon)</div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">Talk to Yang in the Sylvan Cave (northwest Underworld) — go to Fabul and get the Frying Pan from Yang's Wife — return to the Sylvan Cave and use it on Yang — Rydia learns Sylph — return the Frying Pan to Yang's Wife for the Knife</label></div>
+
+<div class="sub-header">Optional: Quest for the Excalibur</div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Pick up the Hovercraft from near Mt. Hobs — take it southeast from Mythril to the Adamant Grotto — trade the Rat Tail for Adamantite</label></div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Take Adamantite to Kokkol's Smithy south of the Underworld entrance — give it to the sleeping smith — Excalibur is ready after your moon trip</label></div>
+
+<div class="sub-header">Optional: Odin Summon</div>
+<div class="warn-line">Save before entering Baron for this fight — Zantetsuken can wipe the party instantly with no warning</div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Go to Baron — enter the east tower basement — defeat Odin before he raises his sword (Zantetsuken = instant party wipe)</label></div>
+
+<!-- ═══════════════════════════════════════════ THE MOON -->
+<div class="section-header" id="moon">One Born of a Dragon — The Moon</div>
+
+<div class="sub-header">Mysidia</div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">Return to Mysidia — talk to the Elder — the Lunar Whale appears — board it and talk to the Crystal to fly to the Moon</label></div>
+
+<div class="sub-header">Hummingway Home</div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86">Land on the gray upper level — find Hummingway Home on the southern center of the map — stock up on Hi-Potions, Ethers, Phoenix Downs and Cottages</label></div>
+
+<div class="sub-header">Crystal Palace</div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87">Find the cave northwest of the Crystal Palace — navigate through to the Crystal Palace</label></div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">Head north — meet FuSoYa — he joins — use the HP and MP restore paths near the entrance before leaving</label></div>
+
+<div class="sub-header">Cave of Bahamut</div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">Cave of Bahamut is just west of where you landed — requires Asura and Leviathan first — navigate to the boss and defeat Bahamut</label></div>
+<div class="note">Bahamut counts down from 5 — Mega Flare hits the whole party when it reaches 0.</div>
+
+<div class="sub-header">Giant of Babel</div>
+<div class="warn-line">You cannot exit the Giant of Babel once inside — be fully prepared before entering</div>
+<div class="warn-line">FuSoYa will be leaving before the end of this dungeon — unequip anything you want to keep before fighting the CPU</div>
+<div class="check-item"><input type="checkbox" id="c92"><label for="c92">Return to the planet — fly to the Giant of Babel — navigate Mouth → Neck → Chest → Stomach → Inner Path — use the Save Point inside the Inner Path before continuing</label></div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94">Defeat all four Elemental Lords in sequence — Scarmiglione, Rubicante, Cagnazzo, Barbariccia</label></div>
+<div class="check-item"><input type="checkbox" id="c95"><label for="c95">Defeat Defense Node first, then CPU, then Attack Node — do NOT destroy the Attack Node before the CPU</label></div>
+<div class="note">The CPU casts Reflect on itself — use physical attacks on it only. Spells are fine on the Nodes. Killing the Attack Node before the CPU triggers Globe 199, an instant-KO on the whole party.</div>
+<div class="check-item"><input type="checkbox" id="c96"><label for="c96">Watch the scene — Kain returns — switch characters at Mysidia's Hall of Prayers if desired</label></div>
+<div class="check-item"><input type="checkbox" id="c97"><label for="c97">Pick up the Excalibur from Kokkol's Smithy if you started that quest — equip it on Cecil</label></div>
+
+<!-- ═══════════════════════════════════════════ FINAL BATTLE -->
+<div class="section-header" id="finalbattle">The Final Battle</div>
+
+<div class="sub-header">Lunar Ruins (Optional — Pre-Zeromus)</div>
+<div class="note">The Lunar Ruins are accessible before fighting Zeromus. Each character trial requires that character to be in your current party. You need multiple playthroughs to unlock all trials.</div>
+<div class="check-item"><input type="checkbox" id="c98"><label for="c98">Return to Mysidia — switch party at the Hall of Prayers — head to Mount Ordeals — a new path opens leading into the Lunar Ruins</label></div>
+<div class="check-item"><input type="checkbox" id="c99"><label for="c99">Each character has their own trial — complete as many as desired before fighting Zeromus</label></div>
+
+<div class="sub-header">Lunar Subterrane</div>
+<div class="check-item"><input type="checkbox" id="c101"><label for="c101">Return to the Moon — navigate through the Crystal Palace and Lunar Path to the Lunar Subterrane — navigate B1–B12 using all Save Points</label></div>
+
+<div class="sub-header">Zeromus — Final Boss</div>
+<div class="check-item"><input type="checkbox" id="c103"><label for="c103">Fully heal — head north on B12 — watch the scene — take the Crystal from Golbez</label></div>
+<div class="check-item"><input type="checkbox" id="c104"><label for="c104">Have Cecil use the Crystal — Edge can try to Steal Dark Matter first (optional)</label></div>
+<div class="note">Rydia should only use Bahamut — other summons provoke counters from Zeromus.</div>
+<div class="check-item"><input type="checkbox" id="c105"><label for="c105">Defeat Zeromus — watch the ending — save on a new slot after credits to access the Lunar Ruins</label></div>
+
+<!-- ═══════════════════════════════════════════ LUNAR RUINS -->
+<div class="section-header" id="lunarruins">Lunar Ruins (Post-Game)</div>
+<div class="note">Return here after defeating Zeromus. Each trial requires that character to have been in your party when Zeromus was defeated. Multiple clears required to unlock all trials.</div>
+
+<div class="sub-header">Trials</div>
+<div class="check-item"><input type="checkbox" id="c106"><label for="c106">Monk's Trial (Yang)</label></div>
+<div class="check-item"><input type="checkbox" id="c107"><label for="c107">Bard's Trial (Edward)</label></div>
+<div class="check-item"><input type="checkbox" id="c108"><label for="c108">Summoner's Trial (Rydia)</label></div>
+<div class="check-item"><input type="checkbox" id="c109"><label for="c109">Paladin's Trial (Cecil)</label></div>
+<div class="check-item"><input type="checkbox" id="c110"><label for="c110">White Mage's Trial (Rosa)</label></div>
+<div class="check-item"><input type="checkbox" id="c111"><label for="c111">Ninja's Trial (Edge)</label></div>
+<div class="check-item"><input type="checkbox" id="c112"><label for="c112">Dragoon's Trial (Kain)</label></div>
+<div class="check-item"><input type="checkbox" id="c113"><label for="c113">Engineer's Trial (Cid)</label></div>
+<div class="check-item"><input type="checkbox" id="c114"><label for="c114">Twin Mages' Trial (Palom and Porom together)</label></div>
+
+<div class="sub-header">Post-Trials</div>
+<div class="check-item"><input type="checkbox" id="c115"><label for="c115">Defeat Brachioraidos</label></div>
+<div class="check-item"><input type="checkbox" id="c116"><label for="c116">Defeat Zeromus EG — requires all trials completed</label></div>
+
+</div><!-- /content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const STORAGE_KEY = 'ff4-walkthrough-checklist-v1';
+  function loadState() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; } }
+  function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+  function updateProgress() {
+    const all = document.querySelectorAll('.check-item input[type="checkbox"]');
+    const checked = document.querySelectorAll('.check-item input[type="checkbox"]:checked');
+    const pct = all.length ? Math.round((checked.length / all.length) * 100) : 0;
+    document.getElementById('progress-display').textContent = `${checked.length} / ${all.length} completed`;
+    document.getElementById('progress-bar-fill').style.width = pct + '%';
+  }
+  function applyDoneClass(cb) { cb.closest('.check-item').classList.toggle('done', cb.checked); }
+  const state = loadState();
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+    if (state[cb.id]) { cb.checked = true; applyDoneClass(cb); }
+    cb.addEventListener('change', () => {
+      applyDoneClass(cb);
+      const s = loadState();
+      if (cb.checked) s[cb.id] = true; else delete s[cb.id];
+      saveState(s); updateProgress();
+    });
+  });
+  updateProgress();
+  let hiding = false;
+  document.getElementById('toggle-done').addEventListener('click', function() {
+    hiding = !hiding;
+    document.body.classList.toggle('hide-done', hiding);
+    this.textContent = hiding ? 'Show Completed' : 'Hide Completed';
+  });
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    if (!confirm('Reset all checkboxes? This cannot be undone.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => { cb.checked = false; applyDoneClass(cb); });
+    updateProgress();
+  });
+  window.addEventListener('scroll', () => {
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+
+  const menu = document.getElementById('savemenu');
+  document.getElementById('savemenu-btn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    const rect = this.getBoundingClientRect();
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    menu.style.top = (rect.bottom + 4) + 'px';
+    menu.style.left = rect.left + 'px';
+  });
+  document.addEventListener('click', () => { menu.style.display = 'none'; });
+
+  document.getElementById('export-btn').addEventListener('click', function() {
+    const data = { [STORAGE_KEY]: localStorage.getItem(STORAGE_KEY) || '{}' };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'ff4-walkthrough-backup.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function() {
+    document.getElementById('import-file').click();
+  });
+
+  document.getElementById('import-file').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (data[STORAGE_KEY]) localStorage.setItem(STORAGE_KEY, data[STORAGE_KEY]);
+        document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+          const s = loadState();
+          cb.checked = !!s[cb.id];
+          applyDoneClass(cb);
+        });
+        updateProgress();
+        alert('Save imported successfully.');
+      } catch(err) {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+    this.value = '';
+  });
+</script>
+</body>
+</html>
