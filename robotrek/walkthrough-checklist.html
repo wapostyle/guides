@@ -1,1 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robotrek &#8211; Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --warn-color:#e8b84a;
+    --note-color:#999;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; overflow: hidden; height: 54px; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); }
+  .disc-header:first-child { margin-top: 0; }
+  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; position: sticky; top: 90px; z-index: 49; background: var(--bg); }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '\26A0 '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
 
+<div id="site-header">
+  <div id="progress-bar" style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);"><div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div></div>
+  <h1><a href="../index.html">&#8592; Wapo's Game Guides</a> <span style="color:var(--muted);font-weight:400;font-size:14px;">/ Robotrek Walkthrough</span></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+    <div style="position:relative;display:inline-block;">
+      <button class="btn" id="savemenu-btn">Import/Export Progress</button>
+    </div>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+  </div>
+</div>
+
+<div id="savemenu" style="display:none;position:fixed;background:var(--bg3);border:1px solid var(--border);border-radius:4px;min-width:140px;z-index:1000;">
+  <div id="export-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Export</div>
+  <div id="import-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Import</div>
+</div>
+
+<div id="toc">
+  <a href="#rococo-start">Rococo Town</a>
+  <a href="#fathers-house">Father's House</a>
+  <a href="#forest">Forest &amp; River</a>
+  <a href="#cave-mouth">Cave Mouth</a>
+  <a href="#old-house">Old House</a>
+  <a href="#harbor">Harbor &amp; Village</a>
+  <a href="#volcano">Volcano</a>
+  <a href="#rococo-return">Rococo (Return)</a>
+  <a href="#snow-mountain">Snow Mountain</a>
+  <a href="#fortress-1">Fortress</a>
+  <a href="#rococo-past">Rococo of the Past</a>
+  <a href="#cave-past">Cave Mouth (Past)</a>
+  <a href="#present">Back to Present</a>
+  <a href="#quintenix">Quintenix</a>
+  <a href="#choco">Choco</a>
+  <a href="#fortress-final">Fortress (Final)</a>
+  <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">&#9749; Buy me a coffee</a>
+</div>
+
+<div id="content">
+
+<div class="disc-header" id="rococo-start">Rococo Town</div>
+<div class="section-header">Starting Out</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Name your hero. Before doing anything else, examine the cupboard above your bed to find 500 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">Go to the other room and examine the cupboard and the box to get 2 Cures and a Clean.</label></div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">Talk to Nagisa &#8212; she asks you to meet the mayor. Cross the river to the large building and talk to the mayor and everyone else inside.</label></div>
+<div class="check-item"><input type="checkbox" id="c4"><label for="c4">Return home &#8212; your father leaves a Robot Book for you and then departs with his cat. Read the book to collect 2000 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Talk to Nagisa and follow her to the R&amp;D room. Build your first robot for 2000 GP. Learn how to use Combine and Recycle in the machine &#8212; you will need both throughout the game.</label></div>
+<div class="check-item"><input type="checkbox" id="c6"><label for="c6">Name your robot and distribute its ability points, then talk to Nagisa to receive the Transceiver. Save when prompted.</label></div>
+<div class="note">The Transceiver is required to save. You cannot save the game without it.</div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Visit the shop on the left &#8212; the owner lets you take 2 items from the back room and also sells inventory you can buy. Grab the Cure in the box beside the cupboards as well.</label></div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Leave town from the bottom exit and head to Father's House.</label></div>
+
+<div class="disc-header" id="fathers-house">Father's House</div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Watch the scene &#8212; a Hacker tries to recruit your father and gets ejected. Your father gives you the Surprise Horn.</label></div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Examine the cupboard behind Akihabara to get a Clean.</label></div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Leave the house &#8212; a soldier forces a fight. Defeat him with ranged attacks, then go back inside and report to your father.</label></div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">Return to Rococo Town.</label></div>
+
+<div class="disc-header" id="forest">Forest &amp; River</div>
+<div class="section-header">Rococo Town</div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">A police officer and citizens are discussing a rescue mission. Leave town &#8212; a new path to the Forest is now open.</label></div>
+<div class="section-header">Forest</div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14">Grind here until your robot reaches level 5. Heal at home when needed. Grab the 300 GP item along the way.</label></div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15">Once at level 5, pass through the forest. A path to the River opens.</label></div>
+<div class="section-header">River</div>
+<div class="check-item"><input type="checkbox" id="c16"><label for="c16">Fight enemies and collect the 2 items here: 200 GP and a Smoke.</label></div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17">Cross the river &#8212; a path to Cave Mouth opens.</label></div>
+
+<div class="disc-header" id="cave-mouth">Cave Mouth</div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18">Fight enemies on the way in, then stand beside a citizen. When Dr. Einst blows the wall, move back exactly one step with your face toward him &#8212; rocks fall and seal the passage. Dr. Einst leaves.</label></div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19">Exit the cave, go left, climb the stairs, grab the item, and jump into the hole.</label></div>
+<div class="check-item"><input type="checkbox" id="c20"><label for="c20">Follow the path to the riverbank and pick up the Rusty Drill.</label></div>
+<div class="check-item"><input type="checkbox" id="c21"><label for="c21">Level up until you can use the Portable, then Combine the Clean and the Rusty Drill to craft a Drill.</label></div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22">Walk through the current and use the Drill to break through the wall on the opposite side. Grab the Cure along the way.</label></div>
+<div class="check-item"><input type="checkbox" id="c23"><label for="c23">Talk to all the children on the next screen. Drill the wall above to free them &#8212; all leave except Carl.</label></div>
+<div class="check-item"><input type="checkbox" id="c24"><label for="c24">Exit the cave and return to Rococo Town.</label></div>
+<div class="section-header">Rococo Town (After Cave)</div>
+<div class="check-item"><input type="checkbox" id="c25"><label for="c25">Talk to the mayor to receive 1000 GP. When you try to leave, Carl's mother stops you and asks you to find him. Go back to your house and talk to your father.</label></div>
+<div class="section-header">Cave Mouth (Second Visit)</div>
+<div class="check-item"><input type="checkbox" id="c26"><label for="c26">Return to the cave &#8212; a police officer is inside saying the bomb was stolen. Drill the wall Dr. Einst blew earlier and cross the river. Go upper left for a Cure. Drill the upper right wall on the next screen for 250 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c27"><label for="c27">Head north through the current. After an explosion, keep moving north and drop into the hole with the rope.</label></div>
+<div class="check-item"><input type="checkbox" id="c28"><label for="c28">Follow the path &#8212; Meta Crab shouts at his minions and leaves. Continue until a guard blocks the way. Go lower right and use the Surprise Horn to move him.</label></div>
+<div class="check-item"><input type="checkbox" id="c29"><label for="c29">Answer "Yes" when asked if you are a new worker. Talk to Kotetsu and agree to help &#8212; escape by trolley. Pick up Scrap 4 along the way.</label></div>
+<div class="check-item"><input type="checkbox" id="c30"><label for="c30">At the guard blocking the door, talk to him twice to trigger a fight. Win, then enter and follow the path.</label></div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31">Raise the boiler temperature until Meta Crab faints. Go into the bathroom and grab the key behind him. Answer the computer's report prompt, then free Kotetsu.</label></div>
+<div class="check-item"><input type="checkbox" id="c32"><label for="c32">On the way out, talk to the guard at the locked door twice and fight him. Enter, go left to the skull door, and fight Meta Crab. Defeat him to receive 1000 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c33"><label for="c33">Carl takes you to the now-unlocked room &#8212; collect Scrap 1. Carl gets Litho. Return to Rococo Town.</label></div>
+<div class="section-header">Rococo Town (After Meta Crab)</div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34">Carl gives you Stone 1. Nagisa asks you to retrieve your father's cat, Kurogane, from Father's House.</label></div>
+
+<div class="disc-header" id="old-house">Father's House / Forest of Illusion / Old House</div>
+<div class="section-header">Father's House (Second Visit)</div>
+<div class="check-item"><input type="checkbox" id="c35"><label for="c35">Kurogane is outside. When you approach, two Hackers bolt from the house.</label></div>
+<div class="check-item"><input type="checkbox" id="c36"><label for="c36">Examine the cupboard next to Kurogane for Father's Letter. Go lower left and examine the Tombstone to open a secret passage &#8212; collect Shield 2, Axe 1, and 1000 GP inside.</label></div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37">Go upper right to meet Rask. He tells you about the Tetron Stones and asks you to find Count Prinky in the Forest of Illusion.</label></div>
+<div class="section-header">Forest of Illusion</div>
+<div class="warn-line">Follow these directions exactly &#8212; the forest has no landmarks and you will get lost without them.</div>
+<div class="check-item"><input type="checkbox" id="c38"><label for="c38">From the entrance: up 1 screen, left 1, down 1, right 1, up 1 &#8212; meet Mint. Answer yes to her question.</label></div>
+<div class="check-item"><input type="checkbox" id="c39"><label for="c39">Continue up 4 screens to exit and reach the Old House. Consider returning to Rococo to build a third robot and read books first &#8212; the Old House is difficult.</label></div>
+<div class="section-header">Old House</div>
+<div class="check-item"><input type="checkbox" id="c40"><label for="c40">Enter &#8212; an old man brings you to your room. Grab the Cure and Repair from the cupboard. Read the book, then go to sleep.</label></div>
+<div class="check-item"><input type="checkbox" id="c41"><label for="c41">After waking, follow Igor without getting too close &#8212; tail him to another room. Grab Shot 2 and read all the books there before following him in.</label></div>
+<div class="check-item"><input type="checkbox" id="c42"><label for="c42">Mint stops you and sends you back to your room. Comply &#8212; on the way back you'll hear her fall through a hole.</label></div>
+<div class="check-item"><input type="checkbox" id="c43"><label for="c43">Return to the room and read the books on the right-side bookshelf. Jump into the hole and fight 4 monks.</label></div>
+<div class="check-item"><input type="checkbox" id="c44"><label for="c44">The locked door opens on its own. Talk to the old man, then step on the switch to the left. Return to the previous room and grab a Clean before heading north.</label></div>
+<div class="check-item"><input type="checkbox" id="c45"><label for="c45">Head north through the well exit, go up and through the door. Climb the stairs to meet Count Prinky &#8212; agree to find him a white pest.</label></div>
+<div class="check-item"><input type="checkbox" id="c46"><label for="c46">Next room: equip Stone 1 and talk to the dog &#8212; it follows you. Note the locked door. Bring the dog back to the well to save Flavon. Talk to Flavon again to receive Light.</label></div>
+<div class="check-item"><input type="checkbox" id="c47"><label for="c47">Activate the far switch by standing directly above it and pressing A. Step on it and collect Scrap 3.</label></div>
+<div class="check-item"><input type="checkbox" id="c48"><label for="c48">Return to Count Prinky's house &#8212; the R&amp;D room (previously locked) is now open. Use it as needed.</label></div>
+<div class="check-item"><input type="checkbox" id="c49"><label for="c49">Head to the West Wing. Read the book just inside the entrance. Fight through the Hackers. Visit the library and read all the books. Grab the 500 GP and Repair from the side room cupboards.</label></div>
+<div class="check-item"><input type="checkbox" id="c50"><label for="c50">Continue down the stairs to the room with two stone statues &#8212; enter, talk to the ghost, and collect Sword 2 from the coffin.</label></div>
+<div class="check-item"><input type="checkbox" id="c51"><label for="c51">Make your way to the breaker room. Use the Surprise Horn to scatter the three Hackers, then enter and follow the path to the switch room.</label></div>
+<div class="check-item"><input type="checkbox" id="c52"><label for="c52">Flip the switch multiple times to frighten the Hacker away. Talk to Mint. Return to the West Wing side room (left of the library) &#8212; defeat the Hacker threatening Flavon, forgive him, then talk to Flavon.</label></div>
+<div class="check-item"><input type="checkbox" id="c53"><label for="c53">Go to the R&amp;D room and craft a Relay (20 GP). Equip the Relay, return to the well area, talk to the dog, and examine every floor tile around the well until you find the key. Do not enter the well.</label></div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54">Exit the house and use the key to enter the clock tower behind it.</label></div>
+<div class="section-header">Clock Tower</div>
+<div class="check-item"><input type="checkbox" id="c55"><label for="c55">Flip the switch on the left. Go through the opened door, head north and grab the Cure, then take the east door &#8212; follow the path to another switch and flip it. Enter the now-open locked door and drop down.</label></div>
+<div class="check-item"><input type="checkbox" id="c56"><label for="c56">Flip the switch and go through the door above. Meet Mint and the mouse &#8212; equip the Relay and talk to the mouse. Talk to Mint again and a mouse surprises her by coming out of her bag on its own.</label></div>
+<div class="check-item"><input type="checkbox" id="c57"><label for="c57">Flip the switch and exit. Step on the outside switch to reach the main tower entrance. Head left through the now-open locked door &#8212; collect Scrap 1. Defeat the 2 monsters inside to reopen the door.</label></div>
+<div class="check-item"><input type="checkbox" id="c58"><label for="c58">Pass through the door marked "That is not decided, it is to be made." Take the right door. Go through the cleared passage, flip the switch in the next room, then backtrack &#8212; the locked door is open. Head up.</label></div>
+<div class="check-item"><input type="checkbox" id="c59"><label for="c59">Follow the path to the door with the board on the left. Flip the right switch, then enter. When the room ejects you, go back in &#8212; the mouse you freed will help. Enter the room above and climb down the chain.</label></div>
+<div class="check-item"><input type="checkbox" id="c60"><label for="c60">In the single-exit room: go right, flip the switch, and take the bone door. Watch the scene, fight the Doll, and defeat her. Talk to the Doll to receive Stone 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c61"><label for="c61">Mint stops you leaving &#8212; Flavon transports everyone back to Rococo Town.</label></div>
+
+<div class="disc-header" id="harbor">Harbor &amp; Village</div>
+<div class="section-header">Rococo Town</div>
+<div class="check-item"><input type="checkbox" id="c62"><label for="c62">Flavon tells you your father was caught by Hackers. Leave Flavon's house and return home &#8212; Nagisa mentions a letter about sailing. Exit town to find a new path to the Harbor.</label></div>
+<div class="section-header">Harbor &#8594; Pier &#8594; Village</div>
+<div class="check-item"><input type="checkbox" id="c63"><label for="c63">Talk to the fisherman in the house, then walk to the bridge, talk to the sailor, and board the ship. At the Pier, talk to the man and leave &#8212; a path to the Village opens.</label></div>
+<div class="check-item"><input type="checkbox" id="c64"><label for="c64">Talk to everyone in the village &#8212; the shaman's house is off limits. Go into the elder's house, watch the argument, and talk to the elder. Talk to everyone again.</label></div>
+<div class="check-item"><input type="checkbox" id="c65"><label for="c65">Go to the inn, talk to the man, and rest. You will dream of a robot and villager talking.</label></div>
+<div class="check-item"><input type="checkbox" id="c66"><label for="c66">Talk to the man near the village entrance &#8212; he takes you to the Volcano.</label></div>
+
+<div class="disc-header" id="volcano">Volcano</div>
+<div class="section-header">Volcano Entrance</div>
+<div class="check-item"><input type="checkbox" id="c67"><label for="c67">Explore the area and collect 300 GP and Celtis 1. Talk to the villager, then drop into the hole.</label></div>
+<div class="check-item"><input type="checkbox" id="c68"><label for="c68">Go left and listen for the guide's voice. Head down, then left, then up to reach the deep cave. Go upper right for a Repair, then upper left and through the door.</label></div>
+<div class="check-item"><input type="checkbox" id="c69"><label for="c69">A Hacker confronts you and you are taken to a workshop. Go down and left to find a room with a Cure. Return to the workshop and talk to everyone.</label></div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">Press the switch on the right wall to reverse the moving walkways. Step onto one to advance to the next room.</label></div>
+<div class="warn-line">If a guard spots you anywhere in this section, you are sent back to the workshop.</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">Go left and follow the path. Find stairs on the left &#8212; go down to the toilet. Answer the Hacker with "I will not tell anybody" to receive a Stamp. Go left for a Cure, then let a guard catch you to return to the workshop.</label></div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72">Flip the walkway switch again and advance to the next screen. Flip the upper right switch and ride the left walkway up. Move left twice &#8212; the upper walkway pushes you down. Flip the left switch to get back up.</label></div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Reach the room where a Hacker blocks the door. Show the Stamp to pass. Fight your way left through the enemies and collect 650 GP. Continue to the next room.</label></div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Approach the skull door to hear information about Dr. Einst &#8212; a Hacker gets punished inside. Return to the earlier toilet &#8212; Kotetsu reveals she is a fake Hacker and leads you to the exit.</label></div>
+<div class="check-item"><input type="checkbox" id="c75"><label for="c75">Take the upper right door and fall into a cave. Follow the path, collecting Cures along the way. You emerge at the shaman's house.</label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Go to the elder's house and talk to the elder. Mint arrives &#8212; get into the box and you will be sent to the Volcano, then to Dr. Einst's room.</label></div>
+<div class="section-header">Dr. Einst's Room</div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">Read all the books on the bookshelf. Take the key from the item capsule.</label></div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">Go to the toilet &#8212; Mint is blocking. She sends you to find Dr. Einst. Take the next room, enter the toilet with a door, and stand below the toilet to be transported to a new area. Exit the toilet &#8212; the door on the left is locked so ignore it. Collect 400 GP at the lower right and go back to continue your journey.</label></div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79">Follow the path to the dead end and talk to Mint &#8212; she leaves. Go to the upper right locked door (with a mouse beside it), use the key to enter, and continue to the lunchroom. Talk to Kotetsu &#8212; she asks you to make Glasses in the R&amp;D room. Tell the cook you have time.</label></div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">Go to the right room, follow the path, collect 800 GP, then defeat the 4 Hackers who come out. Continue inside and collect 400 GP. Head to the upper left room and go left to the door &#8212; they let you in. Read the books and craft Glasses in the R&amp;D room.</label></div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81">Exit the R&amp;D room. Go right, down the stairs, fight the enemy. Grab 600 GP to the left. Take the right door and go up for Scrap 4. Enter the nearby room for 298 GP x2 and Scrap 7.</label></div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Head left, then down to a new room. Go right &#8212; 3 Hackers block a room, ignore them. Grab Clean to the south. Return to the toilet, go through the door, and stand below the toilet again to reach a new area. Head down then right to a new room.</label></div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Follow the path to the dead end. Equip the Glasses &#8212; a secret door appears. Enter Dr. Einst's house.</label></div>
+<div class="section-header">Dr. Einst's House</div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Read all the books, then the big book on the table. Dr. Einst transforms you into a mouse.</label></div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">As a mouse, enter the small hole in the upper left. Navigate: up, left, down, left, up &#8212; talk to a mouse. Exit the hole and leave Dr. Einst's house.</label></div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86">Follow the path. Before the toilet, take the right room &#8212; find a locked door with a small hole beside it. Enter as a mouse, talk to the mouse inside, and exit through the other side to the Quake Device room.</label></div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87">Mint is afraid of you in mouse form &#8212; talk to her repeatedly until Kotetsu arrives. Talk to Kotetsu, then visit the lunchroom and kitchen and talk to everyone.</label></div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">Exit the lunchroom, go left, and find a hole above an item capsule. Enter as a mouse and talk to both mice &#8212; they ask you to clear the kitchen. Go fight the kitchen Hacker, return and talk to the mice again. Follow the path to collect Scrap 9, Sword 4, and 5000 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89">Return to the Earthquake Device room and talk to Kotetsu &#8212; she leaves. Go back to Dr. Einst's secret room and talk to Kotetsu to be turned back into a human.</label></div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">Go to the lunchroom. Equip the Relay and talk to the mouse inside &#8212; it teaches you how to shut down the Earthquake Machine.</label></div>
+<div class="check-item"><input type="checkbox" id="c91"><label for="c91">Go to the Earthquake Machine and press the right button 3 times, then the left button 2 times. If you make a mistake, exit and re-enter the room to reset. The machine self-destructs when done correctly.</label></div>
+<div class="check-item"><input type="checkbox" id="c92"><label for="c92">Mint speaks to you after the explosion and you are automatically brought out of the base. Exit the Volcano and return to the Village.</label></div>
+<div class="section-header">Village (After Volcano)</div>
+<div class="check-item"><input type="checkbox" id="c93"><label for="c93">All villagers have been turned into mice. Go to the Elder's house &#8212; the shaman gets transformed too. Talk to the elder and then the other villagers &#8212; they take you to a room inside the Volcano.</label></div>
+<div class="section-header">Volcano (Treasure Room)</div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94">After the dance, a door opens above. Dr. Einst rushes in. Follow him &#8212; step on the switch, take the left path, collect a Clean. Open the right door near the Clean and move to the next room. Follow the path, step on the switch inside, and enter the skull door.</label></div>
+<div class="check-item"><input type="checkbox" id="c95"><label for="c95">Talk to Dr. Einst and fight Big Eye. Defeat it &#8212; Dr. Einst flees. Stand directly in front of the robot and press A to receive Stone 3.</label></div>
+<div class="check-item"><input type="checkbox" id="c96"><label for="c96">Follow the robot and talk to it &#8212; step back one step each time it moves until it breaks through a wall. Repeat the process until the robot is destroyed. Collect Scrap A from the remains.</label></div>
+<div class="check-item"><input type="checkbox" id="c97"><label for="c97">Continue to the next screen, go left then down to reach the Shaman's house. Leave &#8212; a villager says the Elder wants you. Talk to the Elder and everyone in the village, then head to the Inlet.</label></div>
+<div class="check-item"><input type="checkbox" id="c98"><label for="c98">At the Inlet, talk to Mint. Dr. Einst is spotted fleeing. Grab Change from the item capsule. Mint asks you to get back to Rococo immediately &#8212; return via Pier and Harbor.</label></div>
+
+<div class="disc-header" id="rococo-return">Rococo Town (Return)</div>
+<div class="section-header">Jailbreak</div>
+<div class="check-item"><input type="checkbox" id="c99"><label for="c99">You are arrested for stealing the mayor's jewel and lose all your Stones. Use the Surprise Horn and immediately use Change to escape the jail.</label></div>
+<div class="note">Alternatively, transform into a mouse before entering your house and the police will not arrest you.</div>
+<div class="check-item"><input type="checkbox" id="c100"><label for="c100">Find Carl in your house. Talk to him to learn about a secret passage. Go to the tunnel entrance &#8212; it opens on its own. Talk to Carl inside, then help him push the door open.</label></div>
+<div class="section-header">Underground Tunnels</div>
+<div class="check-item"><input type="checkbox" id="c101"><label for="c101">Head up to the next room. Talk to the mouse vendor for information. Collect Cure, Scrap 5, and 1500 GP while exploring.</label></div>
+<div class="check-item"><input type="checkbox" id="c102"><label for="c102">Above the 1500 GP is a small hole &#8212; transform into a mouse to enter it. Come out the other side and take the upper right door to find a key.</label></div>
+<div class="check-item"><input type="checkbox" id="c103"><label for="c103">Head up to the next room and use the key on the locked door. Go right and drill the wall to find Scrap 2. Follow the right road to the next screen.</label></div>
+<div class="check-item"><input type="checkbox" id="c104"><label for="c104">At the next door, do not enter yet &#8212; drill the upper right wall for a second key, then drill the wall left of that key to access the next screen.</label></div>
+<div class="check-item"><input type="checkbox" id="c105"><label for="c105">Transform into a mouse and enter the small hole &#8212; follow the path to find an Empty Pack. Return and go through the door beside the hole. Follow the path to the next door.</label></div>
+<div class="check-item"><input type="checkbox" id="c106"><label for="c106">Before entering the door, grab Axe 3 at upper left. Follow the path and climb the chain &#8212; you are now inside the mayor's house.</label></div>
+<div class="section-header">Mayor's House</div>
+<div class="check-item"><input type="checkbox" id="c107"><label for="c107">Go through the door above and follow the path. Find a small hole &#8212; transform into a mouse to reach the other side. Change back and talk to the people there.</label></div>
+<div class="check-item"><input type="checkbox" id="c108"><label for="c108">Go left and talk to the Hacker twice &#8212; he fights you. Defeat him. Transform into a mouse and exit to talk to Mint and the mayor.</label></div>
+<div class="check-item"><input type="checkbox" id="c109"><label for="c109">Talk to the guard outside the office and fight him. Go up to the locked door &#8212; find the hidden hole among the 3 pots on the left. Transform into a mouse, enter the hole, and find the real mayor. Grab Scrap 6 from the cupboard and talk to him.</label></div>
+<div class="check-item"><input type="checkbox" id="c110"><label for="c110">Exit and talk to Mint &#8212; she investigates and returns. Talk to her again. Exit the house and talk to the dog outside &#8212; it follows you. Talk to Mint, then confront the fake mayor with the dog.</label></div>
+<div class="check-item"><input type="checkbox" id="c111"><label for="c111">Talk to the fake mayor and fight him. Grab the key from the table. Open the locked door and free the real mayor &#8212; he reveals Stone 1's location. Go to the room on the left, examine the fireplace, and enter the next room to collect Stone 1.</label></div>
+<div class="check-item"><input type="checkbox" id="c112"><label for="c112">Rose steals your Stone. Exit and talk to Mint. Go to the roof to find Rose &#8212; she escapes. Try to leave Rococo &#8212; three kids near the Harbor are talking about a crab.</label></div>
+<div class="section-header">Harbor (Meta Crab)</div>
+<div class="check-item"><input type="checkbox" id="c113"><label for="c113">Talk to Meta Crab, then equip the Surprise Horn and use it near the kids &#8212; they leave. Talk to Meta Crab again for information about your father.</label></div>
+<div class="check-item"><input type="checkbox" id="c114"><label for="c114">Talk to the fisherman for a ride. Walk to the bridge and board the second ship &#8212; it takes you to Snow Harbor.</label></div>
+
+<div class="disc-header" id="snow-mountain">Snow Mountain &amp; Air Base</div>
+<div class="section-header">Snow Harbor &#8594; Snow Mountain</div>
+<div class="check-item"><input type="checkbox" id="c115"><label for="c115">Exit Snow Harbor &#8212; a path to Snow Mountain opens. Go left and enter the cave. Explore, then drill the upper right wall &#8212; talk to the Hacker, then talk to him again to receive Bomb 3 and Boots 3. Drill lower left for a Cure.</label></div>
+<div class="check-item"><input type="checkbox" id="c116"><label for="c116">Return to the Snow Mountain entrance and head up. Climb the right rope, then the left rope for a Cure, then the right rope again to the next screen. Follow the path to reach Base Entrance.</label></div>
+<div class="section-header">Air Base</div>
+<div class="check-item"><input type="checkbox" id="c117"><label for="c117">Enter the Air Base. Take the left road without being spotted by guards. Follow the path to the next room, talk to the people there, and collect a key in the room beyond.</label></div>
+<div class="check-item"><input type="checkbox" id="c118"><label for="c118">Use the key to open the upper right door. Follow the path to the exit below. Go right &#8212; a Hacker stops you. Transform into a mouse to slip past.</label></div>
+<div class="check-item"><input type="checkbox" id="c119"><label for="c119">Meta Crab has been captured. Stand beside the table below a Hacker &#8212; Meta Crab calls for help. Fight and win &#8212; Meta Crab gives you the Leader's Badge and leaves.</label></div>
+<div class="check-item"><input type="checkbox" id="c120"><label for="c120">Equip the Leader's Badge and enter the next room. Follow the path to Carl's father. Talk to him twice and promise to help &#8212; he writes you a letter.</label></div>
+<div class="section-header">Back to Rococo &#8594; Base</div>
+<div class="check-item"><input type="checkbox" id="c121"><label for="c121">Return to Rococo Town. Equip the letter and visit Carl &#8212; give it to him. When you leave, Carl gives you a Litho.</label></div>
+<div class="check-item"><input type="checkbox" id="c122"><label for="c122">Return to the Air Base and find Carl's father. Equip the Litho and give it to him &#8212; you are transported to the base entrance. Talk to him again to receive the Blimp.</label></div>
+
+<div class="disc-header" id="fortress-1">Side Quests &amp; Fortress</div>
+<div class="section-header">Chicken Farm</div>
+<div class="check-item"><input type="checkbox" id="c123"><label for="c123">Go to the Chicken Farm beside the Old House. Talk to the owner &#8212; he needs a missing chicken. Equip the Relay, talk to all chickens outside, then examine every floor tile behind the house to find the hidden one. Lead it inside and talk to the owner to receive Blade 2.</label></div>
+<div class="section-header">Islands</div>
+<div class="check-item"><input type="checkbox" id="c124"><label for="c124">Lower left island: talk to everyone &#8212; the man asks for a Fever Flower. Head to the lower right island.</label></div>
+<div class="check-item"><input type="checkbox" id="c125"><label for="c125">Lower right island: talk to Dr. Einst. Equip Scrap 7 and talk to him again. Examine the left tree behind the house to get a Red Flower.</label></div>
+<div class="check-item"><input type="checkbox" id="c126"><label for="c126">Return to the lower left island. Equip the Red Flower and give it to the man &#8212; he gives you 3000 GP.</label></div>
+<div class="section-header">Fortress</div>
+<div class="check-item"><input type="checkbox" id="c127"><label for="c127">Equip the Leader's Badge before entering. Follow the path and collect Celtis 2. Talk to the Hacker below the stairs &#8212; he moves. Enter and grab Scrap 3. Talk to the guard above the stairs &#8212; he leaves. Enter the meeting room.</label></div>
+<div class="check-item"><input type="checkbox" id="c128"><label for="c128">Your father is in the meeting room but does not recognize you. Line up for the speech &#8212; everyone disperses afterward.</label></div>
+<div class="check-item"><input type="checkbox" id="c129"><label for="c129">Head left (not down the stairs) then down to another room. Grab the Cure to the right. Go down then right to find a locked door &#8212; find the hole to the right and go through it.</label></div>
+<div class="check-item"><input type="checkbox" id="c130"><label for="c130">Watch the scene &#8212; Hackers take your father away. Grab the key from the item capsule and read the books on the bookshelf.</label></div>
+<div class="check-item"><input type="checkbox" id="c131"><label for="c131">Return to the Cure room and use the key on the door. Collect 1200 GP and head up the stairs. Follow the path collecting all items. In the big room, go up the upper right stairs then left for 2500 GP. Head right and find a room on the left &#8212; read all the books. Continue into the room above the stairs.</label></div>
+<div class="section-header">Dr. G's Lab</div>
+<div class="check-item"><input type="checkbox" id="c132"><label for="c132">Talk to the Hacker and answer "Tell me." Then transform into a mouse and talk to him again &#8212; he sends you into the computer. Stand on a circle to exit. Dr. G and his assistant enter the computer.</label></div>
+<div class="check-item"><input type="checkbox" id="c133"><label for="c133">Read the book on the table. Go to the R&amp;D room above and craft a Cyberjack. Equip it.</label></div>
+<div class="check-item"><input type="checkbox" id="c134"><label for="c134">Exit the lab, follow the right path to the Inventor's Friend computer room, and jack in with the Cyberjack. Find the 2 teleport machines &#8212; take the right one. In the next area take the left machine. Meet Dr. G &#8212; ask for information. Take the left teleporter back and exit the computer.</label></div>
+<div class="check-item"><input type="checkbox" id="c135"><label for="c135">Talk to Dr. G in person &#8212; he gives you a key. Leave the lab and go down the stairs to the upper left room. Follow the path to the locked door above the flooded stairs. Open it.</label></div>
+<div class="check-item"><input type="checkbox" id="c136"><label for="c136">Jack into this computer with the Cyberjack. Follow the path and fight Bugbug &#8212; defeating him clears all locked systems. Collect Blade 2, then exit the computer.</label></div>
+<div class="check-item"><input type="checkbox" id="c137"><label for="c137">Exit the computer room and follow the path below. At the Hacker-guarded locked door, talk to him twice &#8212; he leaves. Enter and talk to your father. Read the bookshelf, then leave with him.</label></div>
+<div class="check-item"><input type="checkbox" id="c138"><label for="c138">Continue right &#8212; collect 5000 GP, 2000 GP, and Scrap 9. Reach Waterworks and flip the right switch to drain the water. Go back and collect the now-accessible 1500 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c139"><label for="c139">Go down the stairs below the computer room. Follow the path to Blackmore &#8212; talk to him and fight. Defeat him, follow the path above into the skull room, and talk to Rose. You are transported to Rococo of the Past.</label></div>
+
+<div class="disc-header" id="rococo-past">Rococo of the Past</div>
+<div class="section-header">Rococo Town (Past)</div>
+<div class="check-item"><input type="checkbox" id="c140"><label for="c140">Go to the shop on the right and give the man 5000 GP. Try to donate generously to everyone who asks throughout this section.</label></div>
+<div class="check-item"><input type="checkbox" id="c141"><label for="c141">Go to Stella's house &#8212; Polon saved you and went to a cave to find medicine. Head north and donate to the man by the river until he says that is enough. Talk to the crying boy, then enter the house above him and talk to the man who found a treasure.</label></div>
+<div class="check-item"><input type="checkbox" id="c142"><label for="c142">Exit Rococo. Head through the Forest of the Past (collect Scrap 10) and the River of the Past (grab a Cure) to reach Cave Mouth of the Past.</label></div>
+<div class="check-item"><input type="checkbox" id="c143"><label for="c143">Inside the cave, a theft ring member confronts Polon. Defeat him &#8212; he mentions Rose. Polon takes you back to her house.</label></div>
+<div class="section-header">Rococo Town (Past) &#8212; After Polon's House</div>
+<div class="check-item"><input type="checkbox" id="c144"><label for="c144">Read all the Inventor's Friend books in Polon's house. Talk to Polon &#8212; she leaves. Find Rask in bed. Visit the shop &#8212; the woman mistakes you for Rask and tells you to go to the Forest of Illusion.</label></div>
+<div class="check-item"><input type="checkbox" id="c145"><label for="c145">Fight through the Forest of Illusion. A second path opens &#8212; enter it and head up to talk to Igor and Count Prinky. Equip the Glasses &#8212; a spaceship is visible. Talk to everyone inside.</label></div>
+<div class="check-item"><input type="checkbox" id="c146"><label for="c146">Try to leave &#8212; Cookie stops you. Napoleon asks to be taken to Rask. Leave the spaceship &#8212; Count Prinky and Igor depart to find a site for their mansion.</label></div>
+<div class="check-item"><input type="checkbox" id="c147"><label for="c147">Go to Pop's house &#8212; his treasure was stolen. Talk to everyone and Coker leaves. Equip the Relay and go to Coker's house &#8212; talk to the cat. Examine the wall to find a hidden hole, enter as a mouse, collect the treasure, equip it, and return it to Pop.</label></div>
+<div class="check-item"><input type="checkbox" id="c148"><label for="c148">Go to Polon's house and enter Rask's room. Talk to Napoleon &#8212; he scares Polon away. Talk to Napoleon again and he speaks to Rask, then leaves. Talk to Rask &#8212; he asks you to stop Napoleon. Talk to everyone in town.</label></div>
+<div class="check-item"><input type="checkbox" id="c149"><label for="c149">Head to the Forest of the Past and find the seed above the item capsules &#8212; it looks like grass. Examine it to get Seeds. Return to Rococo and give them to the girl asking for flower seeds.</label></div>
+
+<div class="disc-header" id="cave-past">Cave Mouth of the Past</div>
+<div class="check-item"><input type="checkbox" id="c150"><label for="c150">Equip the Drill. Head up, wade through the current, and drill the wall on the left. Follow the path up the stairs and collect Repair x2 and a Clean. Return to the spaceship in the Forest of Illusion &#8212; talk to Cookie and use the R&amp;D room. Return to the cave.</label></div>
+<div class="check-item"><input type="checkbox" id="c151"><label for="c151">Follow the cave path to the end &#8212; a Hacker blocks the door. Talk to him &#8212; nothing happens. Transform into a mouse and the Hacker opens the door. Move quickly and slip through.</label></div>
+<div class="check-item"><input type="checkbox" id="c152"><label for="c152">Rose confronts you and you fall into a hole, losing your Light and Drill. Go right for Scrap 8. Head left and jump into the hole. Follow the path right, then left for a Repair. Go upper right to the next screen.</label></div>
+<div class="check-item"><input type="checkbox" id="c153"><label for="c153">Napoleon and a soldier are talking &#8212; the soldier fights you. Defeat him and talk to Napoleon. Equip a Repair and talk to Napoleon again to repair him &#8212; he follows you.</label></div>
+<div class="check-item"><input type="checkbox" id="c154"><label for="c154">Head lower right to the next screen. Examine the fallen rock &#8212; Napoleon breaks it. Grab Scrap 5 from the item capsule.</label></div>
+<div class="check-item"><input type="checkbox" id="c155"><label for="c155">Return to where you fell and go left. Break the wall and recover your Light. Follow the path. Napoleon leaves. Grab the Drill from the item capsule and continue.</label></div>
+<div class="check-item"><input type="checkbox" id="c156"><label for="c156">Follow the path upward. Find the door &#8212; it is an R&amp;D room. Use it if needed. Head south, go upper right, and drill the door. Enter and follow the path.</label></div>
+<div class="check-item"><input type="checkbox" id="c157"><label for="c157">Watch the scene &#8212; Rose and Gateau are talking. Napoleon arrives slowly and chases Gateau. Fight Rose. Defeat her and collect 3000 GP and Blow 2. Exit the cave and return to Rococo Town.</label></div>
+<div class="section-header">Rococo Town (Past) &#8212; Ceremony</div>
+<div class="check-item"><input type="checkbox" id="c158"><label for="c158">Go to the mayor's house and line up for the ceremony. Stand in front of the door afterward &#8212; a man takes your picture. Go to Polon's house and talk to Polon, then go to the next room &#8212; Cookie and Rask are talking. Cookie leaves. Talk to Rask.</label></div>
+<div class="check-item"><input type="checkbox" id="c159"><label for="c159">Return to the Forest of Illusion (Past). Head up 2 screens, left 1 screen, and follow the path &#8212; a new path to Count's House opens. Talk to Count Prinky and Igor there.</label></div>
+<div class="check-item"><input type="checkbox" id="c160"><label for="c160">Return to the spaceship in the Forest of Illusion. Talk to Napoleon, then talk to Gateau. Watch the scene &#8212; you wake up.</label></div>
+
+<div class="disc-header" id="present">Back to the Present</div>
+<div class="check-item"><input type="checkbox" id="c161"><label for="c161">Your father wakes you up. An earthquake hits as you try to leave. Outside, townsfolk are talking about a strange light. Go to the mayor's room and examine the upper right drawer &#8212; your photograph from the past is there.</label></div>
+<div class="check-item"><input type="checkbox" id="c162"><label for="c162">Explore the changed town &#8212; flowers are everywhere from the seeds you planted, and Coker's son and Pop's daughter are getting married.</label></div>
+<div class="check-item"><input type="checkbox" id="c163"><label for="c163">Go to the R&amp;D room and craft a Weather. Head to the Village.</label></div>
+<div class="check-item"><input type="checkbox" id="c164"><label for="c164">Use the Weather item in the village. Talk to the elder and receive Celtis 3 and Laser 1 from the boxes.</label></div>
+<div class="check-item"><input type="checkbox" id="c165"><label for="c165">Go to Cave Mouth. Transform into a mouse and sneak in. Use the Drill to break the wall and go up &#8212; meet Princess Tira. She and her group come home with you.</label></div>
+<div class="check-item"><input type="checkbox" id="c166"><label for="c166">Princess Tira explains their planet is under attack. They give you a spaceship. Talk to your father and choose to believe them &#8212; he gives you the Tetron Stone.</label></div>
+<div class="check-item"><input type="checkbox" id="c167"><label for="c167">Exit your house, equip the S/Ship, and press Y to launch into space.</label></div>
+
+<div class="disc-header" id="quintenix">Quintenix &amp; Kirara Library</div>
+<div class="check-item"><input type="checkbox" id="c168"><label for="c168">Fly to Kirara Library first. From Quintenix, fly right just past the first yellow star, then fly upward until you see a small blue star to the left and a large yellow star to the right &#8212; Kirara is between them.</label></div>
+<div class="check-item"><input type="checkbox" id="c169"><label for="c169">Talk to Polon/Cookie inside. Read all the books &#8212; you need at least level 80 to read all of them. Level up at Quintenix if needed before finishing the collection. Then fly to Choco.</label></div>
+
+<div class="disc-header" id="choco">Choco</div>
+<div class="check-item"><input type="checkbox" id="c170"><label for="c170">Explore and go to Choco HQ. Talk to everyone. Give the man all your Tetron Stones and Scrap A &#8212; everyone leaves except the old man. Talk to him, then go to the lab.</label></div>
+<div class="check-item"><input type="checkbox" id="c171"><label for="c171">Grab Scrap 7. Talk to everyone &#8212; Gateau has lost his memory. Read all the books. Leave the lab and go to the living space &#8212; talk to everyone.</label></div>
+<div class="check-item"><input type="checkbox" id="c172"><label for="c172">Talk to Valet. A soldier reports Gateau and Tira are missing. Talk to the entrance guard &#8212; Valet appears. In the meeting room, pick a straw &#8212; you always get red. Talk to Valet and receive 5000 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c173"><label for="c173">Leave Choco. A soldier stops you &#8212; answer yes and board the spaceship. Talk to everyone. Hackers attack &#8212; Kotetsu rescues you. Talk to Kotetsu repeatedly until Mint intervenes. Talk to both, then sit in the chair. You arrive at the Fortress.</label></div>
+
+<div class="disc-header" id="fortress-final">Fortress (Final)</div>
+<div class="section-header">Infiltration</div>
+<div class="check-item"><input type="checkbox" id="c174"><label for="c174">Follow Kotetsu to a room. While Kotetsu talks to a Hacker, flip the switch on the right and sneak in. Collect Scrap 4 and flip the switch back. Continue past the blocking Hacker and grab a Repair.</label></div>
+<div class="check-item"><input type="checkbox" id="c175"><label for="c175">Transform into a mouse and enter the hole in the next room. Listen to the three Hackers, then leave up the stairs. Follow the path to find a Shield in an item capsule.</label></div>
+<div class="check-item"><input type="checkbox" id="c176"><label for="c176">Take the right path &#8212; Kotetsu stops you and gives you the red door password. One screen right, use it to open the red door. Follow the path to the jail, fight the Hacker, and step on the switch.</label></div>
+<div class="check-item"><input type="checkbox" id="c177"><label for="c177">Talk to Tira (in Gateau's body) &#8212; you are sent down the trash chute. Collect Cure and Shield 4 in the area.</label></div>
+<div class="check-item"><input type="checkbox" id="c178"><label for="c178">Find the lower right room with Mint and mice. Transform into a mouse, talk to the mice, change back, and talk to Mint. Talk to Mint again and enter the hole as a mouse &#8212; step on the switch inside.</label></div>
+<div class="check-item"><input type="checkbox" id="c179"><label for="c179">Exit and grab Scrap 6 from the room on the right. Use the R&amp;D room there if needed. Return to the trash chute elevator, talk to Mint, and ride to 3F.</label></div>
+<div class="section-header">3F</div>
+<div class="check-item"><input type="checkbox" id="c180"><label for="c180">Go right. Take the upper left door and follow the path for Scrap 7 and 3000 GP. Go right again, follow the path, and exit below. Grab 2000 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c181"><label for="c181">Go to the right room and into the toilet above &#8212; Blackmore is cleaning. Talk to him until you learn the yellow door password.</label></div>
+<div class="check-item"><input type="checkbox" id="c182"><label for="c182">Return to the 2000 GP room and use the yellow door password. Jack into the computer with the Cyberjack and fight the stronger Bugbug &#8212; defeat him. Go to the toilet and talk to Blackmore for a key.</label></div>
+<div class="check-item"><input type="checkbox" id="c183"><label for="c183">Head east, go right, and use the key on the door. Talk to the princess inside. Try to leave &#8212; Gateau appears but Tira kicks him out. Talk to Tira, exit, and use the S/Ship to return to Choco.</label></div>
+<div class="section-header">Choco (Return)</div>
+<div class="check-item"><input type="checkbox" id="c184"><label for="c184">Valet greets you. Watch the scenes. Talk to Valet and Tira. Go to the lab &#8212; the red door is now open. Grab Scrap 10, Bomb 4, and 5000 GP.</label></div>
+<div class="check-item"><input type="checkbox" id="c185"><label for="c185">Talk to the scientist to receive the Red Jar, Yellow Jar, and Blue Jar. Talk to the three visitors, then leave Choco. Tira meets you at the exit and gives you a secret password.</label></div>
+<div class="section-header">Fortress (Endgame)</div>
+<div class="check-item"><input type="checkbox" id="c186"><label for="c186">Go to Gateau's room. Equip the Cyberjack and enter the password at the computer to jack in. Follow the path into a new area, go right, then up to the garbage chute room. Head lower right to the prison.</label></div>
+<div class="check-item"><input type="checkbox" id="c187"><label for="c187">Step on the switch and talk to Mint, then Kotetsu. Blackmore appears &#8212; two Hackers drag Mint and Kotetsu away. Blackmore tells you the blue door password.</label></div>
+<div class="check-item"><input type="checkbox" id="c188"><label for="c188">Grab Scrap 8 at upper left. Enter the blue door room at upper right. Equip the Glasses and watch for laser beams. Place the Red Jar at upper left, Yellow Jar at lower right, and Blue Jar at upper right to stop the reactor.</label></div>
+<div class="check-item"><input type="checkbox" id="c189"><label for="c189">Run to the elevator and ride to 4F. Go right, then through the door above. Follow the path right until you meet Gateau &#8212; Napoleon arrives. Gateau destroys the road.</label></div>
+<div class="check-item"><input type="checkbox" id="c190"><label for="c190">Talk to Napoleon &#8212; answer that you are ready and that you are perfect. Napoleon throws you across. Follow the path and fight Gateau &#8212; defeat him.</label></div>
+<div class="check-item"><input type="checkbox" id="c191"><label for="c191">Nagisa calls and asks you to save. Save your game, then enter the machine and keep moving north. Watch the scenes along the way.</label></div>
+<div class="warn-line">This is the final boss encounter. Make sure you are fully prepared before continuing north.</div>
+<div class="check-item"><input type="checkbox" id="c192"><label for="c192">Face Gateau in the final battle. He is extremely powerful &#8212; use Bomb 4 for best results. Defeat him to finish the game.</label></div>
+
+</div><!-- /content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<script>
+(function(){
+  const STORE = 'robotrek-checklist';
+  const boxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const total = boxes.length;
+
+  function save(){
+    const state = {};
+    boxes.forEach(b => { if(b.checked) state[b.id] = 1; });
+    localStorage.setItem(STORE, JSON.stringify(state));
+  }
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+  }
+
+  function updateProgress(){
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+  }
+
+  function applyDone(){
+    boxes.forEach(b => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+    });
+  }
+
+  const stored = load();
+  boxes.forEach(b => {
+    if(stored[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      save();
+      updateProgress();
+    });
+    b.closest('.check-item').addEventListener('click', function(e){
+      if(e.target === b || e.target.tagName === 'LABEL') return;
+      b.checked = !b.checked;
+      b.dispatchEvent(new Event('change'));
+    });
+  });
+
+  applyDone();
+  updateProgress();
+
+  document.getElementById('toggle-done').addEventListener('click', function(){
+    document.body.classList.toggle('hide-done');
+    this.textContent = document.body.classList.contains('hide-done') ? 'Show Completed' : 'Hide Completed';
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    if(!confirm('Reset all checkboxes? This cannot be undone.')) return;
+    boxes.forEach(b => { b.checked = false; });
+    applyDone();
+    save();
+    updateProgress();
+  });
+
+  document.getElementById('savemenu-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    const menu = document.getElementById('savemenu');
+    const rect = this.getBoundingClientRect();
+    if(menu.style.display === 'block'){
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'block';
+      menu.style.top = (rect.bottom + 4) + 'px';
+      menu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function(){
+    document.getElementById('savemenu').style.display = 'none';
+  });
+
+  document.getElementById('export-btn').addEventListener('click', function(){
+    const data = { [STORE]: localStorage.getItem(STORE) || '{}' };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'robotrek-checklist-backup.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function(){
+    document.getElementById('import-file').click();
+  });
+
+  document.getElementById('import-file').addEventListener('change', function(){
+    const file = this.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try {
+        const data = JSON.parse(e.target.result);
+        if(data[STORE]) localStorage.setItem(STORE, data[STORE]);
+        const stored = load();
+        boxes.forEach(b => { b.checked = !!stored[b.id]; });
+        applyDone();
+        updateProgress();
+        alert('Save imported successfully.');
+      } catch(err) {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+    this.value = '';
+  });
+
+  window.addEventListener('scroll', function(){
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+})();
+</script>
+</body>
+</html>
