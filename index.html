@@ -286,6 +286,32 @@
     </div>
   </div>
 
+  <!-- ═══════ R ═══════ -->
+  <div class="game-group" id="group-robotrek">
+    <div class="game-header" onclick="toggleGroup('group-robotrek')">
+      <img class="game-cover" src="robotrek/cover.webp" alt="Robotrek">
+      <div class="game-meta">
+        <div class="game-title">Robotrek</div>
+        <div class="game-platform">Super Nintendo · 1994</div>
+      </div>
+      <span class="game-toggle">&#9662;</span>
+    </div>
+    <div class="game-guides">
+
+      <a class="guide-card" href="robotrek/walkthrough-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Walkthrough Checklist</div>
+          <div class="card-summary" id="sum-robotrek">Step-by-step walkthrough covering the full story from Rococo Town to the final battle with Gateau, including all key items, collectibles, and side quests.</div>
+          <button class="show-more" id="btn-robotrek" onclick="toggleSummary(event, 'sum-robotrek', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-robotrek" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-robotrek">Not started</div>
+        </div>
+        <span class="card-arrow">&#8250;</span>
+      </a>
+
+    </div>
+  </div>
+
   <!-- ADD MORE GAMES HERE IN ALPHABETICAL ORDER -->
 
 </main>
@@ -330,6 +356,7 @@
   loadProgress('ff4-advance-bestiary', 'prog-ff4-advance', 'prog-label-ff4-advance');
   loadProgress('ff4-walkthrough-checklist', 'prog-ff4-walkthrough', 'prog-label-ff4-walkthrough');
   loadProgress('koudelka-checklist', 'prog-koudelka', 'prog-label-koudelka');
+  loadProgress('robotrek-checklist', 'prog-robotrek', 'prog-label-robotrek');
 </script>
 </body>
 </html>
