@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breath of Fire III – Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --ach-color: #6fbf8e;
+    --warn-color:#e8b84a;
+    --note-color:#999;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+    --ext-color: #777;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; overflow: hidden; height: 54px; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #toc-kofi { margin-left: auto; }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); scroll-margin-top: 108px; }
+  .disc-header:first-child { margin-top: 0; }
+  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; }
+  .ach { color: var(--ach-color); font-size: 12.5px; padding: 2px 0 2px 4px; margin: 2px 0; cursor: pointer; border-left: 2px solid transparent; border-radius: 3px; }
+  .ach:hover { background: var(--bg2); border-left-color: var(--ach-color); }
+  .ach.ach-done { color: var(--done-text); text-decoration: line-through; border-left-color: var(--check-checked); }
+  body.hide-done .ach.ach-done { display: none; }
+  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 2px 0 2px 4px; margin: 2px 0; }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '⚠ '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  .item-ref { font-size: 13px; padding: 3px 0 3px 4px; margin: 2px 0; color: var(--text); }
+  .item-ref b { color: var(--h2-color); }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
+
+<div id="site-header">
+  <div id="progress-bar" style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);">
+    <div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div>
+  </div>
+  <h1><a href="../index.html">← Wapo's Game Guides</a> <span style="color:var(--muted);font-weight:400;font-size:14px;">/ Breath of Fire III Walkthrough</span></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+    <div style="position:relative;display:inline-block;">
+      <button class="btn" id="savemenu-btn">Import/Export Progress</button>
+    </div>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+  </div>
+</div>
+<div id="savemenu" style="display:none;position:fixed;background:var(--bg3);border:1px solid var(--border);border-radius:4px;min-width:140px;z-index:1000;">
+  <div id="export-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Export</div>
+  <div id="import-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Import</div>
+</div>
+
+<div id="toc">
+  <a href="#hoodlums">Chapter 1</a>
+  <a href="#balio-sunder">Chapter 2</a>
+  <a href="#angel-tower">Chapter 3</a>
+  <a href="#revenge">Chapter 4</a>
+  <a href="#plant">Chapter 5</a>
+  <a href="#freeing-deis">Chapter 6</a>
+  <a href="#cross-sea">Chapter 7</a>
+  <a href="#lost-shore">Chapter 8</a>
+  <a href="#dragnier">Chapter 9</a>
+  <a href="#desert">Chapter 10</a>
+  <a href="#myria-station">Chapter 11</a>
+  <a href="#eden">Chapter 12</a>
+  <a href="#final">Chapter 13</a>
+  <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+</div>
+
+<div id="content">
+
+<!-- ═══════════════════════════════════════════ CHAPTER I -->
+<div class="disc-header" id="hoodlums">1. Hoodlums in the Woods</div>
+
+<div class="section-header">Dauna Mine</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Defeat the two workers with Whelp Breath — inspect their corpses to pick up the Melted Blade — follow the wooden path east out of the starting room</label></div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">Continue east through the mine, fighting workers with Whelp Breath — confront the big worker near the giant green skull — get knocked out by the crane operator and captured on the train</label></div>
+
+<div class="section-header">Cedar Woods and McNeil</div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">Wake up in Rei's house — save at the journal in the bedroom — pick up Vitamin and Worm from the downstairs cabinets</label></div>
+<div class="check-item"><input type="checkbox" id="c4"><label for="c4">Explore Cedar Woods — collect Skill Ink (chest on the hill by the bridge), Ammonia (behind trees left of the chest), two Green Apples (one behind the big tree, one along the south path), and Healing Herb</label></div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Head south to the world map — enter McNeil — loot town for Healing Herb, Antidote, Molotov, and Vitamin (in the garden left of the inn) — shop and level up in battle sites as needed</label></div>
+<div class="check-item"><input type="checkbox" id="c6"><label for="c6">Watch the scene with Rei and Teepo at the weapon shop — follow them down to the farm — head to Yraall Road to do some "work"</label></div>
+
+<div class="section-header">Yraall Road and Bunyan's House</div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Enter Yraall Road — pick up the 40z satchel near the team's hiding spot — after failing to rob Bunyan, head for his house in Cedar Woods (use the southernmost east-side entrance)</label></div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Have Rei pick the lock on Bunyan's front door — pick up Beef Jerky from the basement cabinet — get caught and tied up — win the wood-chopping mini-game to earn freedom</label></div>
+<div class="note">Swing the axe when the log tips — the timing window is generous and you should win on your first attempt.</div>
+
+<div class="section-header">Road to Mt. Glaus</div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Have Teepo kick the boulder to dam the stream — enter the dried stream and follow it to the chest at the end for a Weather Vane</label></div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Have Teepo kick every rock visible on the road — inspect holes underneath for Vitamin, 120z, and a Coin — grab the 80z chest under a tree near the northwest exit</label></div>
+
+<div class="section-header">Mt. Glaus and the Caverns</div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Pick up the Antidote satchel just left of the big bridge — climb the ramp to the top of the light-colored incline and slide down at the two marked indentations to land on ledges for Heavy Caro and Cloth Shield — cross the bridge and rest at the cabin</label></div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">Follow the trail of broken trees right of the cabin — detour all the way left at the top for a Vitamins satchel — return to the cave entrance and head inside</label></div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">Take the first left passageway in the cavern — inspect the bone pile for Bent Sword — use camera angles to check the left side of the pile for Molotov — return to the main blood trail — follow it into the left cavern and check the skeleton at the end for 200z</label></div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14">Return to the T-junction — head north off the blood trail — first right leads to a skeleton with Ballock Knife — next right leads to a skeleton with Talisman</label></div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15">Take the left trail at the very end of the main path — dive into the water to ride the current behind the waterfall — follow the blood trail up to fight the Nue</label></div>
+<div class="warn-line">Boss: NUE (HP 285, recommended lv 6) — Chlorine poisons and Jolt hits all for 10–15 damage — Rei can Pilfer Power Food twice: once when the Nue runs away during the first fight, and again in this final fight — Simoon from Teepo (lv 7+) shortens this fight significantly</div>
+<div class="check-item"><input type="checkbox" id="c16"><label for="c16">Defeat the Nue — optionally inspect its body to see the cubs — exit and dive back into the water — meet Bunyan outside</label></div>
+
+<div class="section-header">Yraall Region (Spring)</div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17">Spring arrives — grab the Healing Herb from the storage room in your Cedar Woods house before heading to McNeil — visit town to see the reaction of the townsfolk</label></div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18">New Master: MYGAS — find his [?] area northwest of McNeil — spend all your zenny at McNeil shops before talking to him (he accepts even 0z, but spend it first to buy supplies)</label></div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19">Optional — buy a Wooden Rod and lures from the McNeil item shop — fish the spot near the farm using a Coin as bait to find a Manillo — trade for a Silver Knife (highly recommended; deals major damage to ghosts in the upcoming manor)</label></div>
+<div class="check-item"><input type="checkbox" id="c20"><label for="c20">Talk to Loki in McNeil (the shifty figure in a green cloak following you around) — agree to help him — stock up on healing items and zenny — meet Loki at the farm hut when ready</label></div>
+
+<div class="section-header">Outside McNeil Manor</div>
+<div class="warn-line">Have a solid supply of healing items before heading to the manor — there are several mandatory ghost fights inside and no shop access — also bring at least 50z to pay off a guard on the grounds</div>
+<div class="check-item"><input type="checkbox" id="c21"><label for="c21">Pick up Vitamin from the hut along the path to the manor — walk along the outer manor wall until you find the newly repaired (and weak) wall section — have Rei lean against it to knock it down</label></div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22">Talk to the Loki lookalike hiding behind the left hedge for 50z — pay the guard at the top of the path 50z to pass — use camera angles at the upper-left corner to find a wallet — give it to the right-side guard to pass</label></div>
+<div class="warn-line">Avoid all lantern-carrying guards until after ringing the bell — if one spots you, you are ejected from the grounds and must pay the initial guard another 50z to re-enter</div>
+<div class="check-item"><input type="checkbox" id="c23"><label for="c23">Climb the tower and ring the bell to lure a lantern guard away from his post — talk to the smoking guard in the courtyard — defeat Pooch at the south gate (Pilfer a Vitamin with Rei)</label></div>
+<div class="check-item"><input type="checkbox" id="c24"><label for="c24">Find the eloping couple hiding behind the hedge right of the courtyard — their guard abandons his post — defeat Rocky in the chicken coop (Pilfer a Life Shard with Rei)</label></div>
+<div class="check-item"><input type="checkbox" id="c25"><label for="c25">Grab the Firecracker from the chest above the coop stairs — make your way to the main front door — Rei acts as a diversion while Ryu and Teepo slip inside</label></div>
+
+<div class="section-header">Inside McNeil Manor</div>
+<div class="check-item"><input type="checkbox" id="c26"><label for="c26">Enter the right-side portrait room — loot the southeast service area for Vitamin, 120z, Magic Shard, Eye Drops, and Taser — rest and save at the beds in this area</label></div>
+<div class="check-item"><input type="checkbox" id="c27"><label for="c27">Use camera angles to find the hidden door on the left side of the main entrance room — collect the Life Shard inside</label></div>
+<div class="check-item"><input type="checkbox" id="c28"><label for="c28">Approach the main staircase — fight ghost Torast</label></div>
+<div class="note">Torast uses Sleep frequently. If you have the Silver Knife, equip it — it deals major damage to all ghosts in this manor.</div>
+<div class="check-item"><input type="checkbox" id="c29"><label for="c29">Head upstairs — right wing has a hidden item in a room (use camera angles) — left wing: collect Gems (2nd room going right to left) and Vitamin (2nd room going up) — fight ghost Kassen at the north end of the left wing</label></div>
+<div class="check-item"><input type="checkbox" id="c30"><label for="c30">Continue right down the upper hallway — collect Panacea from a drawer — fight ghost Galtel blocking the stairs going down</label></div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31">Lower level — collect MultiVitamin from a drawer — reach the kitchen for Healing Herb — go upstairs in the kitchen area for 600z — fight ghost Doksen in the lower hallway — take the elevator up</label></div>
+<div class="check-item"><input type="checkbox" id="c32"><label for="c32">Climb to the rest/save room — rest and save — climb the ladder to the roof</label></div>
+
+<div class="section-header">McNeil Manor Roof</div>
+<div class="check-item"><input type="checkbox" id="c33"><label for="c33">Navigate to the far end of the roof — use camera angles on the jutting flat sections of the roof to spot a hanging rope — slide down the incline at that spot to grab the grappling hook — Rei appears and you cross to the adjacent roof</label></div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34">Head south on the new roof — grab Broad Sword from behind the chimney platforms — pick up Swallow Eye from the gutter along the roof's edge — descend via a ladder into the house to check for items — use the staircase down to enter Mr. McNeil's bedroom</label></div>
+<div class="warn-line">Boss: AMALGAM (HP 520, recommended lv 9) — formed from all the McNeil ancestor ghosts — Silver Knife deals major damage — watch for Astral Warp (15–20 to one character) and occasional Sleep</div>
+<div class="check-item"><input type="checkbox" id="c35"><label for="c35">Defeat Amalgam — loot the money from the cowering Mr. McNeil</label></div>
+
+<div class="section-header">Aftermath</div>
+<div class="check-item"><input type="checkbox" id="c36"><label for="c36">Return to McNeil — see the villagers gave the money back — find Loki hiding behind a cart at the farm — meet at the hut — Bunyan arrives with a warning instead of Loki — head home to Cedar Woods immediately</label></div>
+<div class="warn-line">Balio and Sunder attack at the Cedar Woods house — this fight cannot be won — do not waste healing items; Rei can use Pilfer once or twice if you want extra items before going down</div>
+
+
+<!-- ═══════════════════════════════════════════ CHAPTER II -->
+<div class="disc-header" id="balio-sunder">2. The Balio and Sunder Saga</div>
+
+<div class="section-header">Mt. Myrneg</div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37">New Master: BUNYAN — exit Cedar Woods, then re-enter and talk to Bunyan — no requirements; put Ryu under him right away unless still learning from Mygas</label></div>
+<div class="check-item"><input type="checkbox" id="c38"><label for="c38">Head east from Yraall Road to Mt. Myrneg — talk to Tallman near the first chest for an enemy weakness tip — collect Icicle (chest next to Tallman), Protein (satchel behind trees after the first ladder down), Bat Amulet (chest at the top of the double ladder climb), and 200z (satchel on the rock peninsula)</label></div>
+<div class="check-item"><input type="checkbox" id="c39"><label for="c39">Reach the summit — encounter Sunder — get stabbed and transform into a dragon — captured by Balio and Sunder — presented before the king of Wyndia and locked in the dungeon</label></div>
+
+<div class="section-header">Wyndian Dungeon</div>
+<div class="note">Dragon Gene: FLAME — obtained automatically after breaking out of the dungeon cell.</div>
+<div class="check-item"><input type="checkbox" id="c40"><label for="c40">Ram the cell door twice to break it down — head right and pick up Skill Ink from Balio and Sunder's cell — save at the journal — follow the path down and through the barred door to find Balio and Sunder</label></div>
+<div class="warn-line">Boss: BALIO AND SUNDER — this fight does not need to be won — use a Healing Herb on Nina first so she can escape — then use Accession with the Flame gene (Flame Whelp) and use Flame Breath; or cast Influence on Balio so Sunder attacks him instead — winning earns 110 exp but is not required</div>
+<div class="check-item"><input type="checkbox" id="c41"><label for="c41">After the battle, follow Nina down the path to the Catacombs</label></div>
+
+<div class="section-header">Wyndian Catacombs</div>
+<div class="check-item"><input type="checkbox" id="c42"><label for="c42">Pick up Panacea from the chest south of the "Green or Red" tombstone — press the correct word on each of the seven small tombstones: Above / Outside / That / Secrets / Green / You / Not</label></div>
+<div class="check-item"><input type="checkbox" id="c43"><label for="c43">Hit the switch on the large tombstone along the far left narrow path — fall through to the lower area — pick up Light Bangle from the chest — jump down, climb up the ladder to the raised platform — grab the Glass Domino chest at the top</label></div>
+<div class="check-item"><input type="checkbox" id="c44"><label for="c44">Climb the ramp to the southernmost tombstone on the raised platform — hit the seven sets of buttons in order: Red / Climbing / I / Is / Look / Beneath / This — fall through, then drop through the hidden floor hole — check behind the tombstones on the left for a Wisdom Fruit — exit the Catacombs south</label></div>
+
+<div class="section-header">Wyndia</div>
+<div class="check-item"><input type="checkbox" id="c45"><label for="c45">Explore Wyndia — collect Healing Herb, Ammonia, Moxa, four Breads (from the bakery area), and Ginseng (behind the forest path along the east city wall) — play Hide and Seek with the kids near the fountain to get info about Rei and Teepo</label></div>
+<div class="note">The four hiding kids are: behind trees near the Inoculation shop, behind the left wall near the city entrance, behind the weapon shop near the bum, and behind the tree in the eastern café area.</div>
+<div class="check-item"><input type="checkbox" id="c46"><label for="c46">New Master: DURANDAL — find his hut in the [?] area around the east side of Wyndia's outer wall — his skills are weak but learning them unlocks the master Hondara later in the game</label></div>
+<div class="check-item"><input type="checkbox" id="c47"><label for="c47">Shop and restock — head down to Eygnock Road</label></div>
+
+<div class="section-header">Eygnock Road and Genmel</div>
+<div class="check-item"><input type="checkbox" id="c48"><label for="c48">Enter the house on Eygnock Road — pick up Clothing from the dresser — get captured by Balio and Sunder — taken to Genmel Arena</label></div>
+<div class="check-item"><input type="checkbox" id="c49"><label for="c49">Chew through the ropes to escape the bar — explore Genmel — find 80z in the inn — get a Flier from the fish merchant behind the southwest corner wall for a shop discount — shop and restock</label></div>
+
+<div class="section-header">Mt. Boumore</div>
+<div class="check-item"><input type="checkbox" id="c50"><label for="c50">Head east to Mt. Boumore — pick up Panacea (chest right of the first small ramp), 400z (satchel behind a corner near the upper area), Buckler (jump off two ledges along the summit path), and Life Shard (satchel after the second ledge jump)</label></div>
+<div class="check-item"><input type="checkbox" id="c51"><label for="c51">Talk to the fat man at the house on the mountain — stay the night — grab the Bent Sword from the dresser before sleeping</label></div>
+<div class="check-item"><input type="checkbox" id="c52"><label for="c52">Morning — locked in and Sunder arrives — escape with Nina via the lift — get cornered at the peak — both jump from the mountain</label></div>
+<div class="note">Dragon Gene: DEFENDER — received automatically after Ryu transforms to break Nina's fall.</div>
+<div class="check-item"><input type="checkbox" id="c53"><label for="c53">New Dragon Gene: REVERSE — find the purple crystal at the [?] area south of the Mt. Boumore landing site — examine it with Ryu</label></div>
+
+<div class="section-header">Momo's Tower</div>
+<div class="warn-line">Stock up on healing items before entering the Tower — no shops inside and several floors to climb</div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54">Enter the Tower — immediately head outside through the left path and go right to find the Silver Knife behind the trees — return inside and navigate up to the rest/save room — rest and save — exit the save room, go up the stairs in the northwest corner, and head right to find Momo in her lab — Momo joins the party</label></div>
+<div class="check-item"><input type="checkbox" id="c55"><label for="c55">Continue up the floors — collect MultiVitamin, Wisdom Fruit, and Ring of Ice along the way — solve the panel puzzle to unlock the door (step on all panels to turn them gray — one working order: 1, 2, 3, 4, 5, 21, 20, 6, 10, 9, 8, 7, 11, 12, 13, 14, 15, 16, 17, 18, 19) — collect Skill Ink, Flame Chrysm, and Ice Chrysm from the reward room — in the next room, hit the switches under the 2nd and 4th cubes (the two that look identical) — hitting wrong ones drops you through the floor</label></div>
+<div class="check-item"><input type="checkbox" id="c56"><label for="c56">Red/blue switch room — flip switches to access the 800z chest first, then Moon Tears at the northernmost section — use the east-path stairs to continue up to the crystal room</label></div>
+<div class="check-item"><input type="checkbox" id="c57"><label for="c57">Crystal platform room — hit crystal with Nina's wand 2× for Breastplate chest, 6× for Ivory Dice chest, 8× to reach the upper-left stairs — grab Bamboo Rod from the first room at the top — in the laser room ahead, hit the purple crystal with Nina's wand to disable the middle laser, walk everyone past that machine, then hit the crystal again to restore it and disable the outer lasers — continue to the library and collect 40z and Panacea from the shelves</label></div>
+<div class="check-item"><input type="checkbox" id="c58"><label for="c58">Examine the control panel in the library to reveal the rocket — ride it out of the tower</label></div>
+<div class="note">Dragon Gene: THORN — look near the trees next to the crash landing site before exiting to the world map.</div>
+
+<div class="section-header">Coffee Shop and Eastern Wyndia</div>
+<div class="check-item"><input type="checkbox" id="c59"><label for="c59">Head north to the Coffee Shop — pick up Vitamin from inside the building — meet Palet and agree to help at the Plant</label></div>
+<div class="note">New Master: D'LONZO — the tough-looking girl on the hill above the Coffee Shop — requires 15 different weapons in your inventory (not counting equipped weapons) to take you on as an apprentice.</div>
+<div class="check-item"><input type="checkbox" id="c60"><label for="c60">Explore Eastern Wyndia before heading to the Plant — collect Antidote and 200z (inside the blocked Checkpoint building), Scramasax, 800z, and Life Shard (in the [?] forest west of the Checkpoint) — note this forest for later; return with Peco and the Flower Jewel for the Meryleep master quest</label></div>
+
+<div class="section-header">The Plant and the Dump</div>
+<div class="check-item"><input type="checkbox" id="c61"><label for="c61">Visit the Plant — talk to Palet with Momo as the lead character — pick up Ginseng and Healing Herb from the metal building near the furnace — rest at the inn upstairs and grab Healing Herb and 80z from drawers — buy Molotovs at the Plant Crop Store — head west to the Dump</label></div>
+<div class="check-item"><input type="checkbox" id="c62"><label for="c62">In the Dump — find the blue switch and hit it 3× to unlock the 1200z chest directly north — navigate the catwalks for High Boots — work along the crate path for Artemis' Cap — circle the lava pit for the Magic Shard</label></div>
+<div class="warn-line">Boss: MUTANT (HP 500, recommended lv 13) — extremely weak to fire; fire attacks also destroy its 250 HP/turn regeneration — use Momo's Flame Chrysm and Ryu's Flame dragon form throughout; keep the fire pressure on until it falls</div>
+<div class="check-item"><input type="checkbox" id="c63"><label for="c63">After the fight — hit the red switch to push Mutant into the lava — Peco joins the party</label></div>
+<div class="check-item"><input type="checkbox" id="c64"><label for="c64">New Master: YGGDRASIL — put Peco in your party — enter the Yggdrasil grove right next to the Plant — examine the tree with Peco as lead — give it a Wisdom Fruit to unlock Yggdrasil as a master</label></div>
+<div class="note">With Peco in party, return to the [?] forest north of the Coffee Shop — have Peco kick the rocks to find a Hawk's Ring and a Vitamin in holes underneath.</div>
+
+<div class="section-header">Contest of Champions</div>
+<div class="check-item"><input type="checkbox" id="c65"><label for="c65">Return to the Plant — report to Palet — rest at the inn — get hidden in a hay cart to Wyndia — caught by Balio and Sunder at Eygnock Road — taken back to the Arena</label></div>
+<div class="warn-line">When asked to leave a hostage, choose Peco — keep your stronger fighters free for the tournament</div>
+<div class="check-item"><input type="checkbox" id="c66"><label for="c66">Explore the Arena — find Coin, Bandana, and 40z in the locker rooms — shop if needed (a Claymore for Ryu is a strong purchase here) — you may leave the Arena to level up between fights</label></div>
+<div class="check-item"><input type="checkbox" id="c67"><label for="c67">Fight 1 — Hall of Fire vs Patrio's Team — defeat Claw and Cawer with normal attacks — use Flame dragon form to finish Patrio — alternatively, sink the Dodai platform with Ice attacks then finish with Frost Claw (Flame+Reverse genes) for 3000 bonus exp — let Patrio use Frost Strike on you to learn it</label></div>
+<div class="check-item"><input type="checkbox" id="c68"><label for="c68">Fight 2 — Null Magic Hall vs Emitai and two Golems (Emitai HP 600, Golems HP 750 each) — magic is banned but dragon forms are allowed — use Flame form on Emitai; after he falls the Golems attack each other</label></div>
+<div class="check-item"><input type="checkbox" id="c69"><label for="c69">Fight 3 — Hall of Kings vs Garr — this fight cannot be won; do not waste items — Garr wins and claims your party as his prize — Garr joins</label></div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">Retrieve Peco from Balio and Sunder's office — exit the Arena and rest/save on the world map</label></div>
+
+<div class="section-header">Maekyss Brawl</div>
+<div class="warn-line">Get the Flower Jewel BEFORE entering Maekyss Gorge — put Peco in your party and find the [?] area west of the gorge entrance — have Peco kick the tree outside the tent for the Flower Jewel — check the tent drawers for a Wisdom Fruit — then switch Peco OUT of your party — DO NOT sell the Flower Jewel; it is needed for the Meryleep master quest</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">Enter Maekyss Gorge — cross the bridge — fight three Bully thugs — Garr arrives and joins — Boss: STALLION (Balio and Sunder fused, HP 1500, recommended lv 16) — Utmost Attack hits all for 50+ damage; watch for it — use Flame+Thorn dragon; Garr attacks physically; Momo heals and casts Protect</label></div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72">New Dragon Gene: FROST — before leaving the gorge, follow the path under the bridge to a small house — collect Frost gene outside the house — grab 400z from the drawers inside</label></div>
+
+<div class="section-header">Wyndia Castle</div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Head north to Wyndia with Nina in party — enter the castle (Nina talks to the guard) — attend the banquet — king provides passports for the Eastern Checkpoint — Ryu's group departs, leaving Nina behind</label></div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Play as Nina — check her dresser for 120z — collect Gems×2 (dining room drawers), Panacea×2, Healing Herb×2, and a Coin from the upper rooms — find the mouse in the basement crates and answer yes to receive Cheese — chase Honey through the castle</label></div>
+<div class="check-item"><input type="checkbox" id="c75"><label for="c75">Follow Honey to the balcony — Nina falls but floats safely to the ground — Honey breaks and Nina carries her to Ryu's camp outside — Momo fixes Honey — Nina rejoins the party — Chapter III begins</label></div>
+
+
+<!-- ═══════════════════════════════════════════ CHAPTER III -->
+<div class="disc-header" id="angel-tower">3. Journey to Angel Tower</div>
+
+<div class="section-header">Rhapala Region</div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Head east from Wyndia — pass through the Eastern Checkpoint with passports — emerge in the Rhapala Region</label></div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">New Dragon Gene: THUNDER — find the [?] hut northeast of the checkpoint bridge — check inside for a Life Shard — use camera angles behind the house to find the Thunder gene</label></div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">New Master: GIOTTO — find him at the beach [?] area southeast of the checkpoint — requires at least Rodmaster rank in fishing to unlock</label></div>
+<div class="note">New Master: FAHL — return to the Arena in Genmel and speak to the barkeep — fight 30 battles in a row without resting to qualify (running away from battles counts) — great stat gains for Peco and Garr.</div>
+
+<div class="section-header">Port Town of Rhapala</div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79">Explore Rhapala — collect Molotov, Panacea, and 1000z in town — shop for weapon and armor upgrades — talk to the porter's guild counter, then Sinkar in the pub, then Shadis at the Wharf, then Beyd — boat isn't available; exit to world map and camp</label></div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">Return to the Wharf with Nina in party — talk to Beyd — agree to train him — buy Beyd the most powerful weapon and armor you can afford with his 1000z (ignore his preference for light gear)</label></div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81">Train Beyd over multiple sessions at the Wharf — raise his HP, attack power, and defense — when satisfied, tell him to go to the lighthouse — Zig challenges him to a fight in the town square</label></div>
+<div class="note">Quick method: learn Super Combo from Bunyan first — one session where Ryu lands a Super Combo ends training. Then kill Zig in a single hit with a Super Combo (250+ damage, 8+ hits required) — must be a one-hit kill or the fight is called off.</div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Beat Zig (you can discreetly heal Beyd or attack Zig when Zig looks away — getting caught calls off the fight) — receive Guild Badge from Beyd — pick up the two reward chests near Beyd — buy 1–2 extra Flame Chrysm before heading to the Lighthouse</label></div>
+
+<div class="section-header">The Lighthouse</div>
+<div class="warn-line">Buy at least 1–2 extra Flame Chrysm from Rhapala shops before entering — you sacrifice one per attempt at the valve puzzle inside and cannot complete the dungeon without opening it</div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Enter the lighthouse — have Momo blast the barrels blocking the path — navigate the exterior bridges — collect Coin (chest after the blasted barrels area), Mithrl Shield (narrow path left of the stairs base), and Swallow Eye (behind ledge left of barrels on the far concrete island) — enter through the door at the far end</label></div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Inside — collect Skill Ink (end of the southwest path) — hit the blue switch — enter the valve room — insert a Flame Chrysm into the machine — watch the arch bounce: every 4th time it hits the top, it aligns with the mark — hit the switch just before it reaches the mark to open the main valve</label></div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">Follow the now-lit pipeline out of the valve room — use camera angles near where the line shoots straight upward to find a Dream Ring — exit through the southern doorway for three Flame Chrysm chests — return inside and hit the second blue switch to redirect the chrysm flow</label></div>
+<div class="warn-line">Boss: GAZER (HP 1100, recommended lv 17) — normal attack hits all party members for solid damage; Eye Beam hits one for 50+ — Flame Claw is highly effective and negates Eye Beam — Momo casts Protect on the whole party and cures Hypnotize confusion with Panacea — Garr uses regular attacks and Pyrokinesis — inflicting Blind on Gazer doubles your exp reward</div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86">Continue up the northwest staircase — a boulder will roll down and land on the lizard creature, triggering the Gazer fight — defeat it — continue to the lighthouse top — hit the switch to light the bulb</label></div>
+<div class="note">The boulder only rolls if the chrysm line leading up the stairs is lit. If it isn't, go back to the first blue switch (the one before the valve room in c84) and hit it.</div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87">Receive Faerie Tiara from the angry faerie — New Dragon Gene: ELDRITCH — grab it behind the lighthouse bulb before leaving — rest and save</label></div>
+
+<div class="section-header">Faerie Village</div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">Go to the nearest flower ring and use the Faerie Tiara to enter the faerie world — follow the path up and talk to the faeries in the hut — go down the left path to the beach and wait for nightfall</label></div>
+<div class="warn-line">Boss: DOLPHIN (HP 1200, recommended lv 17) — use Thunder+Defender dragon form for Thunder Claw (300+ damage per hit) — Tsunami cuts everyone's HP in half; Intimidate cancels your turn — Momo casts Protect on herself and Ryu; Nina heals or casts Lightning</div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89">Defeat the Dolphin — return to the faerie hut — rest at the faerie village for free</label></div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">New Master: MERYLEEP — go to the [?] forest west of the Eastern Checkpoint with Peco in party — kick a rock into the spring in the middle of the forest (take a running start) — hand over the Flower Jewel — she teaches Shadowwalk, arguably the best attack skill in the game</label></div>
+<div class="note">Two other rocks in this forest cover holes with a Vitamin and a Hawk's Ring — have Peco kick them too.</div>
+<div class="check-item"><input type="checkbox" id="c91"><label for="c91">Return to Rhapala Wharf — talk to Beyd — speak to Sinkar in the pub — receive the letter granting access to the Mt. Zublo shortcut — buy flame inoculations from the Inoculation shop and stock up on Healing Herbs, Vitamins, and Panaceas — save</label></div>
+
+<div class="section-header">Mt. Zublo</div>
+<div class="warn-line">Yellow geysers inside the volcano cause confusion and reverse your D-pad controls — cure with Panacea immediately; stepping on lava deals damage but HP will never drop below 1</div>
+<div class="check-item"><input type="checkbox" id="c92"><label for="c92">Enter Mt. Zublo via the shortcut — collect Protein (chest on the path right of the entrance stairs) — enter the volcano interior — navigate to find Asbestos Armor (left cavern) and 800z (chest north of the cavern)</label></div>
+<div class="check-item"><input type="checkbox" id="c93"><label for="c93">Navigate through the geyser area — follow the upper-right ledge southeast and slide down the ramp to reach the Ring of Fire chest — equip it to someone immediately — cure any confusion — climb back up via the yellow ladders and exit through the right cavern</label></div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94">New Dragon Gene: MIRACLE — at the main junction, take the northeast path all the way around and hug the left ledge down around the lava to find the gene — optional: walk through the big lava patch to the southeast for the Flame Talons chest (heal immediately after)</label></div>
+<div class="check-item"><input type="checkbox" id="c95"><label for="c95">Return to the main junction — take the southwest path for a Wisdom Fruit — return and continue northeast — Boss: GISSHAN, SCYLLA, AND CHARYB (HP 800 / 1000 / 1000, recommended lv 19) — equip Dream Ring vs Gisshan's Sleep; Momo equips Ring of Fire (absorbs fire) and Ice Chrysm — have Ryu cast Shield on the party first, then transform into Trygon form (Flame+Frost+Thunder genes) and use Frost Breath until Scylla and Charyb are dead — Gisshan just defends once the serpents fall</label></div>
+<div class="check-item"><input type="checkbox" id="c96"><label for="c96">After the boss — use camera angles near the short exit path for a Life Shard chest — exit Mt. Zublo into the Urkan Region</label></div>
+
+<div class="section-header">Urkan Tapa</div>
+<div class="check-item"><input type="checkbox" id="c97"><label for="c97">Arrive in the Urkan Region — optional: visit Junk Town to the northeast for powerful weapons (15,000–25,000z recommended) — head to the Urkan Tapa and shop for Mithril gear upgrades</label></div>
+<div class="check-item"><input type="checkbox" id="c98"><label for="c98">New Master: HONDARA — find the preacher in white near the town entrance — requires having learned all of Durandal's non-lethal techniques — his Kyrie spell instantly kills undead enemies including some bosses (Garr learns the same spell naturally at level 26)</label></div>
+<div class="check-item"><input type="checkbox" id="c99"><label for="c99">Find the boulder-blocked building in the southeast — put Garr in party — have him push the boulder aside — meet with elder Sudama — he sends you to Angel Tower — exit and camp — save before entering Angel Tower</label></div>
+
+<div class="section-header">Angel Tower</div>
+<div class="warn-line">Keep Garr in your party — his push ability is required for the block puzzles inside the tower</div>
+<div class="check-item"><input type="checkbox" id="c100"><label for="c100">Climb the long outer staircase — jump through the first railing gap for the Ivory Dice chest — jump through the second railing gap for the Wisdom Seed chest — return to the start and climb again — jump off four consecutive ledges — head up the narrow staircase on the right and enter the tower</label></div>
+<div class="check-item"><input type="checkbox" id="c101"><label for="c101">Inside the tower — navigate to the apparent dead end — have Momo blast the cracked wall — go through the opening to collect Diamond Ring and Moon Tears — equip the Diamond Ring on someone immediately (enemies here use death attacks)</label></div>
+<div class="check-item"><input type="checkbox" id="c102"><label for="c102">Block puzzle 1 — have Garr push the green block into the first inclined break to unlock the upper chest — exit and re-enter the upper section to collect the Mithril Helm — continue through to grab the Soul Gem from the adjacent room</label></div>
+<div class="check-item"><input type="checkbox" id="c103"><label for="c103">Lower area — use camera angles near the southwest stairs for the Napalm chest — take the lower-left path first for the Skill Ink chest — three-block chain puzzle: push blocks to bridge a path to the final stairs in the east — descend to the basement</label></div>
+<div class="check-item"><input type="checkbox" id="c104"><label for="c104">Basement — Garr sends your third party member away — examine the plaques on the memorial tower — read Garr's plaque — Boss: GARR (HP 380) — unlike the Arena fight, this one CAN and should be won — use any dragon with Frost Claw or the Miracle gene alone — after the fight, Ryu uncontrollably transforms into a Kaiser dragon and flees — Chapter 4 begins</label></div>
+
+
+<!-- ═══════════════════════════════════════════ CHAPTER IV -->
+<div class="disc-header" id="revenge">4. Revenge</div>
+
+<div class="section-header">Dauna Mine</div>
+<div class="check-item"><input type="checkbox" id="c105"><label for="c105">Ten years have passed — follow Garr through the opening area — exit at the right to reunite with him in the main passage — head deeper into the mine</label></div>
+<div class="check-item"><input type="checkbox" id="c106"><label for="c106">Reach the green skull area — walk to the leftmost end and climb the stairs to the platform — collect Vitamin, Life Shard, and Magic Shard from the three chests — return to the eastern end and take the path down to the elevator — ride up to B1</label></div>
+<div class="check-item"><input type="checkbox" id="c107"><label for="c107">Follow the wooden path right from the B1 elevator — go left on the mining tracks for the Light Clothing chest — exit right and follow the tracks through the next two areas to get outside — visit the nearby hut for 200z and stock up on Panaceas from the fish merchant — return to the elevator and ride to B2 — find and use the rest/save room near the B2 elevator</label></div>
+<div class="check-item"><input type="checkbox" id="c108"><label for="c108">From the B2 elevator, navigate past the save room to the northeast — collect MultiVitamin from the chest at the end of the short hall</label></div>
+<div class="note">Come back here in Chapter 5 with Momo — blast the weak wall section nearby with her gun to find the Coupons accessory.</div>
+<div class="check-item"><input type="checkbox" id="c109"><label for="c109">Return to the small slope south of the save room and go down it — mining cart puzzle: hit the first switch on the track, follow northeast and hit the second switch, have Garr push the cart to bridge across to the Feather Sword chest — grab the Feather Sword — push cart back, hit the second switch again, then hit the switch northwest of it — push cart again to shatter the boulder blocking the passage</label></div>
+<div class="warn-line">Boss: DRAGON ZOMBIE (HP 2500, recommended lv 21) — Rotten Breath poisons both party members; Bone Dance damages and confuses all — Ryu: cast Shield, then Flame+Eldritch dragon → Restore spell deals 500+ damage (needs decent AP and Intelligence), or Flame+Defender for Flame Claw (~300 damage) — Garr: Pyrokinesis and heals status changes with Antidotes and Vitamins — Garr's Kyrie at lv 26+ one-shots this boss</div>
+<div class="check-item"><input type="checkbox" id="c110"><label for="c110">Defeat the Dragon Zombie — Shadow gene released by the zombie and Fusion gene granted by the Brood spirit are received automatically</label></div>
+<div class="check-item"><input type="checkbox" id="c111"><label for="c111">Exit through the cleared passage — collect Lion's Belt (take the northwest path at the junction) and Protein (northeast path) — hit the switch 3× to raise the metal bridge — cross and exit the mine — talk to the workers, collect your reward from the boss in the left house — save at the right house — leave the mine and camp</label></div>
+
+<div class="section-header">Dauna Hills Region</div>
+<div class="check-item"><input type="checkbox" id="c112"><label for="c112">Explore Dauna Hills — New Master: EMITAI — find him at the [?] house southeast of Dauna Mine (costs 10,000z — hold off for now) — visit Syn City to explore the shops and talk to locals — head south to Ogre Road</label></div>
+<div class="check-item"><input type="checkbox" id="c113"><label for="c113">Navigate Ogre Road — at the junction, head northwest to cut the strange-looking plants with Ryu's sword for Horseradish ×3 — head southwest up the incline and follow the path around to the ledge chest for the Hourglass — fight the Weretiger at the road's end (deal a few hundred damage and it flees; watch for Focus, which boosts its next attack) — exit south into western Yraall Region</label></div>
+<div class="note">Keep all the Horseradish — it is a required ingredient for the Shisu recipe needed in Chapter 7.</div>
+
+<div class="section-header">Mt. Levett</div>
+<div class="check-item"><input type="checkbox" id="c114"><label for="c114">Enter Mt. Levett — slide down the left incline for the 800z satchel — enter the cave and exit the other side — walk right past the top of the steep slope and fall through the floor hole for the Gold Hairpin — exit via the upper path — visit the [?] hut north of Mt. Levett for a Healing Herb inside — continue east and cross the bridge into Yraall Road</label></div>
+
+<div class="section-header">Reunion in the Yraall Region</div>
+<div class="check-item"><input type="checkbox" id="c115"><label for="c115">Enter Yraall Road — blocked by Wyndian guards — head to McNeil village — talk to the innkeeper about the tiger — she lets you stay the night for free — rest at the inn</label></div>
+<div class="check-item"><input type="checkbox" id="c116"><label for="c116">Go to Cedar Woods — walk to the site of your old house — Garr waits behind — encounter Rei — he runs off — return to McNeil — see that Rei avenged Loki — go to the farm then McNeil Manor — Nina rejoins the party — head to Syn City</label></div>
+
+<div class="section-header">The Massacre</div>
+<div class="check-item"><input type="checkbox" id="c117"><label for="c117">Arrive at Syn City — explore the aftermath and talk to the wounded — enter the cave on the far side of town (previously blocked) — pick up the Old Painting from the chest inside — leave town — rest and save — head to the Checkpoint to the northwest</label></div>
+<div class="warn-line">Boss: MIKBA (HP 2400, recommended lv 21) — Venom Breath poisons all; Multistrike hits multiple times in one turn; very high reprisal rate with frequent Lucky Strikes — Rei starts unconscious — Ryu: cast Shield then Flame+Defender dragon → Flame Claw — Garr: keep everyone alive with Antidotes and Vitamins — after dealing ~1000 damage, revive Rei — Weretiger Rei can go berserk and attack allies; cast Influence on Mikba first to keep Weretiger focused on him — Weretiger deals 300+ damage per hit</div>
+<div class="check-item"><input type="checkbox" id="c118"><label for="c118">Defeat Mikba — Rei joins the party permanently</label></div>
+<div class="check-item"><input type="checkbox" id="c119"><label for="c119">Enter the Checkpoint hut nearby — pick up Healing Herb and 80z from the drawers — have Rei pick the locked door for the Deluxe Rod — check the crates for Ginseng and Ammonia — exit the Checkpoint — Chapter 5 begins</label></div>
+
+
+<!-- ═══════════════════════════════════════════ CHAPTER V -->
+<div class="disc-header" id="plant">5. Problems at the Plant</div>
+
+<div class="section-header">Reunion at the Plant</div>
+<div class="check-item"><input type="checkbox" id="c120"><label for="c120">Head east through Eygnock Road to the Plant — find Momo at the furnace — exit east to the Yggdrasil grove and pick up Peco — put Peco in your party — return to the Plant</label></div>
+<div class="note">Now that Momo is back, you can return to Dauna Mine B2 and blast the weak wall in the northeast room (where the MultiVitamin was) to find the Coupons accessory.</div>
+<div class="check-item"><input type="checkbox" id="c121"><label for="c121">Speak with everyone at the Plant — ride conveyor belts to the greenhouse overlooks — have Peco kick rocks onto the X marks and launch them at the glass panels to vent both greenhouses — go to the furnace building — have Momo blast the hatch — descend the ladder (keep Momo in party; this is a good time to swap other members)</label></div>
+
+<div class="section-header">The Underground Laboratory</div>
+<div class="check-item"><input type="checkbox" id="c122"><label for="c122">Walk left to the locked #1 door — take the southeast ladder up and check behind the haystacks for Skill Ink — enter the main computer room — have Momo examine the #1 terminal to unlock all #1 doors</label></div>
+<div class="check-item"><input type="checkbox" id="c123"><label for="c123">Go through the #1 door into the 3 doors room — through #1 door again — pick up Ammonia — descend SW stairs to the radiation room (move quickly, you take damage over time) — inspect the Peco-like creature for the #2 password hint — return to main room and unlock #2 doors — go back through #1 door and use the #2 computer to open the #2 door — collect Silver Mail from behind the boxes</label></div>
+<div class="check-item"><input type="checkbox" id="c124"><label for="c124">Exit through the #2 door — walk the path and enter the next #2 door you see — hit the switch in the narrow area — exit and continue up the path past the #3 terminal and down the stairs — navigate around to find the paper behind the AC vent for the #3 password — New Dragon Gene: FORCE — follow the AC vent up through the next area to find it — grab Sleep Shells from the chest — return to main room and unlock #3 doors</label></div>
+<div class="note">Learn Flame Strike from the Fly Men enemies in the lab — give it to Rei for the upcoming boss fight.</div>
+<div class="warn-line">Boss: HUGE SLUG (HP 2500, recommended lv 22) — immune to physical attacks until a fire attack destroys the protective coating (a single Molotov works if no fire spells are available) — Syphon drains HP — Ryu: cast Shield first, then Force+Flame dragon → Flame Claw throughout — Momo: Flame Chrysm attacks plus Speed and Might assists</div>
+<div class="check-item"><input type="checkbox" id="c125"><label for="c125">Through #3 door — navigate to the gas-leaking room — defeat the Huge Slug</label></div>
+<div class="check-item"><input type="checkbox" id="c126"><label for="c126">After Huge Slug — inspect the yellow book near the flashing panels for the #4 password hint — collect Wisdom Ring from the AC vent chest — return to main room — for the #4 password choose "Other" then select the 3rd set of numbers from the top of the second list — go through the door behind the computers — grab Healing Herb from the drawer in the rest/save room — rest and save</label></div>
+<div class="warn-line">Boss: SHROOM / PALET (HP 3000, recommended lv 23) — Ragnarok randomly deals massive or zero damage to all; Head Cracker and Blitz are also dangerous — Ryu: cast Shield at least 3 times first, then Force+Defender/Thorn Warrior dragon → use Focus before each Aura attack — Rei: Pilfer the Wisdom Fruit as the first priority, then normal attacks or Weretiger (use Influence if available) — Momo: Speed and Might on Ryu and Rei, heal throughout</div>
+<div class="check-item"><input type="checkbox" id="c127"><label for="c127">Through the #4 door — follow the AC vent northeast to the end — descend the ladder — find Palet — defeat Shroom</label></div>
+<div class="check-item"><input type="checkbox" id="c128"><label for="c128">After the fight — pick up 400z from the drawer — hit the switch to turn off the machine — exit the lab and the Plant — camp — Momo commits to joining the journey east</label></div>
+
+<div class="section-header">The Escape from Wyndia</div>
+<div class="check-item"><input type="checkbox" id="c129"><label for="c129">Head to Wyndia — Ryu stays in town while Nina and Rei go up to the castle for the passports — before heading to the castle, check the fountain near the Inoculation shop (the grown-up Hide and Seek kids are there — triggers optional master side quest for Bais, Lang, Lee, and Wynn)</label></div>
+<div class="check-item"><input type="checkbox" id="c130"><label for="c130">Enter the castle with Nina as lead — head right and down the stairs to find Honey running toward you — collect Honey — go to the dungeon — pick up Vitamin from the drawer at the entrance — have Rei pick the cell door lock for the Laurel chest — go to Nina's parents' bedroom upstairs and have Nina talk to her mother</label></div>
+<div class="check-item"><input type="checkbox" id="c131"><label for="c131">Passport is ready — a guard reports that Rei was seen talking to Ryu in town — chase begins — follow Honey down the stairs through the castle: kitchen → cellar → ladder → Rei picks the lock to the transporter room — transported to Durandal's hut on the outskirts of Wyndia — exit to world map — camp — Chapter 6 begins</label></div>
+
+
+<!-- ═══════════════════════════════════════════ CHAPTER VI -->
+<div class="disc-header" id="freeing-deis">6. Freeing Deis</div>
+
+<div class="section-header">Angel Tower and Urkan Tapa</div>
+<div class="check-item"><input type="checkbox" id="c132"><label for="c132">Head east from Wyndia — pass through the Checkpoint with passport — take the main road around Mt. Zublo to the Urkan Region — put Garr in party — go to Angel Tower with Garr in the lead — climb to the summit — Deis appears and reveals that Gaist holds the key to her freedom</label></div>
+<div class="check-item"><input type="checkbox" id="c133"><label for="c133">Head to the Urkan Tapa — talk to elder Sudama — he says Gaist lives somewhere to the west — exit and travel west along the southern coastline back into the Rhapala Region south of Mt. Zublo — enter the Tidal Caves</label></div>
+
+<div class="section-header">Tidal Caves</div>
+<div class="warn-line">The water level in the Tidal Caves rises and falls every few minutes — if a ladder is submerged, go back inside the cave and wait for the water to drop</div>
+<div class="check-item"><input type="checkbox" id="c134"><label for="c134">Enter the caves — navigate to the first cave on the right — collect Fish-head (use camera angles northeast of the first junction) — return to the fork, head southwest for the Coin chest — exit the Coin passageway back to the fork, walk northwest to a new junction, go right and exit through the passageway to reach the dock area — wait for water to drop if needed — climb the dock ladder down and head right for the Thunder Ring at the end of the narrow path</label></div>
+<div class="check-item"><input type="checkbox" id="c135"><label for="c135">Climb the ladder directly below the first one — enter the cave on the right — collect Hawk's Ring (follow the mossy northwest path) — exit the cavern — ride the raft left, then southeast — head northeast and go up the slope for the Deadly Blade — ride the raft back northwest — exit through the southwest passageway — climb the ladder and exit the cave — pick up the Gross gene on the path immediately outside</label></div>
+
+<div class="section-header">Cliff</div>
+<div class="check-item"><input type="checkbox" id="c136"><label for="c136">Head west to the village of Cliff — explore and talk to locals — put Garr in party — enter Gaist's cave-house at the far northwest end of the village — speak with Gaist — go outside and talk to Garr when asked — choose "I must know the truth" — rest, save, and restock at the local shop — re-enter Gaist's house and tell him "I want the truth" — stand between the two torches when prompted</label></div>
+<div class="warn-line">Boss: GAIST (HP 2500, recommended lv 25, solo Ryu) — Sanctuary erases all assist magic so skip buff casting — Howling causes confusion; Corona is a powerful fire spell — transform immediately using Force+Frost+Gross genes — destroy the two torches first (each has ~300 HP and heals Gaist with Flare every turn) or ignore them and focus Gaist directly (torches also grant Ryu extra turns) — use Frost Claw once the torches are gone; if knocked out just transform again</div>
+<div class="check-item"><input type="checkbox" id="c137"><label for="c137">Defeat Gaist — BEFORE leaving, inspect Gaist's remains/ashes to collect the Beast Spear — Garr's ultimate weapon</label></div>
+
+<div class="section-header">Help From Deis</div>
+<div class="check-item"><input type="checkbox" id="c138"><label for="c138">Return to Angel Tower — go through the railing break on the right and jump off four consecutive ledges — head southeast to a staircase going down — descend to find the newly freed Deis — she sends you west to Mt. Zublo</label></div>
+<div class="check-item"><input type="checkbox" id="c139"><label for="c139">Enter Mt. Zublo via the main road — find the cave near the guards — go inside — have Ryu examine the wall at the far end — transported to Deis's shrine — when given the clothing choice, say "I like you this way" — receive the Eye of God — transported back to Mt. Zublo — head to Rhapala — Chapter 7 begins</label></div>
+<div class="note">Saying "I like you this way" is required to unlock Deis as a master later in the game.</div>
+
+
+<div class="disc-header" id="cross-sea">7. To Cross the Sea</div>
+
+<div class="section-header">Rhapala &amp; Junk Town</div>
+<div class="check-item"><input type="checkbox" id="c140"><label for="c140">Arrive in Rhapala — find Zig, Shadis, and her newborn at the Wharf — Shadis tells you Beyd went to Junk Town to investigate the boat — head northeast to Junk Town — explore the shops (weapon shop: Barbarossa 12,000z, Thunder Rod 9,500z, Gigantess 8,800z) — collect Green Apple, MultiVitamin, and Tea Cup from around town — find Beyd at the southwest corner talking to a guildsman — follow him out to the world map</label></div>
+
+<div class="section-header">Northern Urkan Region</div>
+<div class="check-item"><input type="checkbox" id="c141"><label for="c141">Explore the now fully open Northern Urkan Region — head west along the peninsula to the [?] hut at the far end — inside, check the drawer for a Swallow Eye — look behind the curtain for the ??? gene (new Dragon Gene)</label></div>
+
+<div class="section-header">Fixing the Ship</div>
+<div class="check-item"><input type="checkbox" id="c142"><label for="c142">Go to the Dock south of Junk Town — put Momo in the lead and talk to Beyd — Momo inspects the engine and produces a list of 8 needed parts — speak to dock workers to learn Steel Beach is the best source — return to Junk Town and get permission from the guild master (wearing a headband, standing inside one of the houses) — then head to Steel Beach</label></div>
+<div class="check-item"><input type="checkbox" id="c143"><label for="c143">At Steel Beach — proceed through the entrance cave and exit onto the beach — find the foreman near the freighter entrance — put Garr in the lead and play the rope-pulling mini-game (stay about 1 meter ahead of the foreman — white flag signals the foreman's pace, red flag signals Garr's — pull to ~6 meters to win) — fight the Angler boss</label></div>
+<div class="warn-line">Boss: ANGLER (HP 3,000, recommended lv 26) — equip Thunder Ring on Rei or Garr and bring Antidotes (uses Venom Breath to poison and Thunder Clap for single-target electric damage) — Rei casts Speed on Ryu at the start — Garr attacks with the Beast Spear — transform Ryu using Force+Thorn+Gross genes — use Focus twice then Aura for massive damage</div>
+<div class="check-item"><input type="checkbox" id="c144"><label for="c144">Collect 5 beach parts: in the water north of the foreman, behind the southern wall SE of the foreman, in the small junk pile south of the foreman, behind the ledge SE of the freighter entrance, and hidden on the right side of the freighter near the blowtorch worker — also collect the Mutant gene (new Dragon Gene) near the water at the northeast corner of the beach</label></div>
+<div class="check-item"><input type="checkbox" id="c145"><label for="c145">Enter the freighter — navigate northwest and collect 1 part behind the short railing at the end, then pick up the H-shaped part on the ground nearby — descend to the lower level — hit each of the 3 blue switches twice to raise beams and access the remaining parts hidden behind and around them — grab the Robe of Wind from the chest at the northwest end of the lower level — exit Steel Beach and return all 8 parts to Momo in the engine room at the dock</label></div>
+<div class="check-item"><input type="checkbox" id="c146"><label for="c146">Momo fixes the boat and it sails back to Rhapala — Beyd gives full use of the boat and Zig eagerly volunteers as captain — talk to Zig on the bridge to depart — head north toward the outer sea (the waves are too rough and force you back) — talk to Zig (he mentions the Legendary Mariner and suggests the mayor of Parch knows more) — navigate to Parch</label></div>
+
+<div class="section-header">Parch &amp; The Shisu Quest</div>
+<div class="check-item"><input type="checkbox" id="c147"><label for="c147">In Parch — collect a Coin and 400z from inside houses — speak to the mayor in the northeast house (he's irritable about the all-fish diet) — find the woman near the bridge; she suggests making shisu for the mayor and asks you to gather the ingredients before she gives the full recipe</label></div>
+<div class="check-item"><input type="checkbox" id="c148"><label for="c148">Gather the 4 shisu ingredients — fish at the spot right next to Maekyss Gorge for a Mackerel (aim for 68-70cm for highest quality) — have Peco kick the tree behind the shisu lady's house at Maekyss Gorge for Shally Seeds (collect ~20-30) — at the Coffee Shop, have Garr talk to the cloaked figure at the well for Vinegar (press Triangle the EXACT same number of times as X — no more, no less — play twice for 2 helpings) — Horseradish was already collected in Chapter 4 at Ogre Road</label></div>
+<div class="note">Return to the shisu lady at Maekyss Gorge with all 4 ingredients to get the full recipe — then go back to Parch and have the mayor's advisor help make it — optimal ratio 10:8:2:4 (Mackerel : Shally Seeds : Vinegar : Horseradish) — highest quality shisu rewards a Shaman's Ring from the advisor</div>
+
+<div class="section-header">Legendary Mariner</div>
+<div class="check-item"><input type="checkbox" id="c149"><label for="c149">Give the shisu to the mayor — he awards you the Sea Charts — collect your prize from the mayor's advisor — navigate the tidal area to the east within 25 seconds (dash in short bursts to avoid overheating; only navigate light-colored water) — collect 3 chests in the area: Heavy Dagger, Blizzard Mail, Ice Shield — reach Kukuys's house and meet the Legendary Mariner — give him the shisu and he tells you about the Black Ship as the only way across the ocean</label></div>
+<div class="note">Return to Kukuys's house later to collect Protein from the drawer inside</div>
+
+<div class="section-header">The Black Ship</div>
+<div class="check-item"><input type="checkbox" id="c150"><label for="c150">Leave Kukuys's house — in the Middle Sea, Momo fires her bazooka at the Black Ship and it retaliates — speak to all party members — Momo suggests ramming the ship from behind — tell Zig her plan and he agrees — back on the world map with the Black Ship now patrolling</label></div>
+<div class="note">Optional masters now available — Bais, Lang, Lee, and Wynn (return to the Wyndia fountain; they challenge you to a worldmap Hide &amp; Seek) — Hachio (Wyndia Castle kitchen basement via the portal used in Ch5's escape) — Deis (Mt. Zublo, only if you said "I like you this way" in Ch6) — good time to also return to Kukuys's house for the Protein</div>
+<div class="check-item"><input type="checkbox" id="c151"><label for="c151">Dash the boat into the back of the Black Ship to ram it — board with Momo in the party — head inside through the door on the left — at the platform panel select P3, ride 3 times, turn on the crane switch in the room ahead, return and ride 2 times back, select P4, ride 3 times and collect Skill Ink from the chest, ride once more — collect the Id Card from the small room off the platform path</label></div>
+<div class="check-item"><input type="checkbox" id="c152"><label for="c152">Return to the crane room at the start — use the crane to pick up all 4 crates one at a time (leave and re-enter the room to reset after each) — the 3 visible crates (left to right) give Ascension, Light Bangle, and Wisdom Fruit — the hidden crate at the north end gives Protectors — cross the crate bridge into the next area — collect Flash Shells on top of the big crates — head back and reach the main hallway via the blue switch catwalk — go through the door in the hallway corner to collect the second Skill Ink — then enter the first door on the right for Ammonia from the drawer, and the second door on the left for 2,400z behind the wall</label></div>
+<div class="check-item"><input type="checkbox" id="c153"><label for="c153">Use the Id Card on the elevator panel — ride up and ascend to the bridge — have Momo examine the controls — run back to the main hallway boost counter room (second door on the right going NW) and note the counter number — return to the bridge counting the beeps (first beep = counter +1, count up to 100) — when beep 100 sounds, quickly talk to Momo — the guidance system activates and the Black Ship sets out to sea</label></div>
+<div class="check-item"><input type="checkbox" id="c154"><label for="c154">The crossing is underway — an alarm sounds — choose three party members and investigate the bow — collect Ivory Dice from a room along the path — find the Soul Gem chest further down toward the outer deck — reach the bow and back up to mid-ship as far as possible (the ship's turrets assist if you're far enough back) — fight the Ammonites</label></div>
+<div class="warn-line">Boss: AMMONITES ×2 (HP 2,000 each, recommended lv 27) — high attack power with Multistrike, Tsunami, Blizzard, and Hypnotize — open with Ryu casting Shield 3-4 times (Chain formation), Rei casting Speed on everyone, Momo casting Might or War Shout — transform Ryu with Force+Thunder+Gross genes — use Focus twice then Thunder Claw to burst down one Ammonite — have Rei steal Moon Tears — once one is down, switch Rei to Weretiger to finish — Chapter 8 begins at the Lost Shore</div>
+
+</div><!-- /content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+(function(){
+  const STORE = 'bof3-checklist';
+  const boxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const total = boxes.length;
+
+  function save(){
+    const state = {};
+    boxes.forEach(b => { if(b.checked) state[b.id] = 1; });
+    localStorage.setItem(STORE, JSON.stringify(state));
+  }
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+  }
+
+  function updateProgress(){
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+    try {
+      const meta = JSON.parse(localStorage.getItem('wapo-guides-meta') || '{}');
+      meta[STORE] = { checked: done, total: total, pct: total ? Math.round(done/total*100) : 0 };
+      localStorage.setItem('wapo-guides-meta', JSON.stringify(meta));
+    } catch(e) {}
+  }
+
+  function applyDone(){
+    boxes.forEach(b => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+    });
+  }
+
+  const stored = load();
+  boxes.forEach(b => {
+    if(stored[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      save();
+      updateProgress();
+    });
+    b.closest('.check-item').addEventListener('click', function(e){
+      if(e.target === b || e.target.tagName === 'LABEL') return;
+      b.checked = !b.checked;
+      b.dispatchEvent(new Event('change'));
+    });
+  });
+
+  const achs = Array.from(document.querySelectorAll('.ach'));
+  const achStore = JSON.parse(localStorage.getItem(STORE+'-ach') || '{}');
+  achs.forEach((el, i) => {
+    const key = 'a'+i;
+    if(achStore[key]) el.classList.add('ach-done');
+    el.addEventListener('click', function(){
+      this.classList.toggle('ach-done');
+      achStore[key] = this.classList.contains('ach-done') ? 1 : 0;
+      localStorage.setItem(STORE+'-ach', JSON.stringify(achStore));
+    });
+  });
+
+  applyDone();
+  updateProgress();
+
+  document.getElementById('toggle-done').addEventListener('click', function(){
+    document.body.classList.toggle('hide-done');
+    this.textContent = document.body.classList.contains('hide-done') ? 'Show Completed' : 'Hide Completed';
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    if(!confirm('Reset all checkboxes?')) return;
+    boxes.forEach(b => { b.checked = false; });
+    applyDone();
+    save();
+    updateProgress();
+  });
+
+  document.getElementById('savemenu-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    const menu = document.getElementById('savemenu');
+    const rect = this.getBoundingClientRect();
+    if(menu.style.display === 'block'){
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'block';
+      menu.style.top = (rect.bottom + 4) + 'px';
+      menu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function(){
+    document.getElementById('savemenu').style.display = 'none';
+  });
+
+  document.getElementById('export-btn').addEventListener('click', function(){
+    const data = {
+      [STORE]: localStorage.getItem(STORE) || '{}',
+      [STORE+'-ach']: localStorage.getItem(STORE+'-ach') || '{}'
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = STORE + '-backup.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function(){
+    document.getElementById('import-file').click();
+  });
+
+  document.getElementById('import-file').addEventListener('change', function(){
+    const file = this.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try {
+        const data = JSON.parse(e.target.result);
+        if(data[STORE]) localStorage.setItem(STORE, data[STORE]);
+        if(data[STORE+'-ach']) localStorage.setItem(STORE+'-ach', data[STORE+'-ach']);
+        const stored = load();
+        boxes.forEach(b => { b.checked = !!stored[b.id]; });
+        applyDone();
+        updateProgress();
+        alert('Save imported successfully.');
+      } catch(err) {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+    this.value = '';
+  });
+
+  window.addEventListener('scroll', function(){
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+})();
+</script>
+</body>
+</html>
