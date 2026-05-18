@@ -224,6 +224,31 @@
   -->
 
   <!-- ═══════ B ═══════ -->
+  <div class="game-group" id="group-bof1">
+    <div class="game-header" onclick="toggleGroup('group-bof1')">
+      <div class="game-cover-placeholder"></div>
+      <div class="game-meta">
+        <div class="game-title">Breath of Fire</div>
+        <div class="game-platform">Super Nintendo · 1993</div>
+      </div>
+      <span class="game-toggle">▾</span>
+    </div>
+    <div class="game-guides">
+
+      <a class="guide-card" href="breath-of-fire-1/walkthrough-checklist.html" data-status="wip">
+        <div class="guide-card-info">
+          <div class="card-title">Walkthrough Checklist</div>
+          <div class="card-summary" id="sum-bof1">Step-by-step walkthrough covering the full main story across all 14 chapters, including boss strategies, key items, and missables.</div>
+          <button class="show-more" id="btn-bof1" onclick="toggleSummary(event, 'sum-bof1', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-bof1" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-bof1">Not started</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+
+    </div>
+  </div>
+
   <div class="game-group" id="group-bof3">
     <div class="game-header" onclick="toggleGroup('group-bof3')">
       <img class="game-cover" src="breath-of-fire-3/cover.webp" alt="Breath of Fire III">
@@ -379,6 +404,7 @@
     } catch(e) {}
   }
 
+  loadProgress('breath-of-fire-checklist', 'prog-bof1', 'prog-label-bof1');
   loadProgress('bof3-checklist', 'prog-bof3', 'prog-label-bof3');
   loadProgress('ff4-advance-bestiary', 'prog-ff4-advance', 'prog-label-ff4-advance');
   loadProgress('ff4-walkthrough-checklist', 'prog-ff4-walkthrough', 'prog-label-ff4-walkthrough');
