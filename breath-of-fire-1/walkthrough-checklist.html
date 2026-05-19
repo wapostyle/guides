@@ -61,7 +61,8 @@
   .item-ref b { color: var(--h2-color); }
   #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
   #scroll-top:hover { opacity: 1 !important; }
-  .section-header-row { display: flex; align-items: center; gap: 10px; }
+  .section-header-row { display: flex; align-items: center; gap: 10px; margin: 20px 0 6px; padding: 0 10px; }
+  .section-header-row .section-header { margin: 0; padding: 0; }
   .map-btn { background: var(--bg3); border: 1px solid var(--border); color: var(--h2-color); font-size: 11px; padding: 2px 8px; border-radius: 3px; cursor: pointer; white-space: nowrap; transition: background 0.15s; }
   .map-btn:hover { background: #3a3a3a; }
   #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; }
@@ -128,7 +129,7 @@
 
 <div class="section-header-row">
   <div class="section-header">Camlon Castle</div>
-  <button class="map-btn" data-map="maps/camlon-castle-f1.webp">View Map</button>
+  <button class="map-btn" data-map="maps/camlon-before-f1.webp">View Map</button>
 </div>
 <div class="warn-line">Some enemies here can poison you — keep Antidotes on hand.</div>
 <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Enter the castle and head north along the main path.</label></div>
