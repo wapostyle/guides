@@ -67,8 +67,15 @@
   .map-btn:hover { background: #3a3a3a; }
   #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; }
   #lightbox.active { display: flex; }
-  #lightbox img { max-width: 90vw; max-height: 90vh; border: 2px solid var(--border); border-radius: 4px; image-rendering: pixelated; }
-  #lightbox-close { position: absolute; top: 16px; right: 20px; font-size: 28px; color: var(--text); cursor: pointer; line-height: 1; background: none; border: none; }
+  #lightbox-inner { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  #lightbox-img-wrap { width: 700px; height: 700px; display: flex; align-items: center; justify-content: center; }
+  #lightbox img { max-width: 700px; max-height: 700px; width: auto; height: auto; object-fit: contain; border: 2px solid var(--border); border-radius: 4px; image-rendering: pixelated; }
+  #lightbox-close { position: absolute; top: -36px; right: 0; font-size: 28px; color: var(--text); cursor: pointer; line-height: 1; background: none; border: none; }
+  #lightbox-nav { display: flex; align-items: center; gap: 16px; }
+  #lightbox-label { color: var(--h2-color); font-size: 13px; font-weight: 700; min-width: 60px; text-align: center; }
+  .lb-arrow { background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 32px; height: 32px; border-radius: 4px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+  .lb-arrow:hover { background: #3a3a3a; }
+  .lb-arrow:disabled { opacity: 0.25; cursor: default; }
 </style>
 </head>
 <body>
@@ -123,24 +130,21 @@
 <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Save at the Dragon Shrine (building with the dragon head, southwest of the starting building).</label></div>
 <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Exit Drogen to the south and grind random encounters until Ryu reaches level 2–3. Heal for free by talking to the old woman back inside Drogen if needed.</label></div>
 
-<div class="section-header">Camlon</div>
+<div class="section-header-row">
+  <div class="section-header">Camlon</div>
+  <button class="map-btn" data-maps="maps/camlon-before.webp" data-labels="Town Map">View Map</button>
+</div>
 <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Head north from Drogen, cross the stone bridge, and follow the path northeast to Camlon.</label></div>
 <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Save at the Dragon Shrine in Camlon before entering the castle.</label></div>
 
 <div class="section-header-row">
   <div class="section-header">Camlon Castle</div>
-  <button class="map-btn" data-map="maps/camlon-before-f1.webp">View Map</button>
+  <button class="map-btn" data-maps="maps/camlon-castle-before-b1.webp,maps/camlon-castle-before-f1.webp,maps/camlon-castle-before-f2.webp" data-labels="B1,F1,F2" data-start="1">View Map</button>
 </div>
 <div class="warn-line">Some enemies here can poison you — keep Antidotes on hand.</div>
-<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Enter the castle and head north along the main path.</label></div>
-<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Optional: two chests near the first healing pool contain 140G.</label></div>
-<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Take the northeast staircase to the next floor. Optional: open the purple doors (press A) for four chests containing BronzSD, Gauntlet, and two Herbs. Head up the steps at the west end of the room to return to the main floor.</label></div>
-<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Descend the same west staircase back to the main floor, head south, and go down the stairs at the corner. Optional: open the purple doors for SuedeCP, Visor, and two Herbs. Ascend the east staircase to return to the main floor.</label></div>
-<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Head south. Optional: two chests here — the first restores HP/AP and contains an Antdt; the second contains an Antdt but triggers DarkMist.</label></div>
-<div class="check-item"><input type="checkbox" id="c12"><label for="c12">Climb the center stairs and approach the Frog on the throne.</label></div>
-<div class="check-item"><input type="checkbox" id="c13"><label for="c13"><b>BOSS: Frog</b> — Attack every turn and heal with Herbs when HP gets low. Frog uses Recover near death — keep attacking through it to finish the fight.</label></div>
-<div class="check-item"><input type="checkbox" id="c14"><label for="c14">Optional: two chests in the throne room contain an Herb and 150G.</label></div>
-<div class="check-item"><input type="checkbox" id="c15"><label for="c15">Save at the Dragon Shrine. Restock Herbs at Drogen if running low before heading to Nanai.</label></div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Work your way through the castle floors to reach the Frog on the throne on F2.</label></div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8"><b>BOSS: Frog</b> — Attack every turn and heal with Herbs when HP gets low. Frog uses Recover near death — keep attacking through it to finish the fight.</label></div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Save at the Dragon Shrine. Restock Herbs at Drogen if running low before heading to Nanai.</label></div>
 
 <div class="section-header">Nanai (Night Only)</div>
 <div class="warn-line">Nanai can only be entered at night. The day/night cycle advances with steps taken on the overworld — walk around until it turns night if needed.</div>
@@ -347,8 +351,17 @@
 <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div id="lightbox">
-  <button id="lightbox-close">✕</button>
-  <img id="lightbox-img" src="" alt="Map">
+  <div id="lightbox-inner">
+    <button id="lightbox-close">✕</button>
+    <div id="lightbox-img-wrap">
+      <img id="lightbox-img" src="" alt="Map">
+    </div>
+    <div id="lightbox-nav">
+      <button class="lb-arrow" id="lb-prev">&#8592;</button>
+      <span id="lightbox-label"></span>
+      <button class="lb-arrow" id="lb-next">&#8594;</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -485,13 +498,51 @@
   // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
-  function openLightbox(src){ lightboxImg.src = src; lightbox.classList.add('active'); }
-  function closeLightbox(){ lightbox.classList.remove('active'); lightboxImg.src = ''; }
+  const lightboxLabel = document.getElementById('lightbox-label');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  const lbNav = document.getElementById('lightbox-nav');
+  let lbMaps = [], lbLabels = [], lbIndex = 0;
+
+  function lbShow(i){
+    lbIndex = i;
+    lightboxImg.src = lbMaps[i];
+    lightboxLabel.textContent = lbLabels[i] || '';
+    lbPrev.disabled = i === 0;
+    lbNext.disabled = i === lbMaps.length - 1;
+    lbNav.style.display = lbMaps.length > 1 ? 'flex' : 'none';
+  }
+
+  function openLightbox(maps, labels, startIndex){
+    lbMaps = maps;
+    lbLabels = labels;
+    lbShow(startIndex);
+    lightbox.classList.add('active');
+  }
+
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+  }
+
+  lbPrev.addEventListener('click', function(){ if(lbIndex > 0) lbShow(lbIndex - 1); });
+  lbNext.addEventListener('click', function(){ if(lbIndex < lbMaps.length - 1) lbShow(lbIndex + 1); });
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('active')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft' && lbIndex > 0) lbShow(lbIndex - 1);
+    if(e.key === 'ArrowRight' && lbIndex < lbMaps.length - 1) lbShow(lbIndex + 1);
+  });
+
   document.querySelectorAll('.map-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){ openLightbox(this.dataset.map); });
+    btn.addEventListener('click', function(){
+      const maps = this.dataset.maps.split(',');
+      const labels = (this.dataset.labels || '').split(',');
+      const start = parseInt(this.dataset.start || '0', 10);
+      openLightbox(maps, labels, start);
+    });
   });
 })();
 </script>
