@@ -61,6 +61,13 @@
   .item-ref b { color: var(--h2-color); }
   #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
   #scroll-top:hover { opacity: 1 !important; }
+  .section-header-row { display: flex; align-items: center; gap: 10px; }
+  .map-btn { background: var(--bg3); border: 1px solid var(--border); color: var(--h2-color); font-size: 11px; padding: 2px 8px; border-radius: 3px; cursor: pointer; white-space: nowrap; transition: background 0.15s; }
+  .map-btn:hover { background: #3a3a3a; }
+  #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; }
+  #lightbox.active { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 90vh; border: 2px solid var(--border); border-radius: 4px; image-rendering: pixelated; }
+  #lightbox-close { position: absolute; top: 16px; right: 20px; font-size: 28px; color: var(--text); cursor: pointer; line-height: 1; background: none; border: none; }
 </style>
 </head>
 <body>
@@ -119,7 +126,10 @@
 <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Head north from Drogen, cross the stone bridge, and follow the path northeast to Camlon.</label></div>
 <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Save at the Dragon Shrine in Camlon before entering the castle.</label></div>
 
-<div class="section-header">Camlon Castle</div>
+<div class="section-header-row">
+  <div class="section-header">Camlon Castle</div>
+  <button class="map-btn" data-map="maps/camlon-castle-f1.webp">View Map</button>
+</div>
 <div class="warn-line">Some enemies here can poison you — keep Antidotes on hand.</div>
 <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Enter the castle and head north along the main path.</label></div>
 <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Optional: two chests near the first healing pool contain 140G.</label></div>
@@ -219,7 +229,62 @@
 <!-- ═══════════════════════════════════════════ CHAPTER 3 -->
 <div class="disc-header" id="ch3">3. Zombies!</div>
 
-<!-- PLACEHOLDER -->
+<div class="section-header">Overworld</div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">After crossing the tunnel bridge, get onto the dirt path and follow it south. Ignore the path leading into the forest. Continue until the path ends at a ramp, climb down, and head east to find two towns separated by a dried riverbed. The left town is Tantar.</label></div>
+<div class="note">Monsters in this region are noticeably tougher than before — consider leveling up before heading into the dungeons ahead.</div>
+
+<div class="section-header">Tantar</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">Save at the Dragon Shrine and rest at the inn in the northwest corner of town. Optional: check the cabinet in the inn for a Charm.</label></div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72">Head to the southwest corner of town. Enter the lower-right house of the four houses there and talk to the blacksmith. He will use your I.Ore to make the Saw.</label></div>
+<div class="warn-line">The Saw is required to enter the Forest of Despair. If you do not have the I.Ore from Aura Cave, you cannot proceed.</div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Pick up a Bandana for Nina from the Weapon &amp; Armor Shop next to the Dragon Shrine — it is cheap and a meaningful upgrade. Optional: enter the tall purple house in the center of town, go upstairs, and check the drawers for a W.Ptn.</label></div>
+
+<div class="section-header">Forest of Despair</div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Leave Tantar, head west and back up the ramp. Follow the dirt path until you find a small branch leading into the forest. Use the Saw to cut down the tree blocking the entrance.</label></div>
+<div class="warn-line">Zombies and S.Riders in this forest can be dangerous — keep healing and reviving items stocked.</div>
+<div class="check-item"><input type="checkbox" id="c75"><label for="c75">Follow the path to the first fork. Take the lower path — it splits again shortly. Optional: duck right at this second split for an Herb, then return. Head north along the main path.</label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Head north at every split, ignoring all east-branching paths. When you can go no further north, collect the T.Drop from the chest. Head back south and immediately east.</label></div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">Take the southeast path and continue generally south, ignoring branching paths, until you reach two chests containing a Life and a T.Drop. Follow the southeast path along the forest outskirts.</label></div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">At the fork take the north path. At the next split, the north path leads to a Wrist in a chest — optional but recommended for Nina. Take the northwest path to continue.</label></div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79">At the next fork head northwest, then continue north — ignoring any west paths — to the stone building at the end. Enter the Forest Fortress.</label></div>
+
+<div class="section-header">Forest Fortress</div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">Talk to the two guards blocking the doorway to trigger a battle: Bowman and Lancer. Defeat them to proceed.</label></div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81">Head east from the entrance and follow the path north. At the split, take the north path — the lower path has a trapdoor. Optional: the trapdoor leads to a room with four chests containing two Lifes, a T.Drop, and a LongSD; climb the staircase in the room to return. Talk to and defeat the two guards blocking the next doorway.</label></div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Take the staircase at the northwest corner. Before descending, walk south to find four chests: Herb, T.Drop, Acorn, and Life2. Then descend the staircase.</label></div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Immediately take the second staircase you appear by. Optional: open the chests for two Herbs, a T.Drop, and a WolfHT — note the WolfHT chest is trapped and deals 50 HP damage. Return upstairs.</label></div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Head east — do not take the north path or you will fall into the treasure room. Follow the twisting path to an Herb in a chest. Continue west to the end of the path for another Herb. Then return east to the doorway with three guards.</label></div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">Heal up, then talk to the three guards to trigger a battle: two Lancers and a Bowman. Defeat the Lancers first, then finish the Bowman.</label></div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86"><b>BOSS: Pog</b> — Have Nina cast Fort on Ryu and herself, then ATK-Up. Attack every turn and have Nina heal whenever HP drops. Both heads can attack in one turn near the end — keep HP up.</label></div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87"><b>BOSS: General</b> — Have Nina cast Fort on Bo immediately (his defense is very low). Have Bo cast Fry twice for heavy damage while Ryu attacks. Finish with regular attacks.</label></div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">Bo joins your party. Exit the Fortress by heading south and falling through the trapdoor near the northwest corner staircase, then climbing the stairs up. Leave the Forest of Despair.</label></div>
+
+<div class="section-header">Tuntar</div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89">Cross the bridge north of Tantar and head south to Tuntar. Rest at the inn, collect the Cure from the drawers inside, and restock items at the Item Shop to the east.</label></div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">Talk to the chief in the tall purple building at the center of town. He tells you about the Stone Robot. Optional: go upstairs and check the drawers for an Herb.</label></div>
+
+<div class="section-header">Romero — Daytime</div>
+<div class="check-item"><input type="checkbox" id="c91"><label for="c91">Leave Tuntar and cross the bridge back to the west side. Follow the dirt path north by the Forest of Despair entrance. Put Bo at the front of your party and walk through the forest northeast of the bridge as a shortcut to Romero.</label></div>
+<div class="warn-line">You must visit Romero during the daytime first before the nighttime zombie quest becomes available.</div>
+<div class="check-item"><input type="checkbox" id="c92"><label for="c92">Enter Romero during the daytime. Talk to the people in the graveyard, then speak with the chief in the northeast corner of town. He asks you to rid the town of zombies.</label></div>
+
+<div class="section-header">Romero — Nighttime</div>
+<div class="warn-line">The day/night cycle advances with steps taken on the overworld — walk around until it turns night.</div>
+<div class="check-item"><input type="checkbox" id="c93"><label for="c93">Re-enter Romero at night. Talk to the old lady at the entrance — her zombie husband will push away a gravestone. Drop down the revealed hole to find two chests: the WtrJr and an Herb.</label></div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94">Head south and ascend the staircase to exit back outside Romero.</label></div>
+
+<div class="section-header">Cleansing Water Cave</div>
+<div class="check-item"><input type="checkbox" id="c95"><label for="c95">With Bo at the front, walk through the forest north of Romero to the other side of town. Head west past Agua Tower to the Karma Tower. The Cleansing Water Cave is directly south of the Karma Tower — cross the bridge to reach it.</label></div>
+<div class="check-item"><input type="checkbox" id="c96"><label for="c96">Head forward to a three-way fork. Optional: east path leads to an Herb. Take the west fork — at the next split, the right path leads to an Herb and the left path leads to a NiceHT in a chest. Take left to continue forward.</label></div>
+<div class="check-item"><input type="checkbox" id="c97"><label for="c97">Continue forward along the path. When you reach a fork where the south path leads back to the entrance, take the east path. Follow the outer edge of the floor until you reach a staircase at the upper-left corner. Optional: continue past it to the end of the path for a F.Stn first, then return to the staircase and ascend.</label></div>
+<div class="check-item"><input type="checkbox" id="c98"><label for="c98">From the top of the staircase, the path splits north and south. Optional: head south for an Herb. Head north — at the fork go east for a T.Drop, then return to the fork and continue north to another staircase.</label></div>
+<div class="check-item"><input type="checkbox" id="c99"><label for="c99">Descend the staircase to the lower floor. Immediately ascend the staircase right at the bottom. Follow the path to another staircase and ascend — you emerge by two chests containing a BronzHT and an Apple. Head back down both staircases and at the fork near the lower staircase, take the lower path to a third staircase. Descend to the final floor.</label></div>
+<div class="check-item"><input type="checkbox" id="c100"><label for="c100">Head down the small steps and fill the WtrJr with Cleansing Water. Your party automatically returns to Romero.</label></div>
+
+<div class="section-header">Romero — Reward</div>
+<div class="check-item"><input type="checkbox" id="c101"><label for="c101">Ryu purifies the soil — the zombies are gone. Collect the five reward chests from the chief: Herb, Antdt, 900G, Cure, and the Tablet.</label></div>
+<div class="warn-line">The Tablet is required to access Agua Tower in Chapter 4.</div>
+<div class="check-item"><input type="checkbox" id="c102"><label for="c102">Save at the Dragon Shrine before leaving Romero.</label></div>
 
 <!-- ═══════════════════════════════════════════ CHAPTER 4 -->
 <div class="disc-header" id="ch4">4. The Stone Robot</div>
@@ -279,6 +344,11 @@
 </div><!-- #content -->
 
 <button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="Map">
+</div>
 
 <script>
 (function(){
@@ -409,6 +479,18 @@
 
   window.addEventListener('scroll', function(){
     document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  function openLightbox(src){ lightboxImg.src = src; lightbox.classList.add('active'); }
+  function closeLightbox(){ lightbox.classList.remove('active'); lightboxImg.src = ''; }
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+  document.querySelectorAll('.map-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ openLightbox(this.dataset.map); });
   });
 })();
 </script>
