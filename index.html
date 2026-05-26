@@ -134,6 +134,7 @@
     cursor: default;
   }
   .guide-card[data-status="wip"] { opacity: 0.7; }
+  .guide-card[data-status="wip"] .card-title { color: var(--accent2); }
 
   .guide-card-info { flex: 1; min-width: 0; }
 
@@ -228,7 +229,7 @@
     <div class="game-header" onclick="toggleGroup('group-bof1')">
       <img class="game-cover" src="breath-of-fire-1/cover.webp" alt="Breath of Fire">
       <div class="game-meta">
-        <div class="game-title">Breath of Fire (Work in Progress)</div>
+        <div class="game-title">Breath of Fire</div>
         <div class="game-platform">Super Nintendo · 1993</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -253,7 +254,7 @@
     <div class="game-header" onclick="toggleGroup('group-bof3')">
       <img class="game-cover" src="breath-of-fire-3/cover.webp" alt="Breath of Fire III">
       <div class="game-meta">
-        <div class="game-title">Breath of Fire III (Work in Progress)</div>
+        <div class="game-title">Breath of Fire III</div>
         <div class="game-platform">PlayStation 1 · 1997</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -279,7 +280,7 @@
     <div class="game-header" onclick="toggleGroup('group-ff4')">
       <img class="game-cover" src="ff4-advance/cover.webp" alt="Final Fantasy IV Advance">
       <div class="game-meta">
-        <div class="game-title">Final Fantasy IV Advance (Work in Progress)</div>
+        <div class="game-title">Final Fantasy IV Advance</div>
         <div class="game-platform">Game Boy Advance · 2005</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -316,7 +317,7 @@
     <div class="game-header" onclick="toggleGroup('group-koudelka')">
       <img class="game-cover" src="koudelka/cover.webp" alt="Koudelka">
       <div class="game-meta">
-        <div class="game-title">Koudelka (Work in Progress)</div>
+        <div class="game-title">Koudelka</div>
         <div class="game-platform">PlayStation 1 · 1999</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -337,12 +338,38 @@
     </div>
   </div>
 
+  <!-- ═══════ P ═══════ -->
+  <div class="game-group" id="group-persona-4-golden">
+    <div class="game-header" onclick="toggleGroup('group-persona-4-golden')">
+      <img class="game-cover" src="persona-4-golden/cover.webp" alt="Persona 4 Golden">
+      <div class="game-meta">
+        <div class="game-title">Persona 4 Golden</div>
+        <div class="game-platform">PS Vita · 2012</div>
+      </div>
+      <span class="game-toggle">▾</span>
+    </div>
+    <div class="game-guides">
+
+      <a class="guide-card" href="persona-4-golden/walkthrough-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Platinum Walkthrough Checklist</div>
+          <div class="card-summary" id="sum-persona-4-golden">Day-by-day platinum walkthrough covering social links, dialogue choices, quests, dungeon objectives, and all missable trophies across two playthroughs.</div>
+          <button class="show-more" id="btn-persona-4-golden" onclick="toggleSummary(event, 'sum-persona-4-golden', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-persona-4-golden" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-persona-4-golden">Not started</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+
+    </div>
+  </div>
+
   <!-- ═══════ R ═══════ -->
   <div class="game-group" id="group-robotrek">
     <div class="game-header" onclick="toggleGroup('group-robotrek')">
       <img class="game-cover" src="robotrek/cover.webp" alt="Robotrek">
       <div class="game-meta">
-        <div class="game-title">Robotrek (Work in Progress)</div>
+        <div class="game-title">Robotrek</div>
         <div class="game-platform">Super Nintendo · 1994</div>
       </div>
       <span class="game-toggle">&#9662;</span>
@@ -368,7 +395,8 @@
 </main>
 
 <footer>
-  If a guide helped you, consider <a href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">buying me a coffee ☕</a>
+  If a guide helped you, consider <a href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">buying me a coffee ☕</a><br>
+  Want to help playtest a guide? <a href="https://github.com/wapostyle/guides/issues/new?template=playtesting.md" target="_blank" rel="noopener">Open an issue on GitHub</a> and let me know what you found.
 </footer>
 
 <script>
@@ -408,6 +436,7 @@
   loadProgress('bof3-checklist', 'prog-bof3', 'prog-label-bof3');
   loadProgress('ff4-advance-bestiary', 'prog-ff4-advance', 'prog-label-ff4-advance');
   loadProgress('ff4-walkthrough-checklist', 'prog-ff4-walkthrough', 'prog-label-ff4-walkthrough');
+  loadProgress('persona-4-golden-checklist', 'prog-persona-4-golden', 'prog-label-persona-4-golden');
   loadProgress('koudelka-checklist', 'prog-koudelka', 'prog-label-koudelka');
   loadProgress('robotrek-checklist', 'prog-robotrek', 'prog-label-robotrek');
 </script>
