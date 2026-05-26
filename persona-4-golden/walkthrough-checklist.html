@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Persona 4 Golden – Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --ach-color: #6fbf8e;
+    --warn-color:#e8b84a;
+    --note-color:#aaa;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+    --ext-color: #aaa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; overflow: hidden; height: 54px; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #toc-kofi { margin-left: auto; }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); scroll-margin-top: 108px; }
+  .disc-header:first-child { margin-top: 0; }
+  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; }
+  .ach { color: var(--ach-color); font-size: 12.5px; padding: 2px 0 2px 4px; margin: 2px 0; cursor: pointer; border-left: 2px solid transparent; border-radius: 3px; }
+  .ach:hover { background: var(--bg2); border-left-color: var(--ach-color); }
+  .ach.ach-done { color: var(--done-text); text-decoration: line-through; border-left-color: var(--check-checked); }
+  body.hide-done .ach.ach-done { display: none; }
+  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 2px 0 2px 4px; margin: 2px 0; }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '⚠ '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  .item-ref { font-size: 13px; padding: 3px 0 3px 4px; margin: 2px 0; color: var(--text); }
+  .item-ref b { color: var(--h2-color); }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
+
+<div id="site-header">
+  <div id="progress-bar" style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);">
+    <div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div>
+  </div>
+  <h1><a href="../index.html">← Wapo's Game Guides</a> <span style="color:var(--muted);font-weight:400;font-size:14px;">/ Persona 4 Golden Walkthrough</span></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+    <div style="position:relative;display:inline-block;">
+      <button class="btn" id="savemenu-btn">Import/Export Progress</button>
+    </div>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+  </div>
+</div>
+<div id="savemenu" style="display:none;position:fixed;background:var(--bg3);border:1px solid var(--border);border-radius:4px;min-width:140px;z-index:1000;">
+  <div id="export-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Export</div>
+  <div id="import-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Import</div>
+</div>
+
+<div id="toc">
+  <a href="#april">April</a>
+  <a href="#may">May</a>
+  <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+</div>
+
+<div id="content">
+
+<!-- ═══════════════════════════════════════════ APRIL -->
+<div class="disc-header" id="april">APRIL</div>
+
+<div class="section-header">April 11 (Mon) — Evening</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Go upstairs and sleep.</label></div>
+
+<div class="section-header">April 12 (Tue)</div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">Morning — Mr. Morooka asks your name. Select: <b>"...You calling me a loser?"</b> (Courage up)</label></div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">After School — Explore Inaba if you wish, then return to the Dojima Residence.</label></div>
+<div class="check-item"><input type="checkbox" id="c4"><label for="c4">Evening — Go upstairs and rest.</label></div>
+
+<div class="section-header">April 13 (Wed)</div>
+<div class="check-item"><input type="checkbox" id="c5new"><label for="c5new">Morning — School lesson. (Knowledge up)</label></div>
+<div class="check-item"><input type="checkbox" id="c6new"><label for="c6new">Evening — Go upstairs and watch TV.</label></div>
+
+<div class="section-header">April 14 (Thu)</div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Morning — Ms. Sofue: "What is the year before 1 AD called?" Select: <b>"1 BC."</b> (Knowledge up)</label></div>
+<div class="check-item"><input type="checkbox" id="c6"><label for="c6">After School — Chie: "So... uh... we're still alive... Right?" Select: <b>"Are you guys okay?"</b> (Understanding up)</label></div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Evening — Go to your room and rest.</label></div>
+
+<div class="section-header">April 15 (Fri)</div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">After School — Yosuke: "What about you? Could you just walk away?" Select: <b>"I'm worried about Chie."</b> (Understanding up)</label></div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Evening — Go to your room and rest.</label></div>
+
+<div class="section-header">April 16 (Sat)</div>
+<div class="ext">Yosuke's Social Link is established automatically — The Magician arcana.</div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Evening — Go to your room and watch TV.</label></div>
+
+
+<div class="section-header">April 17 (Sun)</div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">Daytime — Upgrade weapons/armor at Daidara's if desired, then go to Junes.</label></div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">TV World — Talk to Teddie to receive items including Peach Seeds. <b>Keep at least one Peach Seed</b> — needed for a quest that rewards a book.</label></div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14">TV World — Try to obtain Pixie, Angel, Apsaras, or Sandman Personas. Pixie = Magician arcana (needed for Yosuke's Social Link). Angel is useful for dungeon healing. Sandman or Pixie+Apsaras (fusible into Sandman) needed for Strength Social Link later.</label></div>
+<div class="note">During Shuffle Time, prioritize Personas and Skill Cards over other rewards. You need 100 Skill Cards registered for a trophy.</div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15">TV World — Approach an enemy from behind and press X for a player advantage. (Trophy opportunity: first player advantage)</label></div>
+<div class="ach">🏆 <b>Advantage Mine</b> — Get a player advantage on an enemy</div>
+<div class="ext">The Investigation Team Social Link is established automatically — The Fool arcana.</div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17">Evening — Go upstairs, receive phone call from Mr. Morooka. Talk to Dojima and select <b>"My homeroom teacher needs to see me."</b> Go to Shopping District, talk to Morooka to receive the Yaso High Jersey costume. Then go home and sleep.</label></div>
+
+<div class="section-header">April 18 (Mon)</div>
+<div class="ext">Chie's Social Link is established automatically — The Chariot arcana.</div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18">Early Morning — Chie asks for your contact info. Select any option (Courage-gated options are locked until NG+).</label></div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19">Afternoon — Mr. Kondo: "The word 'alphabet' comes from 'alpha' and what other one?" Select: <b>"Beta."</b> (Knowledge up)</label></div>
+<div class="check-item"><input type="checkbox" id="c20"><label for="c20">After School — Talk to Funky Student on Classroom Building 3F (Quest 1: Who's the Riddle Master!?). Answers: <b>Group A</b> / <b>They're top 6 flag colors.</b> Reward: Chest Key x3.</label></div>
+<div class="check-item"><input type="checkbox" id="c21"><label for="c21">After School — Go to Velvet Room (Shopping District, South). If you have a Skill Card, select <b>"Utilize Skill Cards"</b> → <b>"Give Skill Cards"</b> → <b>"Register All."</b></label></div>
+<div class="ach">🏆 <b>Card Collector</b> — Register your first Skill Card</div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22">After School — Buy TaP Soda from the vending machine outside Shiroku Store (5 max per week, restocks Mondays). Stock up now.</label></div>
+<div class="check-item"><input type="checkbox" id="c23"><label for="c23">After School — Save your game. Go to vending machines at the top of the hill in Shopping District, North. Buy drinks for a chance at a prize trophy. If no prize in 5 tries, reload and retry. Buy at least one Dr. Salt NEO before leaving.</label></div>
+<div class="ach">🏆 <b>Here Comes a New Challenger</b> — Win a prize from the vending machine</div>
+<div class="check-item"><input type="checkbox" id="c24"><label for="c24">After School — Go to the Shrine and talk to the Bug-catching kid. Give him the Dr. Salt NEO; receive 2x Tatsuhime Ladybugs (needed for fishing later).</label></div>
+<div class="check-item"><input type="checkbox" id="c25"><label for="c25">After School — Go to Junes and buy 3x Tiny Soul Tomatoes for 800 yen from the woman there.</label></div>
+<div class="check-item"><input type="checkbox" id="c26"><label for="c26">After School — Enter Velvet Room. Select <b>"Check on Dwellers"</b> → <b>"Listen to Marie's request."</b></label></div>
+<div class="ext">Marie's Social Link is established automatically — The Aeon arcana.</div>
+<div class="check-item"><input type="checkbox" id="c27"><label for="c27">Evening — Save game. Go to room and study. Aim to raise Knowledge twice; reload if you don't get both increases.</label></div>
+
+
+<div class="section-header">April 19 (Tue)</div>
+<div class="check-item"><input type="checkbox" id="c28"><label for="c28">After School — Go to Emergency Exit on Classroom Building 1F to start the Strength Social Link. Choose the Soccer Team (this guide follows the Soccer route).</label></div>
+<div class="ext">The Fellow Athletes Social Link is established automatically — The Strength arcana.</div>
+<div class="check-item"><input type="checkbox" id="c30"><label for="c30">Evening — Save game. Study in your room; aim for Knowledge up twice. Reload if not.</label></div>
+
+<div class="section-header">April 20 (Wed)</div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31">Morning — Yosuke: "Narukami! C'mon, man, help me here!" Select: <b>"Three."</b> (Expression up)</label></div>
+<div class="check-item"><input type="checkbox" id="c32"><label for="c32">After School — Go to the bookstore in Shopping District, South. Buy: The Lovely Man, Expert Study Methods, Beginner Fishing.</label></div>
+<div class="check-item"><input type="checkbox" id="c33"><label for="c33">After School — Equip a Magician Persona. Speak with Yosuke on Classroom Building 2F and hang out. Select: <b>"It must be tough."</b> Yosuke's Social Link → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34">Evening — Go upstairs and start reading Expert Study Methods.</label></div>
+
+<div class="section-header">April 21 (Thu)</div>
+<div class="note">Equip a Strength Persona before After School.</div>
+<div class="check-item"><input type="checkbox" id="c35"><label for="c35">After School — Talk to Daisuke on Classroom Building 2F; go to soccer practice. Soccer player: "Tear down the goals..." Select: <b>"Got it."</b> (Understanding up). Daisuke: "It went pretty fast..." Select: <b>"Thanks for the help."</b> Fellow Athletes Social Link → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c36"><label for="c36">Evening — Read Expert Study Methods in your room.</label></div>
+
+<div class="section-header">April 22 (Fri)</div>
+<div class="note">Equip a Magician Persona before After School.</div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37">After School — Speak with Yosuke on Classroom Building 2F and hang out. Yosuke: "Am I starting to sound like Teddie?" Select: <b>"Hmm, you're looking hairier."</b> Select any option for the next prompt. Yosuke's Social Link → Rank 3 (Yosuke can now perform follow-up attacks).</label></div>
+<div class="check-item"><input type="checkbox" id="c38"><label for="c38">Evening — Read Expert Study Methods in your room. (Book complete — Knowledge now increases faster when studying.)</label></div>
+
+<div class="section-header">April 23 (Sat)</div>
+<div class="check-item"><input type="checkbox" id="c39"><label for="c39">Morning — Yosuke: "What's this ergonomic bubble she's asking about!?" Select: <b>"Tulip mania."</b> (Expression up)</label></div>
+<div class="check-item"><input type="checkbox" id="c40"><label for="c40">After School — Go to the Town Bulletin Board in Shopping District, North. Accept the Envelope Constructor job and the Assistant Day Care Caretaker job ("see others").</label></div>
+<div class="check-item"><input type="checkbox" id="c41"><label for="c41">After School — Take the bus from Shopping District, South to the Day Care Center. (Understanding up, 4,000 yen earned)</label></div>
+<div class="check-item"><input type="checkbox" id="c42"><label for="c42">Evening — Go to your room and read The Lovely Man.</label></div>
+
+
+<div class="section-header">April 24 (Sun)</div>
+<div class="note">Equip a Magician Persona before hanging out with Yosuke. Decline all phone calls today unless instructed otherwise — Kou will call, pass on his offer.</div>
+<div class="check-item"><input type="checkbox" id="c43"><label for="c43">Daytime — Speak with Yosuke at the entrance to Junes. Yosuke: "Phew, I'm beat..." Select: <b>"You're incredible."</b> Yosuke: "I have to do what I can..." Select: <b>"That's the spirit!"</b> Yosuke's Social Link → Rank 4 (Jiraiya learns Dekaja).</label></div>
+<div class="check-item"><input type="checkbox" id="c44"><label for="c44">Evening — Read The Lovely Man in your room. (Book complete — Courage increases significantly!)</label></div>
+
+<div class="section-header">April 25 (Mon)</div>
+<div class="check-item"><input type="checkbox" id="c45"><label for="c45">Morning — Mr. Kondo: "What's it called when you gain more muscle after getting sore?" Select: <b>"Overcompensation."</b> (Knowledge up)</label></div>
+<div class="check-item"><input type="checkbox" id="c46"><label for="c46">After School — Quest 2 Part 1: Talk to the male student at the window in your classroom, accept the quest. Go to the roof and ask the long-haired girl about her hobbies. No more progress possible today.</label></div>
+<div class="check-item"><input type="checkbox" id="c47"><label for="c47">After School — Stock up on TaP Soda from the vending machine (it's Monday).</label></div>
+<div class="check-item"><input type="checkbox" id="c48"><label for="c48">After School — Go to Practice Building 1F, Meeting Room. Join the Drama Club (this guide follows Drama Club over Music Club).</label></div>
+<div class="ext">Yumi Ozawa's Social Link is established automatically — The Sun arcana.</div>
+<div class="check-item"><input type="checkbox" id="c49"><label for="c49">Evening — Go to the fridge and eat the Miso. (Courage greatly increased — changes from Average to Reliable!)</label></div>
+
+<div class="section-header">April 26 (Tue)</div>
+<div class="check-item"><input type="checkbox" id="c50"><label for="c50">Morning — Chie: "I don't think I've heard of any of these!" Select: <b>"Marriage numbers."</b> (Expression up)</label></div>
+<div class="check-item"><input type="checkbox" id="c51"><label for="c51">After School — Quest 2 Part 2: Return to the long-haired girl on the roof and ask about her hobbies again.</label></div>
+<div class="note">Equip a Strength Persona before hanging out with Daisuke.</div>
+<div class="check-item"><input type="checkbox" id="c52"><label for="c52">After School — Talk to Daisuke on Classroom Building 2F; go to soccer practice. (Diligence up) Fellow Athletes Social Link → Rank 3.</label></div>
+<div class="check-item"><input type="checkbox" id="c53"><label for="c53">Evening — Save game. Study in your room; aim to raise Knowledge three times (Expert Study Methods now gives a chance at 3x). Reload if you don't. (Knowledge changes from Aware to Informed!)</label></div>
+
+<div class="section-header">April 27 (Wed) — Yukiko's Castle</div>
+<div class="warn-line">Today is the day you rescue Yukiko. Complete everything below before entering Junes.</div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54">After School — Go to Souzai Daigaku in Shopping District, North and buy the Super Croquette (rainy days only — today should be rainy).</label></div>
+<div class="ach">🏆 <b>Who's Your Daddy?</b> — Buy the Super Croquette from Souzai Daigaku</div>
+<div class="check-item"><input type="checkbox" id="c55"><label for="c55">After School — Visit Daidara's Metal Works. Sell any enemy materials dropped during the April 17 TV World visit, then buy any available equipment upgrades.</label></div>
+<div class="check-item"><input type="checkbox" id="c56"><label for="c56">After School — Save game. Go to Shiroku Store in Shopping District, South and interact with the capsule machine outside (rainy days only). Get the trophy, then reload your save.</label></div>
+<div class="ach">🏆 <b>It's Working Today</b> — Buy something from the capsule machine</div>
+<div class="check-item"><input type="checkbox" id="c57"><label for="c57">Go to Junes and enter the TV World. Talk to Teddie to start searching for Yukiko; receive 3x Goho-M. Enter Yukiko's Castle (8 floors).</label></div>
+<div class="note">Fight every enemy — don't skip mobs. More fights = more Rise dialogue lines toward the Hardcore Risette Fan trophy (unlocks once Rise joins in August).</div>
+<div class="check-item"><input type="checkbox" id="c58"><label for="c58">Dungeon — Collect at least one Blue Quartz or Iolite gem from enemy drops (needed for a later quest).</label></div>
+<div class="check-item"><input type="checkbox" id="c59"><label for="c59">Dungeon — Chase down and defeat a Golden Hand enemy for a trophy and large EXP/money bonus. They flee on sight and can hide in chests.</label></div>
+<div class="ach">🏆 <b>Grasping at Greed</b> — Defeat a Golden Hand</div>
+<div class="check-item"><input type="checkbox" id="c60"><label for="c60">Dungeon — In any battle, switch Personas 5 times in one fight for a trophy. Set party tactics to Direct Commands so allies don't end the battle early, then cycle through Personas while having party members guard.</label></div>
+<div class="ach">🏆 <b>Displaying Adaptability</b> — Switch Personas 5 times in one battle</div>
+<div class="check-item"><input type="checkbox" id="c61"><label for="c61">Floor 5 — You will start warping around. When that happens, go the other way through each door. Eventually find the mini-boss room, defeat the Avenger Knight, obtain the Glass Key, then open the northern door and proceed to the top floor.</label></div>
+<div class="check-item"><input type="checkbox" id="c62"><label for="c62">Floor 8 — Defeat the boss and rescue Yukiko.</label></div>
+<div class="check-item"><input type="checkbox" id="c63"><label for="c63">After dungeon — Yosuke: "What kind of person could be doing this?" Select: <b>"Let's call it a day."</b> (Understanding up)</label></div>
+
+
+<div class="section-header">April 28 (Thu)</div>
+<div class="note">You need a Sun Persona equipped for Yumi's Social Link event. If you don't have one, fuse one at the Velvet Room before seeing her.</div>
+<div class="check-item"><input type="checkbox" id="c64"><label for="c64">After School — Go to Velvet Room. Buy a Persona from the Compendium if you haven't yet, and fuse a Sun Persona if needed.</label></div>
+<div class="ach">🏆 <b>Persona Shopper</b> — Buy a Persona from the Compendium</div>
+<div class="check-item"><input type="checkbox" id="c65"><label for="c65">After School — Speak with Yumi Ozawa on Classroom Building 2F. Hang out with her. (Expression up) Select: <b>"What crazes me is not..."</b> then <b>"the light of the moon..."</b> then <b>"I'll give it my all!"</b> Yumi's Social Link → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c66"><label for="c66">Evening — Go to Shiroku Pub in Shopping District, South. Talk to the hostess and give her the Tatsuhime Ladybug. Receive Fishhook and Breadcrumbs in return.</label></div>
+<div class="check-item"><input type="checkbox" id="c67"><label for="c67">Evening — Save game, then study in your room. Aim for Knowledge up three times; reload if not.</label></div>
+
+<div class="section-header">April 29 (Fri)</div>
+<div class="warn-line">If you have not yet rescued Yukiko, today is the final day to do so.</div>
+<div class="check-item"><input type="checkbox" id="c68"><label for="c68">Daytime — Go to Shopping District, South and save your game.</label></div>
+<div class="check-item"><input type="checkbox" id="c69"><label for="c69">Daytime — Go to Chinese Diner Aiya in Shopping District, North. Take the Mega Beef Bowl Challenge for 3,000 yen (rainy day required — April 29 is scripted rainy). Aim to raise Understanding, Knowledge, and Courage. Reload if you don't get all three. (Understanding changes from Basic to Kindly!)</label></div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">Evening — Go upstairs and watch the Midnight Channel.</label></div>
+
+<div class="section-header">April 30 (Sat)</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">Morning — Mr. Yamada: "What is the greatest canyon in the solar system?" Select: <b>"Valles Marineris."</b> (Knowledge up)</label></div>
+<div class="ext">The Investigation Team Social Link advances to Rank 2 automatically after school.</div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Evening — Save game. Study in your room; aim for Knowledge up three times. Reload if not.</label></div>
+
+
+<!-- ═══════════════════════════════════════════ MAY -->
+<div class="disc-header" id="may">MAY</div>
+
+<div class="section-header">May 1 (Sun)</div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Daytime — Go to Samegawa Flood Plain and talk to the guy there to accept <b>Quest 3: Acquire Mori Ranmaru Shochu</b>.</label></div>
+<div class="check-item"><input type="checkbox" id="c75"><label for="c75">Daytime — Go down the stairs and talk to the old man twice. Hand over the <b>Fishhook</b>; receive the <b>River Rod</b>.</label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Daytime — Go to the Velvet Room and speak to Marie outside. Agree to spend the day with her. Select any options throughout. Marie's Social Link → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">Evening — Save game. Study in your room; aim for Knowledge up three times. Reload if not.</label></div>
+
+<div class="section-header">May 2 (Mon)</div>
+<div class="note">Knowledge increases automatically from the school lesson today.</div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">After School — Accept <b>Quest 4: Acquire an Angel Statue</b> from the Timid Female Student in Class 2-2.</label></div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79">After School — Accept <b>Quest 5: Acquire a Demon Statue</b> from the Shady Student on Classroom Building 2F.</label></div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">After School — Accept <b>Quest 6: Acquire a Ritz Wire</b> from the Male Student on Practice Building 1F.</label></div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81">After School — Save game, then go to Chinese Diner Aiya and take the Mega Beef Bowl Challenge (rainy day required). Aim for Understanding, Courage, and Diligence. Reload if you don't get all three.</label></div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Evening — Go to the fridge and eat the dried-up pickle. (Courage greatly increased!)</label></div>
+
+<div class="section-header">May 3 (Tue)</div>
+<div class="ext">Nanako's Social Link is established automatically — The Justice arcana.</div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Evening — Save game. Study in your room; aim for Knowledge up three times. Reload if not.</label></div>
+
+<div class="section-header">May 4 (Wed)</div>
+<div class="note">Equip a Chariot Persona before hanging out with Chie. Decline Yosuke's phone call.</div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Daytime — Speak to Chie outside Daidara's Metal Works and agree to hang out. Chie: "Still, now's the time to train, right!?" Select: <b>"Right."</b> Chie: "...No?" Select: <b>"I'm cool with it."</b> Chie's Social Link → Rank 2 (Tomoe learns Rebellion).</label></div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">Evening — Save game. Study in your room; aim for Knowledge up three times. Reload if not. (Knowledge changes from Informed to Expert!)</label></div>
+
+<div class="section-header">May 5 (Thu)</div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86">Daytime — Go to Yasoinaba Station and stock up on TaP Soda.</label></div>
+<div class="ext">The Fox's Social Link is established automatically — The Hermit arcana.</div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87">Evening — Go to your room and start reading <b>Beginner Fishing</b>.</label></div>
+
+<div class="section-header">May 6 (Fri)</div>
+<div class="note">Equip a Magician Persona before hanging out with Yosuke.</div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">After School — Return to the Long-haired Girl on the school roof and ask about her hobbies again (Quest 2 Part 3).</label></div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89">After School — Go to the Shrine and speak to the old man about relationship fortunes.</label></div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">After School — At the Shrine, approach the Main Hall to summon the Fox and accept <b>Quest 7: I Wish for Love</b>. Then return to Yasogami High and speak to the girl on the first floor of the Classroom Building.</label></div>
+<div class="check-item"><input type="checkbox" id="c91"><label for="c91">After School — Go to Yomenaido Bookstore and buy <b>Off Today</b> and <b>Office Work Manual</b>.</label></div>
+<div class="check-item"><input type="checkbox" id="c92"><label for="c92">After School — Enter the Velvet Room for a scene with Marie and her poem.</label></div>
+<div class="check-item"><input type="checkbox" id="c93"><label for="c93">After School — Speak to Yosuke on Classroom Building 2F and agree to hang out. Yosuke: "So...? You keep the goods under your futon?" Select: <b>"Of course."</b> Yosuke: "So, you ever invited a girl in here?" Select: <b>"I will soon."</b> Yosuke's Social Link → Rank 5 (Yosuke can now cure severe ailments during battle).</label></div>
+<div class="check-item"><input type="checkbox" id="c94"><label for="c94">Evening — Speak to Dojima and agree to chat. Select any option for his first question; select <b>"Yes."</b> or <b>"No."</b> for his second (third option requires higher Courage). Dojima's Social Link established — The Hierophant arcana.</label></div>
+
+<div class="section-header">May 7 (Sat)</div>
+<div class="note">Equip a Justice Persona before the evening. Today may be rainy — attempt the Beef Bowl Challenge if so.</div>
+<div class="check-item"><input type="checkbox" id="c95"><label for="c95">Morning — Mr. Hosoi: "Do you know how Soseki Natsume translated 'I love you' into Japanese?" Select: <b>"'The moon is beautiful, isn't it?'"</b> (Knowledge up)</label></div>
+<div class="check-item"><input type="checkbox" id="c96"><label for="c96">After School — Chie is on the verge of tears. Select: <b>"Comfort her."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c97"><label for="c97">After School — Quest 7 update: Talk to the Love Note Sender on Classroom Building 2F and select <b>"I read it."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c98"><label for="c98">After School — Go to the Velvet Room for a scene with Marie. Grab a Chariot and a Justice Persona if you don't have them — you'll need both soon.</label></div>
+<div class="check-item"><input type="checkbox" id="c99"><label for="c99">After School — If it's rainy, go to Chinese Diner Aiya and take the Mega Beef Bowl Challenge. Aim for Understanding, Courage, and Diligence. Reload if you don't get all three.</label></div>
+<div class="check-item"><input type="checkbox" id="c100"><label for="c100">Evening — Speak to Nanako and spend time with her.</label></div>
+
+<div class="section-header">May 8 (Sun)</div>
+<div class="note">Equip a Chariot Persona before the daytime event.</div>
+<div class="check-item"><input type="checkbox" id="c101"><label for="c101">Daytime — Chie phones you; agree to meet up. Chie: "But me, I totally lose it's kinda funny, huh?" Select: <b>"It's very feminine."</b> Chie's Social Link → Rank 3 (Chie can now perform follow-up attacks).</label></div>
+<div class="check-item"><input type="checkbox" id="c102"><label for="c102">Evening — Go to your room and read <b>Beginner Fishing</b>.</label></div>
+
+<div class="section-header">May 9–11 (Mon–Wed) — Midterm Exams</div>
+<div class="check-item"><input type="checkbox" id="c103"><label for="c103">May 9 — P.E.: "What is it called when muscles grow after exercise?" Select: <b>"Overcompensation."</b> History: "What is the year before 1 A.D. called?" Select: <b>"1 B.C."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c104"><label for="c104">May 10 — Math: "Which of these types of numbers does not exist?" Select: <b>"Marriage numbers."</b> Literature: "Who translated 'I love you' as 'The moon is beautiful, isn't it?'" Select: <b>"Soseki Natsume."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c105"><label for="c105">May 11 — Philosophy: "Who said, 'As soon as laws are necessary for men, they are no longer fit for freedom'?" Select: <b>"Pythagoras."</b> Geography: "Which of the following is the highest mountain in the solar system?" Select: <b>"Olympus Mons."</b></label></div>
+
+<div class="section-header">May 12 (Thu)</div>
+<div class="note">Equip a Sun Persona before the after school event.</div>
+<div class="check-item"><input type="checkbox" id="c106"><label for="c106">After School — Quest 7 Final: Talk to the Love Note Sender on Classroom Building 2F. Quest complete!</label></div>
+<div class="check-item"><input type="checkbox" id="c107"><label for="c107">After School — Outside the Dojima Residence, speak to the Tired Housewife and select <b>"I'll try it."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c108"><label for="c108">After School — Speak to Yumi on Classroom Building 2F and agree to go to drama club practice. (Expression up; Expression changes from Rough to Eloquent!) Yumi: "Huh...?" Select any option. Yumi: "Wh-When did you get here!?" Select any option. Yumi is visibly shaken — Select any option. Yumi's Social Link → Rank 3.</label></div>
+<div class="check-item"><input type="checkbox" id="c109"><label for="c109">Evening — Go to the fridge and make lunch. Select: <b>"Shimmer with a drop lid."</b> Obtained Long-Simmered Meat Stew.</label></div>
+
+<div class="section-header">May 13 (Fri)</div>
+<div class="check-item"><input type="checkbox" id="c110"><label for="c110">Lunchtime — Invite Daisuke to eat lunch with you.</label></div>
+<div class="check-item"><input type="checkbox" id="c111"><label for="c111">After School — Go to Junes and speak with Adachi; agree to hang out with him. Adachi's Social Link established — The Jester arcana.</label></div>
+
+<div class="section-header">May 14 (Sat)</div>
+<div class="check-item"><input type="checkbox" id="c112"><label for="c112">Evening — Go to your room and watch the Midnight Channel. You can choose to phone Yosuke or not — it doesn't matter.</label></div>
+
+<div class="section-header">May 15 (Sun)</div>
+<div class="check-item"><input type="checkbox" id="c113"><label for="c113">Evening — Go to your room and watch the Midnight Channel. Yosuke: "Which one's your type?" Select: <b>"Neither."</b> (Courage up)</label></div>
+
+<div class="section-header">May 16 (Mon)</div>
+<div class="check-item"><input type="checkbox" id="c114"><label for="c114">Evening — Go to your room and go to sleep.</label></div>
+
+<div class="section-header">May 17 (Tue)</div>
+<div class="check-item"><input type="checkbox" id="c115"><label for="c115">After School — Yukiko: "Do you think the culprit will come...?" Select any option except <b>"No worries, I'll protect you."</b> (Courage too low.) Yukiko's Social Link established — The Priestess arcana. When prompted, select <b>"Ask her straight out"</b> for her contact info.</label></div>
+<div class="check-item"><input type="checkbox" id="c116"><label for="c116">Evening — Go to your room and rest.</label></div>
+
+<div class="section-header">May 18 (Wed)</div>
+<div class="ext">The Investigation Team Social Link advances to Rank 3 automatically.</div>
+<div class="note">Equip a Justice Persona before the evening.</div>
+<div class="check-item"><input type="checkbox" id="c117"><label for="c117">Morning — Go to the Textile shop in Shopping District, North and speak with the owner. Then go to Junes and talk to the customer.</label></div>
+<div class="check-item"><input type="checkbox" id="c118"><label for="c118">Morning — Quest 2 Final: Return to the male student looking out the window in classroom 2-2. Quest complete! Reward: Goho-M.</label></div>
+<div class="check-item"><input type="checkbox" id="c119"><label for="c119">After School — Accept <b>Quest 17: Extracurricular Activities</b> from Ms. Sofue on Classroom Building 2F (she wants a Suspicious Pole).</label></div>
+<div class="check-item"><input type="checkbox" id="c120"><label for="c120">After School — Accept <b>Quest 16: Desk Refurbishing</b> from the Homely Student on Practice Building 2F (she wants a Fitting Board).</label></div>
+<div class="check-item"><input type="checkbox" id="c121"><label for="c121">After School — Visit the Shrine and call the Fox. The Fox's Social Link advances to Rank 2 — he will now offer a discount on healing services inside the TV World.</label></div>
+<div class="check-item"><input type="checkbox" id="c122"><label for="c122">Evening — Speak to Nanako and spend time with her. Nanako is fidgeting — Select: <b>"Go ahead and ask."</b> Nanako: "Are you an only child?" Select: <b>"That's right."</b> Nanako's Social Link → Rank 2.</label></div>
+
+<div class="section-header">May 19 (Thu)</div>
+<div class="note">You need both a Sun and a Hierophant Persona for today's events.</div>
+<div class="check-item"><input type="checkbox" id="c123"><label for="c123">After School — Speak with Ms. Sofue on Classroom Building 2F to receive 3 Chest Keys as an exam reward.</label></div>
+<div class="check-item"><input type="checkbox" id="c124"><label for="c124">After School — Go to Junes and speak with the slender young man.</label></div>
+<div class="check-item"><input type="checkbox" id="c125"><label for="c125">After School — Go to the Velvet Room. Margaret's Social Link is established — The Empress arcana. Her Social Link advances by fusing specific Personas as tasks assigned by Margaret; the first task will be covered later in the guide.</label></div>
+<div class="check-item"><input type="checkbox" id="c126"><label for="c126">After School — Speak to Yumi on Classroom Building 2F and agree to go to drama club practice. (Expression up) Yumi: "...Was I wrong when I said that?" Select: <b>"No."</b> Yumi: "...Anywhere but at home." Select: <b>"Is something wrong?"</b> Yumi: "Just forget about this, okay?" Select: <b>"I can't forget."</b> Yumi's Social Link → Rank 4.</label></div>
+<div class="check-item"><input type="checkbox" id="c127"><label for="c127">Evening — Speak to Dojima; he rewards you with 20,000 yen for doing well on exams. Speak to him again to hang out. Dojima: "So... What have you been doing after school?" Select: <b>"Working."</b> Dojima: "But it's not as if we have much in common... except for the murders." Select: <b>"Tell me about yourself."</b> Dojima: "You're more like a very young brother to me then a son." Select: <b>"Should I call you big bro?"</b> Dojima's Social Link → Rank 2.</label></div>
+
+<div class="section-header">May 20 (Fri)</div>
+<div class="note">Equip a Justice Persona before the evening.</div>
+<div class="check-item"><input type="checkbox" id="c128"><label for="c128">After School — Go to Yomenaido Bookstore and buy <b>English Made Easy</b> and <b>Easy Origami</b>.</label></div>
+<div class="check-item"><input type="checkbox" id="c129"><label for="c129">After School — Take the bus to the Daycare Center. (Understanding up) Young Mother's Social Link established — The Temperance arcana.</label></div>
+<div class="check-item"><input type="checkbox" id="c130"><label for="c130">Evening — Speak to Nanako and spend time with her. Nanako: "Dad'll be disappointed." Select: <b>"Let's go buy some together."</b> Nanako's Social Link → Rank 3. Nanako looks sad — Select: <b>"I'm sorry."</b></label></div>
+
+<div class="section-header">May 21 (Sat)</div>
+<div class="note">Equip a Temperance Persona before the after school event.</div>
+<div class="check-item"><input type="checkbox" id="c131"><label for="c131">After School — Take the bus to the Daycare Center. (Understanding up) Eri: "...Do you like children?" Select: <b>"I hate kids."</b> Eri: "I don't hate him, but..." Select any option. Young Mother's Social Link → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c132"><label for="c132">Evening — Go to your room and read <b>Beginner Fishing</b>. (Book complete — you can now fish for longer!)</label></div>
+
+<div class="section-header">May 22 (Sun) — Steamy Bathhouse</div>
+<div class="warn-line">Before entering the TV World today, stock up on items, sell all enemy materials at Daidara, and buy any new weapons/armor you can afford.</div>
+<div class="check-item"><input type="checkbox" id="c133"><label for="c133">Daytime — When Nanako asks, agree to help with the garden. (Diligence up) The garden can now be used to plant seeds — you can buy seeds from the woman outside the Dojima Residence or at Junes.</label></div>
+<div class="check-item"><input type="checkbox" id="c134"><label for="c134">Daytime — Go to the Shrine, call the Fox, and accept <b>Quest 8: I Wish I Didn't Crave Snacks Part 1</b>. Then go to Shopping District, South and talk to the Slim Woman.</label></div>
+<div class="check-item"><input type="checkbox" id="c135"><label for="c135">Daytime — Go to Junes and enter the TV World. Speak to the Fox and pat his head to receive a Soul Drop. Speak to Teddie — select <b>"Never mind"</b> to receive the Gag Winter Outfit costume.</label></div>
+<div class="check-item"><input type="checkbox" id="c136"><label for="c136">TV World — Speak to Yosuke to be taken to the Twisted Shopping District. Enter Former Konishi Liquors and find <b>Mori Ranmaru</b> and a <b>Skill Spanner</b>. Then exit and return to the entrance.</label></div>
+<div class="check-item"><input type="checkbox" id="c137"><label for="c137">TV World — Before entering any battles, press Triangle → Equip → change your outfit to anything other than the default.</label></div>
+<div class="ach">🏆 <b>Hardcore Risette Fan</b> — Fight every enemy; don't skip mobs. Each battle adds Rise dialogue lines toward this trophy (unlocks once Rise joins in August).</div>
+<div class="check-item"><input type="checkbox" id="c138"><label for="c138">Yukiko's Castle — Farm the following quest items before heading to the Bathhouse. Trance Twins (floors 3–6): 1x <b>Suspicious Pole</b>. Laughing Table (floors 4–6): 1x <b>Fitting Board</b>. Magical Magus (floor 5–7): 1x <b>Demon Statue</b>. Heat Balance (floors 6–7): 1x <b>Ritz Wire</b>. Avenger Knight (floor 7): 1x <b>Angel Statue</b>. Use a Goho-M once you have all five and save at the entrance.</label></div>
+<div class="note">Work toward the Sweep Bonus trophy during Shuffle Time — selecting all cards on screen earns a Sweep Bonus. Easiest to chain in earlier dungeons where you're overpowered.</div>
+<div class="check-item"><input type="checkbox" id="c139"><label for="c139">Steamy Bathhouse — Progress through the dungeon. A scene triggers on floor 3. On floor 7, defeat the mini-boss to receive the <b>Bathhouse Key</b>. Continue to floor 10 for the boss fight.</label></div>
+<div class="warn-line">Make sure you are at least level 20 before exiting the dungeon.</div>
+<div class="ach">🏆 <b>Fashion Plate</b> — Enter a battle wearing a non-default outfit</div>
+
+<div class="section-header">May 23 (Mon)</div>
+<div class="note">Equip a Temperance Persona before the after school event.</div>
+<div class="check-item"><input type="checkbox" id="c140"><label for="c140">After School — Complete all queued quests: Quest 4 (Angel Statue → Timid Female Student, Class 2-2. Reward: 3x Chest Keys). Quest 5 (Demon Statue → Shady Student, Classroom 2F. Reward: 3x Dokudami Tea). Quest 17 (Suspicious Pole → Ms. Sofue, Classroom 2F. Reward: 2x Pulsating Stone). Quest 6 (Ritz Wire → Male Student, Practice Building 1F. Reward: Olympic Tape). Quest 16 (Fitting Board → Homely Student, Practice Building 2F. Reward: 5x Royal Jelly).</label></div>
+<div class="check-item"><input type="checkbox" id="c141"><label for="c141">After School — Quest 8 update: Speak to Chie on the school roof and select <b>"Ask Chie"</b> to receive 3x Meat Gum. Return to the Slim Woman at Shopping District, South. Quest complete!</label></div>
+<div class="check-item"><input type="checkbox" id="c142"><label for="c142">After School — Quest 3: Return to the man at Samegawa Flood Plain and hand over the Mori Ranmaru. Quest complete! Reward: 4,000 yen.</label></div>
+<div class="check-item"><input type="checkbox" id="c143"><label for="c143">After School — Accept and complete <b>Quest 18: Book Exchange</b> — speak to the Avid Reader outside Yomenaido Bookstore and trade him the Peach Seed. Reward: <b>The Gentle Way</b>.</label></div>
+<div class="check-item"><input type="checkbox" id="c144"><label for="c144">After School — Take the bus to the Daycare Center. (Understanding up) Eri: "I guess he wants to see his father." Select: <b>"I don't know."</b> Eri: "*sigh* He's so inconsiderate..." Select any option. Young Mother's Social Link → Rank 3.</label></div>
+<div class="check-item"><input type="checkbox" id="c145"><label for="c145">Evening — Go to your room and read <b>The Gentle Way</b>.</label></div>
+
+<div class="section-header">May 24 (Tue)</div>
+<div class="note">Equip a Chariot Persona before the after school event.</div>
+<div class="check-item"><input type="checkbox" id="c146"><label for="c146">After School — Go to the roof and speak with Chie; agree to hang out. Chie: "W-Well..." Select: <b>"None of your business."</b> When prompted what to do, select: <b>"Crack a joke."</b> Chie's Social Link → Rank 4 (Tomoe learns Ice Boost).</label></div>
+<div class="check-item"><input type="checkbox" id="c147"><label for="c147">Evening — Go to your room and read <b>The Gentle Way</b>.</label></div>
+
+<div class="section-header">May 25 (Wed)</div>
+<div class="note">Equip a Priestess Persona before the after school event.</div>
+<div class="check-item"><input type="checkbox" id="c148"><label for="c148">After School — Go to the bulletin board in Shopping District, North and accept the <b>translator</b> and <b>pub dishwasher</b> jobs.</label></div>
+<div class="check-item"><input type="checkbox" id="c149"><label for="c149">After School — Speak to Yukiko on Classroom Building 1F and agree to hang out. Yukiko: "Sensei recommended this book to me because it has details on a bunch of different job licenses..." Select: <b>"Going to apply for one?"</b> Yukiko: "I was thinking something along the lines of an interior decorator... what you think?" Select: <b>"Sounds good."</b> Yukiko's Social Link → Rank 2 (Konohana Sakuya learns Mudo).</label></div>
+<div class="check-item"><input type="checkbox" id="c150"><label for="c150">Evening — Go to your room and read <b>The Gentle Way</b>.</label></div>
+
+<div class="section-header">May 26 (Thu)</div>
+<div class="note">Equip a Priestess Persona before the after school event.</div>
+<div class="check-item"><input type="checkbox" id="c151"><label for="c151">Afternoon — Yosuke: "Uh... Something about laborers?" Select: <b>"Attendance logs."</b> (Expression up)</label></div>
+<div class="check-item"><input type="checkbox" id="c152"><label for="c152">After School — Speak to Yukiko on Classroom Building 1F and agree to hang out. Yukiko: "Making dinner at the inn?" Select: <b>"Good luck."</b> Yukiko: "W-Will...you?" Select: <b>"I don't mind."</b> Yukiko's Social Link → Rank 3 (Yukiko can now perform follow-up attacks).</label></div>
+<div class="check-item"><input type="checkbox" id="c153"><label for="c153">Evening — Approach the gardening tools behind Dojima and select <b>"Maintain the garden."</b> (Diligence up; Diligence changes from Callow to Persistent!)</label></div>
+
+<div class="section-header">May 27 (Fri)</div>
+<div class="check-item"><input type="checkbox" id="c154"><label for="c154">After School — Go to the Shrine and call the Fox. The Fox's Social Link advances to Rank 3 — he will now offer a further discount on healing services inside the TV World.</label></div>
+<div class="check-item"><input type="checkbox" id="c155"><label for="c155">Evening — Go to your room and read <b>The Gentle Way</b>. (Knowledge significantly up; Expression up — Expression changes from Eloquent to Persuasive!)</label></div>
+
+<div class="section-header">May 28 (Sat)</div>
+<div class="note">Equip an Aeon Persona before hanging out with Marie. Equip a Hierophant Persona before the evening.</div>
+<div class="check-item"><input type="checkbox" id="c156"><label for="c156">After School — Go to the Shrine and accept the Fox's quest: <b>Quest 9: We Wish Our Dog Would Return Part 1</b>. Go to Samegawa Flood Plain, down the stairs to the Riverbank, and talk to the dog.</label></div>
+<div class="check-item"><input type="checkbox" id="c157"><label for="c157">After School — Spend the afternoon with Marie.</label></div>
+<div class="check-item"><input type="checkbox" id="c158"><label for="c158">Evening — Speak to Dojima and spend time with him. Dojima: "'When is always,' huh...?" Select any option. Dojima: "Plus... I'm not fit to be her family." Select: <b>"Fit or not, you're family."</b> Dojima's Social Link → Rank 3.</label></div>
+
+<div class="section-header">May 29 (Sun)</div>
+<div class="note">Equip a Hierophant Persona before the evening.</div>
+<div class="check-item"><input type="checkbox" id="c159"><label for="c159">Daytime — Tanaka's Amazing Commodities is now available. Buy the <b>Adios Shoes</b> combo today. (There is a trophy for buying 5 things from Tanaka — this counts toward it.)</label></div>
+<div class="check-item"><input type="checkbox" id="c160"><label for="c160">Daytime — Kou phones you; agree to hang out with him and Daisuke. Receive <b>Witch Detective</b>.</label></div>
+<div class="check-item"><input type="checkbox" id="c161"><label for="c161">Evening — Spend time with Dojima.</label></div>
+
+<div class="section-header">May 30 (Mon)</div>
+<div class="note">Equip a Jester Persona before hanging out with Adachi.</div>
+<div class="check-item"><input type="checkbox" id="c162"><label for="c162">Morning — School lesson. (Knowledge up)</label></div>
+<div class="check-item"><input type="checkbox" id="c163"><label for="c163">After School — Quest 9 Part 2: Go to Shopping District, North and talk to the dog. Select: <b>"Talk to it gently."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c164"><label for="c164">After School — Go to Junes, speak with Adachi, and agree to hang out. Adachi: "I live alone, so taking care of dinner can be pretty tedious." Select any option. Adachi doesn't seem to lead a nutritionally balanced life — Select any option. Adachi: "And she'll talk your ear off if you let her... It's so annoying." Select: <b>"That does sound annoying."</b> Adachi's Social Link → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c165"><label for="c165">Evening — Go to the fridge and drink the expired milk. (Courage greatly increased — Courage changes from Reliable to Brave!)</label></div>
+
+<div class="section-header">May 31 (Tue)</div>
+<div class="note">Equip a Strength Persona before hanging out with Daisuke. Equip a Hierophant Persona before the evening.</div>
+<div class="check-item"><input type="checkbox" id="c166"><label for="c166">After School — Quest 9 Part 3: Go to Samegawa Flood Plain and talk to the dog. Select: <b>"Talk to it gently."</b></label></div>
+<div class="check-item"><input type="checkbox" id="c167"><label for="c167">After School — Speak to Daisuke on Classroom Building 2F and attend soccer practice. (Diligence up) Daisuke: "Whatever...Girls are a pain in the ass, right, MC?" Select: <b>"Right on."</b> Fellow Athletes Social Link → Rank 4.</label></div>
+<div class="check-item"><input type="checkbox" id="c168"><label for="c168">Evening — Speak to Dojima. Dojima: "All we've got is instant, though. How do you take it?" Select: <b>"With cream."</b> Dojima: "Go watch TV with Nanako." Select: <b>"You don't have to do that."</b> Dojima's Social Link → Rank 4.</label></div>
+
+</div><!-- #content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+(function(){
+  const STORE = 'persona-4-golden-checklist';
+  const boxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const total = boxes.length;
+
+  function save(){
+    const state = {};
+    boxes.forEach(b => { if(b.checked) state[b.id] = 1; });
+    localStorage.setItem(STORE, JSON.stringify(state));
+  }
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+  }
+
+  function updateProgress(){
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+    try {
+      const meta = JSON.parse(localStorage.getItem('wapo-guides-meta') || '{}');
+      meta[STORE] = { checked: done, total: total, pct: Math.round(total ? (done/total*100) : 0) };
+      localStorage.setItem('wapo-guides-meta', JSON.stringify(meta));
+    } catch(e) {}
+  }
+
+  function applyDone(){
+    boxes.forEach(b => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+    });
+  }
+
+  const stored = load();
+  boxes.forEach(b => {
+    if(stored[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      save();
+      updateProgress();
+    });
+    b.closest('.check-item').addEventListener('click', function(e){
+      if(e.target === b || e.target.tagName === 'LABEL') return;
+      b.checked = !b.checked;
+      b.dispatchEvent(new Event('change'));
+    });
+  });
+
+  const achs = Array.from(document.querySelectorAll('.ach'));
+  const achStore = JSON.parse(localStorage.getItem(STORE+'-ach') || '{}');
+  achs.forEach((el, i) => {
+    const key = 'a'+i;
+    if(achStore[key]) el.classList.add('ach-done');
+    el.addEventListener('click', function(){
+      this.classList.toggle('ach-done');
+      achStore[key] = this.classList.contains('ach-done') ? 1 : 0;
+      localStorage.setItem(STORE+'-ach', JSON.stringify(achStore));
+    });
+  });
+
+  applyDone();
+  updateProgress();
+
+  document.getElementById('toggle-done').addEventListener('click', function(){
+    document.body.classList.toggle('hide-done');
+    this.textContent = document.body.classList.contains('hide-done') ? 'Show Completed' : 'Hide Completed';
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    if(!confirm('Reset all checkboxes?')) return;
+    boxes.forEach(b => { b.checked = false; });
+    applyDone();
+    save();
+    updateProgress();
+  });
+
+  document.getElementById('savemenu-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    const menu = document.getElementById('savemenu');
+    const rect = this.getBoundingClientRect();
+    if(menu.style.display === 'block'){
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'block';
+      menu.style.top = (rect.bottom + 4) + 'px';
+      menu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function(){
+    document.getElementById('savemenu').style.display = 'none';
+  });
+
+  document.getElementById('export-btn').addEventListener('click', function(){
+    const data = {
+      [STORE]: localStorage.getItem(STORE) || '{}',
+      [STORE+'-ach']: localStorage.getItem(STORE+'-ach') || '{}'
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = STORE + '-backup.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function(){
+    document.getElementById('import-file').click();
+  });
+
+  document.getElementById('import-file').addEventListener('change', function(){
+    const file = this.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try {
+        const data = JSON.parse(e.target.result);
+        if(data[STORE]) localStorage.setItem(STORE, data[STORE]);
+        if(data[STORE+'-ach']) localStorage.setItem(STORE+'-ach', data[STORE+'-ach']);
+        const stored = load();
+        boxes.forEach(b => { b.checked = !!stored[b.id]; });
+        applyDone();
+        updateProgress();
+        alert('Save imported successfully.');
+      } catch(err) {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+    this.value = '';
+  });
+
+  window.addEventListener('scroll', function(){
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+})();
+</script>
+</body>
+</html>
