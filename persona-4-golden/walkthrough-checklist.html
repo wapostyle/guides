@@ -44,10 +44,11 @@
   .ach:hover { background: var(--bg2); border-left-color: var(--ach-color); }
   .ach.ach-done { color: var(--done-text); text-decoration: line-through; border-left-color: var(--check-checked); }
   body.hide-done .ach.ach-done { display: none; }
-  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 2px 0 2px 4px; margin: 2px 0; }
+  .ext { color: #c4a7ec; font-weight: 600; font-size: 12.5px; line-height: 1.5; padding: 3px 0; margin: 4px 0 4px 20px; }
+  .ext::before { content: '✦'; color: #9d72d6; margin-right: 9px; }
   .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
   .warn-line::before { content: '⚠ '; }
-  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .note { background: rgba(126,184,232,0.08); border: 1px solid rgba(126,184,232,0.22); border-left: 3px solid var(--h1-color); border-radius: 4px; color: #cdd8e2; font-size: 12.5px; line-height: 1.5; padding: 8px 11px; margin: 6px 0 6px 20px; }
   .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
   .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
   .check-item.done { border-left-color: var(--check-checked); }
@@ -96,6 +97,8 @@
 <!-- ═══════════════════════════════════════════ APRIL -->
 <div class="disc-header" id="april">APRIL</div>
 <div class="note">Only check the fridge / eat items on the days this guide says — eating off-schedule can burn an evening timeslot or shift later events.</div>
+
+<div class="note">If a step doesn't name a response, the choice has no effect on the game — pick whatever you like. Only options that raise a Social Quality (Courage, Diligence, Understanding, Knowledge, Expression) or give Social Link points are called out.</div>
 
 <div class="section-header">April 11</div>
 <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Afternoon — Name the protagonist (no story effect; canon name is Yu Narukami). Explore Shopping District, South if you like, then return to the car and talk to Dojima.</label></div>
