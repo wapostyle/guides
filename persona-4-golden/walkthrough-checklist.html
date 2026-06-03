@@ -62,6 +62,20 @@
   .item-ref b { color: var(--h2-color); }
   #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
   #scroll-top:hover { opacity: 1 !important; }
+  .fz { width: 100%; border-collapse: collapse; table-layout: fixed; margin: 8px 0 6px; font-size: 12.5px; line-height: 1.45; }
+  .fz th, .fz td { border: 1px solid var(--border); padding: 7px 9px; vertical-align: top; text-align: left; }
+  .fz thead tr { background: var(--bg2); }
+  .fz th { color: var(--h2-color); font-weight: 700; }
+  .fz tbody tr:nth-child(even) { background: #1f1f1f; }
+  .fz .res { color: var(--h2-color); font-weight: 700; }
+  .fz .lv { color: var(--muted); }
+  .fz .fn { color: var(--muted); font-style: italic; }
+  .spoiler { margin: 6px 0 6px 20px; }
+  .spoiler summary { cursor: pointer; color: var(--muted); font-size: 12.5px; font-style: italic; padding: 5px 10px; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; list-style: none; }
+  .spoiler summary::-webkit-details-marker { display: none; }
+  .spoiler summary::before { content: '\25B8  '; }
+  .spoiler[open] summary::before { content: '\25BE  '; }
+  .spoiler .rv { padding: 8px 11px; font-size: 12.5px; color: var(--text); line-height: 1.5; border: 1px solid var(--border); border-top: none; border-radius: 0 0 4px 4px; }
 </style>
 </head>
 <body>
@@ -89,6 +103,7 @@
 <div id="toc">
   <a href="#april">April</a>
   <a href="#may">May</a>
+  <a href="#june">June</a>
   <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
 </div>
 
@@ -429,6 +444,294 @@
 <div class="section-header">May 31</div>
 <div class="check-item"><input type="checkbox" id="c176"><label for="c176">After School — Equip a Priestess Persona, then spend time with Yukiko on Classroom Building 1F. Select: <b>"Let's eat"</b> (+3, requires Courage Rank 3), <b>"There's always next time"</b> (+3), <b>"I'm having fun"</b> (+3). Priestess → Rank 4 (learns Divine Grace).</label></div>
 <div class="check-item"><input type="checkbox" id="c177"><label for="c177">Evening — Spend time with Ai in Shopping District, South. Select: <b>"Got it"</b> or <b>"You should put forth more effort."</b> (+2)</label></div>
+<!-- ═══════════════════════════════════════════ JUNE -->
+<div class="disc-header" id="june">JUNE</div>
+
+<div class="section-header">June 1</div>
+<div class="check-item"><input type="checkbox" id="c178"><label for="c178">After School — Spend time with Yukiko in Classroom Building 1F. Select: <b>"What's all this for?"</b> (+2). Priestess → Rank 5.</label></div>
+<div class="note">Adios Shoes arrive today — equip them on Chie.</div>
+<div class="check-item"><input type="checkbox" id="c179"><label for="c179">Evening — Spend time with Chie in Shopping District, North. Select: <b>"Call me up if you get scared"</b> (+3).</label></div>
+
+<div class="section-header">June 2</div>
+<div class="check-item"><input type="checkbox" id="c180"><label for="c180">After School — Spend time with Ayane in Classroom Building 2F. (Expression up) Select: <b>"Forget about it today"</b> (+3), then <b>"That's a great attitude"</b> (+2). Sun → Rank 3.</label></div>
+<div class="note">Daidara Metalworks is open late tonight. Only buy gear (focus on Armor) if you farmed extra money — the accessories from locked chests are usually better than Daidara's basic stat ones, and you have other ways to get weapons.</div>
+<div class="note">Reading a book while it's raining gives an extra point in that book's main stat. For example, reading English Made Easy (which boosts the Expression you gain from translating) on a rainy day grants an extra Expression point.</div>
+<div class="check-item"><input type="checkbox" id="c181"><label for="c181">Evening — Read <b>English Made Easy</b> on the Sofa (Chapter 1/3). (Expression up)</label></div>
+
+<div class="section-header">June 3</div>
+<div class="check-item"><input type="checkbox" id="c182"><label for="c182">After School — Enter the Velvet Room for another of Marie's poems.</label></div>
+<div class="check-item"><input type="checkbox" id="c183"><label for="c183">After School — <b>Quest 20: Please Feed the Cat.</b> Speak to the Avid Reader in Shopping District, South and agree to feed the cat. That's all you can do for now.</label></div>
+<div class="check-item"><input type="checkbox" id="c184"><label for="c184">After School — Save, then take on the Mega Beef Bowl challenge at Chinese Diner Aiya (Aiya Dishes 4/8). (Knowledge, Diligence, and Understanding up)</label></div>
+<div class="check-item"><input type="checkbox" id="c185"><label for="c185">Evening — Read <b>English Made Easy</b> on the Sofa (Chapter 2/3). (Expression up)</label></div>
+
+<div class="section-header">June 4</div>
+<div class="note">Mr. Edogawa's TV Classroom Episode 3 is now available.</div>
+<div class="check-item"><input type="checkbox" id="c186"><label for="c186">After School — Head to the Shrine and spend time with the Fox. Hermit → Rank 2.</label></div>
+<div class="check-item"><input type="checkbox" id="c187"><label for="c187">Evening — Nothing to do tonight; head to your room.</label></div>
+
+<div class="section-header">June 5</div>
+<div class="check-item"><input type="checkbox" id="c188"><label for="c188">Daytime — Tanaka's Amazing Commodities: buy the Inaba Trout combo (1x Inaba Trout + 2x Amber Seema, ¥2,980) — it's needed for a quest.</label></div>
+<div class="note">The Housewife's seed rotation now includes Wheat Seedling (opens a locked treasure chest; yield 2, ¥1,000, matures in 6 days) and Cabbage Seedling (cures all ailments besides Down and Unconscious on one ally; yield 2, ¥1,800, 5 days). You need 3x Hiranya Cabbage (grown from Cabbage Seedling) for a quest, so plant and harvest two batches — start the first today and keep checking back daily if she's sold out. Keeping a few Cabbage Seedlings on hand is useful for curing a healer's ailments, and Wheat Seedling helps if you run low on Chest Keys.</div>
+<div class="check-item"><input type="checkbox" id="c189"><label for="c189">Daytime — Speak to the Bug-catching kid in the Shrine; he's lost his net.</label></div>
+<div class="check-item"><input type="checkbox" id="c190"><label for="c190">Daytime — Accept the ema's request by interacting with the Main Hall in the Shrine.</label></div>
+<div class="check-item"><input type="checkbox" id="c191"><label for="c191">Daytime — <b>Quest 8: I Wish I Didn't Crave Snacks.</b> Speak to the Slim woman in Shopping District, South. If Chie gave you a Meat Gum from a hangout, hand it over; otherwise speak to Chie first.</label></div>
+<div class="check-item"><input type="checkbox" id="c192"><label for="c192">Daytime — <b>Quest 23: Acquire an Old Key.</b> Talk to the Old woman in Samegawa Flood Plain and accept her request.</label></div>
+<div class="check-item"><input type="checkbox" id="c193"><label for="c193">Daytime — <b>Quest 24: Acquire Coal.</b> Speak to the Loud old man in Shopping District, North and accept his request.</label></div>
+<div class="check-item"><input type="checkbox" id="c194"><label for="c194">Daytime — <b>Quest 25: 100% Inaba-Grown Cabbage.</b> Talk to the Fussy housewife in Junes and accept her request.</label></div>
+<div class="check-item"><input type="checkbox" id="c195"><label for="c195">Daytime — Spend time with Chie in Shopping District, South (speak to her twice for the Meat Gum quest). Select: <b>"You look so happy"</b> (+3), then <b>"I worry more for you"</b> (+3, Understanding up — reaches Rank 3: Generous). Chariot → Rank 5.</label></div>
+<div class="check-item"><input type="checkbox" id="c196"><label for="c196">Evening — Head to the Shrine and speak to the Lady in White; she gives you a Butterfly Net.</label></div>
+<div class="check-item"><input type="checkbox" id="c197"><label for="c197">Evening — Spend time with Yukiko in Shopping District, South. Select: <b>"There's nowhere to have fun"</b> or <b>"No, no complaints"</b> (+2).</label></div>
+<div class="section-header">June 6</div>
+<div class="check-item"><input type="checkbox" id="c198"><label for="c198">After School — Story Event. Fool → Rank 4.</label></div>
+<div class="check-item"><input type="checkbox" id="c199"><label for="c199">Evening — Check the fridge and eat the Choco Flakes.</label></div>
+<div class="check-item"><input type="checkbox" id="c200"><label for="c200">Evening — Spend time with Daisuke in Shopping District, North. Select: <b>"I've heard the name"</b> (+3).</label></div>
+
+<div class="section-header">June 7</div>
+<div class="check-item"><input type="checkbox" id="c201"><label for="c201">After School — When asked to repeat the message, select: <b>"Kitao from Santo Inc."</b>, then <b>"Can it come in two months?"</b> (Knowledge and Expression up). (Hanged Man flag)</label></div>
+<div class="check-item"><input type="checkbox" id="c202"><label for="c202">Evening — Spend time with Ai in Shopping District, South. Select: <b>"You're cute without all that"</b> (+3).</label></div>
+
+<div class="section-header">June 8</div>
+<div class="check-item"><input type="checkbox" id="c203"><label for="c203">Morning — Lesson/Lecture. Select: <b>"Balance Beam"</b> (Social Link +2, Expression up — reaches Rank 3: Persuasive).</label></div>
+<div class="check-item"><input type="checkbox" id="c204"><label for="c204">After School — <b>Quest 26: Acquire a Crooked Cross.</b> Talk to the Timid female student in classroom 2-2 and accept her request.</label></div>
+<div class="check-item"><input type="checkbox" id="c205"><label for="c205">After School — <b>Quest 28: Desk Refurbishing, Part 2.</b> Talk to the Homely student in the Practice Building 2F and accept her request.</label></div>
+<div class="note">Vending machines have been refilled.</div>
+<div class="check-item"><input type="checkbox" id="c206"><label for="c206">After School — Spend time with the Fox at the Shrine. Hermit → Rank 3.</label></div>
+<div class="check-item"><input type="checkbox" id="c207"><label for="c207">Evening — Story Event. Select: <b>"Yeah, it's a hassle"</b> (Adachi +2).</label></div>
+
+<div class="section-header">June 9</div>
+<div class="check-item"><input type="checkbox" id="c208"><label for="c208">After School — Story Event. Select: <b>"This is a nice bike"</b> (Dojima +2).</label></div>
+<div class="check-item"><input type="checkbox" id="c209"><label for="c209">After School — Head to the Shrine and accept the ema's request.</label></div>
+<div class="check-item"><input type="checkbox" id="c210"><label for="c210">After School — Save, then catch bugs at the Shrine: speak to the Bug-catching kid and ask how and where to catch bugs, then check the tree on the opposite side of the Shrine. You want at least 2x Tatsuhime Ladybug afterward (highest spawn rate, so two is easy) — reload if you get fewer. Swinging the net with perfect timing unlocks the trophy below.</label></div>
+<div class="ach">🏆 <b>Bug Hunter</b> (15/49) — Catch a bug by swinging the net with perfect timing</div>
+<div class="note">Now that you have a net, you can catch bugs any time it isn't raining (once per day, day or night, with different bugs by time of day), and the bugs double as fishing bait. Bug-catching is mostly optional but is needed for a couple of quests, and it's the only source of Ryugu Stones until very late in the game — those combine with dungeon gemstones to trade for gear at Shiroku Pub.</div>
+<div class="check-item"><input type="checkbox" id="c211"><label for="c211">After School — <b>Quest 9: We Wish Our Dog Would Return.</b> Head to Samegawa Flood Plain (Riverbank) and speak to the Dog.</label></div>
+<div class="check-item"><input type="checkbox" id="c212"><label for="c212">After School — <b>Quest 29: Acquire a Horn.</b> Speak to the Aging housewife in Shopping District, South and accept her request.</label></div>
+<div class="check-item"><input type="checkbox" id="c213"><label for="c213">After School — <b>Quest 30: Please Find My Younger Sister.</b> Speak to the Older twin in Shopping District, South, then the Younger twin in Samegawa Flood Plain (by the benches at the back), then report back to the Older twin. Reward: 5x Goho-M.</label></div>
+<div class="check-item"><input type="checkbox" id="c214"><label for="c214">After School — Speak to Saki Konishi's Brother in Classroom Building 1F and choose <b>"I just wanted to talk"</b> (requires Understanding Rank 3). (Hanged Man flag)</label></div>
+<div class="check-item"><input type="checkbox" id="c215"><label for="c215">After School — Speak to the Female student in Classroom Building 2F, then speak to Kanji in the Practice Building 1F.</label></div>
+<div class="ext">Emperor Social Link established (Rank 1) — Kanji.</div>
+<div class="check-item"><input type="checkbox" id="c216"><label for="c216">Evening — Head to Shiroku Pub and use Talk to give the Hostess a Tatsuhime Ladybug. Keep at least 2x Bread Crumbs (you should have about 3 from trading 3 Ladybugs).</label></div>
+<div class="check-item"><input type="checkbox" id="c217"><label for="c217">Evening — Save, then fish at the Riverbank using Bread Crumbs to catch a Red Goldfish and a Genji Ayu. You can only fish twice right now, so reload if you don't get one of each.</label></div>
+<div class="note">Watch the ripples from the bait — each fish has a unique pattern, so you can tell which is biting before it takes the hook: the Red Goldfish repeats a one-ripple pattern, the Genji Ayu a two-ripple pattern. You can reel in before a fish bites to retry without using a fishing attempt.</div>
+<div class="section-header">June 10</div>
+<div class="check-item"><input type="checkbox" id="c218"><label for="c218">Daytime — Head to the Dojima Residence and ride the scooter around the neighborhood. (Courage up)</label></div>
+<div class="check-item"><input type="checkbox" id="c219"><label for="c219">Evening — Head to Shiroku Pub and use Talk to give the Hostess a Tatsuhime Ladybug.</label></div>
+<div class="check-item"><input type="checkbox" id="c220"><label for="c220">Evening — <b>Quest 9: We Wish Our Dog Would Return.</b> Talk to the Dog in Shopping District, North and choose to talk to it gently.</label></div>
+<div class="check-item"><input type="checkbox" id="c221"><label for="c221">Evening — Head to the Shrine and hand the Lady in White a Red Goldfish to receive a Kingyou Stone.</label></div>
+<div class="check-item"><input type="checkbox" id="c222"><label for="c222">Evening — Spend time with Ayane in Shopping District, South. Select: <b>"Were you all right?"</b> or <b>"You treat your instruments well"</b> (+2).</label></div>
+
+<div class="section-header">June 11</div>
+<div class="check-item"><input type="checkbox" id="c223"><label for="c223">After School — Save, then catch bugs at the Shrine. You need at least 2x Tatsuhime Ladybug afterward — reload if you have fewer.</label></div>
+<div class="check-item"><input type="checkbox" id="c224"><label for="c224">After School — Yomenaido Bookstore (Shopping District, South): buy <b>100 Ghost Stories</b> (¥3,400), <b>Forever Macho</b> (¥1,200), and <b>Catching Bugs</b> (¥1,800).</label></div>
+<div class="check-item"><input type="checkbox" id="c225"><label for="c225">After School — <b>Quest 9: We Wish Our Dog Would Return.</b> Talk to the Dog in Samegawa Flood Plain and choose to talk to it gently.</label></div>
+<div class="check-item"><input type="checkbox" id="c226"><label for="c226">After School — <b>Quest 20: Please Feed the Cat.</b> Talk to the Cat in Samegawa Flood Plain and feed it the Amber Seema (choose not to feed the other fish first; the Amber Seema is the only fish you have two of). Report back to the Avid Reader in Shopping District, South. Reward: The Punk's Way.</label></div>
+<div class="check-item"><input type="checkbox" id="c227"><label for="c227">After School — <b>Quest 31: The Cleaning Club's Passion.</b> Speak to the Graduating student in Classroom Building 3F and accept his request.</label></div>
+<div class="check-item"><input type="checkbox" id="c228"><label for="c228">After School — Work at the day care (Bus Stop, Shopping District, South). (Understanding up, 6,000 yen) Temperance → Rank 5.</label></div>
+<div class="check-item"><input type="checkbox" id="c229"><label for="c229">Evening — Head to Shiroku Pub and use Talk to give the Hostess a Tatsuhime Ladybug.</label></div>
+<div class="check-item"><input type="checkbox" id="c230"><label for="c230">Evening — Spend time with Adachi in Shopping District, South. Select: <b>"Nope"</b> (+2), then <b>"That was a surprise"</b> (+3). Jester → Rank 4.</label></div>
+
+<div class="section-header">June 12</div>
+<div class="check-item"><input type="checkbox" id="c231"><label for="c231">Daytime — Accept Yukiko's invitation. Select: <b>"Gotten any better yet?"</b> (+2), <b>"Keep practicing"</b> (+2), <b>"They care about you"</b> (+3). Priestess → Rank 6 (learns Amrita).</label></div>
+<div class="note">Tanaka's Amazing Commodities airs tonight, but it's worth skipping this week — money is tight and neither combo has anything you can't easily get elsewhere.</div>
+<div class="check-item"><input type="checkbox" id="c232"><label for="c232">Evening — Head to the Shrine and give the Lady in White the Genji Ayu to receive a Gyosen Stone.</label></div>
+<div class="check-item"><input type="checkbox" id="c233"><label for="c233">Evening — Head to Shiroku Pub and use Talk to give the Hostess a Tatsuhime Ladybug.</label></div>
+<div class="note">Optional farming: if you farmed 5x Iolite, 5x Blue Quartz, and 5x Smoky Quartz earlier, you can now claim the Bowling Pin (a strong Yosuke weapon with high accuracy and Auto-Sukukaja, great against Golden Hands), the Inline Skates (high accuracy, Resist Panic — though the Adios Shoes are about as good), and the Festival Fan (a good Yukiko weapon, +3 magic). Don't worry if you can't get them yet; comparable weapons come soon, and if you've already beaten the Contrarian King you'll already have the Festival Fan.</div>
+<div class="check-item"><input type="checkbox" id="c234"><label for="c234">Evening — Spend time with Yukiko in Shopping District, South. Select: <b>"I would've loved to see that"</b> or <b>"It's a horror flick?"</b> (+2).</label></div>
+
+<div class="section-header">June 13</div>
+<div class="check-item"><input type="checkbox" id="c235"><label for="c235">Afternoon — Lesson/Lecture. Select: <b>"Anaerobics"</b> (Knowledge up).</label></div>
+<div class="check-item"><input type="checkbox" id="c236"><label for="c236">After School — Save, then catch bugs at the Shrine; you need a Yaso Locust today if you don't already have one.</label></div>
+<div class="note">Vending machines refill today.</div>
+<div class="check-item"><input type="checkbox" id="c237"><label for="c237">After School — <b>Quest 9: We Wish Our Dog Would Return.</b> Speak to the Dog in Samegawa Flood Plain, talk to it gently, then give it the Super Croquette to complete the quest.</label></div>
+<div class="note">If you can't hand over the Super Croquette today, something went wrong earlier — you can still continue, but you'll have to find the dog manually each day until you can complete it.</div>
+<div class="check-item"><input type="checkbox" id="c238"><label for="c238">After School — Spend time with Chie on the Roof. Select: <b>"Exactly"</b> (+3), then <b>"Of course"</b> (+3). Chariot → Rank 6 (learns Revolution).</label></div>
+<div class="note">Revolution is a direct upgrade to Rebellion — it raises the crit rate of physical attacks for everyone on the field (enemies included). It makes Golden Shadows much easier and helps against Golden Hands; the upside far outweighs the higher crit chance it also gives enemies.</div>
+<div class="check-item"><input type="checkbox" id="c239"><label for="c239">Evening — Check the fridge and eat the Frozen Banana.</label></div>
+<div class="check-item"><input type="checkbox" id="c240"><label for="c240">Evening — Head to Shiroku Pub and use Talk to give the Hostess a Yaso Locust to receive a Ryugu Stone; trade that Ryugu Stone for a Titanium Club (a nice weapon for Yu).</label></div>
+<div class="check-item"><input type="checkbox" id="c241"><label for="c241">Evening — Spend time with Dojima. Select: <b>"With cream"</b> or <b>"Surprise me"</b> (+3), then <b>"You don't have to do that"</b> (+3). Hierophant → Rank 4.</label></div>
+
+<div class="section-header">June 14</div>
+<div class="check-item"><input type="checkbox" id="c242"><label for="c242">After School — <b>Quest 32: Acquire Inaba Trout.</b> Head to Daidara Metalworks and hand over the Inaba Trout (the fish). Reward: the Inaba Trout — a Yosuke weapon that happens to share the fish's name, and a strong alternative to the Bowling Pin, with slightly lower accuracy but higher attack and a better chance to evade physical attacks.</label></div>
+<div class="check-item"><input type="checkbox" id="c243"><label for="c243">After School — Spend time with Ayane in Classroom Building 2F. (Expression up) Select: <b>"Why don't you give up?"</b> (+3, requires Courage Rank 3), <b>"Want me to help out?"</b> (+3, Understanding and Expression up), <b>"Just hang in there"</b> (+2, Diligence up). Sun → Rank 4.</label></div>
+<div class="check-item"><input type="checkbox" id="c244"><label for="c244">Evening — Story Event.</label></div>
+<div class="section-header">June 15</div>
+<div class="check-item"><input type="checkbox" id="c245"><label for="c245">Morning — Lesson/Lecture. Select: <b>"Cheerfulness in a group"</b> (Social Link +2, Expression up).</label></div>
+<div class="check-item"><input type="checkbox" id="c246"><label for="c246">After School — Talk to the Older Lady just outside Croco Fur. Select: <b>"I'm a go-getting college student"</b> or <b>"I'm a hard-working adult"</b>, then <b>"Wow. Where's your pick and pan"</b> (Courage up).</label></div>
+<div class="check-item"><input type="checkbox" id="c247"><label for="c247">After School — Talk to the Flamboyant high school girl just outside Croco Fur. Select: <b>"If you say so!"</b> (Courage up).</label></div>
+<div class="check-item"><input type="checkbox" id="c248"><label for="c248">After School — Talk to the Stray cat just outside 30 Frame and approach it. Select: <b>"Quietly go near it"</b>, <b>"Scratch its chin"</b>, then <b>"Pet it more"</b> (Understanding up).</label></div>
+<div class="check-item"><input type="checkbox" id="c249"><label for="c249">After School — Talk to the Neatly dressed girl just outside 30 Frame (any choices).</label></div>
+<div class="check-item"><input type="checkbox" id="c250"><label for="c250">After School — Talk to the Beautiful lady by the Escalator (any choices), then ask for her number.</label></div>
+<div class="check-item"><input type="checkbox" id="c251"><label for="c251">Evening — Spend time with Chie in Shopping District, North. Select: <b>"Frogs?"</b> (+2).</label></div>
+
+<div class="section-header">June 16</div>
+<div class="check-item"><input type="checkbox" id="c252"><label for="c252">After School — Story Event.</label></div>
+<div class="check-item"><input type="checkbox" id="c253"><label for="c253">Evening — Spend time with Dojima. Select: <b>"Can I help?"</b> (+3), then <b>"Are you okay?"</b> or <b>"But Nanako..."</b> (+3). Hierophant → Rank 5.</label></div>
+
+<div class="section-header">June 17</div>
+<div class="check-item"><input type="checkbox" id="c254"><label for="c254">Afternoon — Story Event.</label></div>
+<div class="check-item"><input type="checkbox" id="c255"><label for="c255">Evening — Story Event. Select: <b>"Don't do this"</b> (Expression up).</label></div>
+
+<div class="section-header">June 18</div>
+<div class="check-item"><input type="checkbox" id="c256"><label for="c256">Morning — Story cutscene. You're given four options; each grants Social Link points with certain links, but none are needed — pick whichever you like.</label></div>
+<div class="note">Around now is when the author harvested the second batch of Cabbage Seedlings — a reminder that you have plenty of time left to finish the cabbage quest.</div>
+<div class="check-item"><input type="checkbox" id="c257"><label for="c257">Evening — Nothing to do; head to your room.</label></div>
+
+<div class="section-header">June 19</div>
+<div class="check-item"><input type="checkbox" id="c258"><label for="c258">Daytime — Tanaka's Amazing Commodities: buy the Huge Fish combo (1x Huge Fish + 4x Ice Cube, ¥9,800) — it's needed for a quest.</label></div>
+<div class="note">From here the guide stops daily bug-catch/trade reminders, since you have the Titanium Club. To keep earning Ryugu Stones, trade 6 of a given bug type to the Shiroku Pub Hostess for one stone (you already did 6x Tatsuhime Ladybug, and got the next stone from your first Yaso Locust trade). Work down the list at your own pace: Tatsuhime Ladybug, Yaso Locust, Meiou Cricket, Inaba Jewel Beetle, Daimyo Grasshopper, Heike Stag Beetle, Genji Beetle. The Inaba Jewel Beetle and Genji Beetle are locked behind later requirements, and some bugs have low catch rates that certain books can improve.</div>
+<div class="check-item"><input type="checkbox" id="c259"><label for="c259">Daytime — Spend time with Yosuke in Junes. Select: <b>"You're incredible"</b> (+3), then <b>"That's the spirit"</b> (+2). Magician → Rank 4 (learns Dekaja).</label></div>
+<div class="note">Dekaja is very useful on Golden Hands — if one casts Sukukaja on itself, Dekaja strips it.</div>
+<div class="check-item"><input type="checkbox" id="c260"><label for="c260">Evening — Story Event.</label></div>
+
+<div class="section-header">June 20</div>
+<div class="check-item"><input type="checkbox" id="c261"><label for="c261">Morning — Lesson/Lecture. Select: <b>"Meiji"</b> (Knowledge up).</label></div>
+<div class="note">Vending machines have been refilled.</div>
+<div class="check-item"><input type="checkbox" id="c262"><label for="c262">After School — Speak with Saki Konishi's Brother in Classroom Building 1F. This uses your time slot but is needed for the Hanged Man Social Link.</label></div>
+<div class="check-item"><input type="checkbox" id="c263"><label for="c263">Evening — Check the fridge and lick the Wasabi. (Courage greatly up)</label></div>
+<div class="section-header">June 21</div>
+<div class="note">Today is a great fusion day — there are no time-specific triggers, and every fusion grants bonus Social Link EXP, bonus stats, and a bonus recovery skill (this is why fusions were held back after the last dungeon). With your higher Social Link levels, you can build some strong Personas.</div>
+<div class="note">Reminders: any Persona obtained from Shuffle Time must be registered in the Compendium before you can use it in a fusion. In a triple fusion, which Persona is highest-level matters — if your highest-level Persona doesn't match the guide's, re-fuse the one that's too high (you can't level it now, since you're not in the TV world). In the table below, the Notes column tells you which skills to replace or forget.</div>
+<div class="check-item"><input type="checkbox" id="c264"><label for="c264">After School — Save, enter the Velvet Room, register your Personas, and fuse the recipes below.</label></div>
+<table class="fz"><colgroup><col style="width:25%"><col style="width:22%"><col style="width:25%"><col style="width:28%"></colgroup>
+<thead><tr><th>Recipe → Result</th><th>Skills to Pass On</th><th>Skills to Learn</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Eligor + Angel + Saki Mitama<br><span class="res">→ Sarasvati</span></td><td>Bufu, Growth 1, Dia, Sukunda</td><td>Invigorate 2 <span class="lv">(Lv 19)</span><br>Dekaja <span class="lv">(Lv 21)</span><br>Null Wind <span class="lv">(Lv 23)</span></td><td>Forget Resist Rage<br>Replace Sukunda with Dekaja</td></tr>
+<tr><td>Xiezhai + Sarasvati<br><span class="res">→ Shiisaa</span></td><td>Auto-Tarukaja, Growth 1, Invigorate 2, Rakunda</td><td>Rakukaja <span class="lv">(Lv 22)</span><br>Zionga <span class="lv">(Lv 23)</span><br>Resist Fire <span class="lv">(Lv 25)</span></td><td>Forget Silence Boost<br>Replace Rakukaja with B. Skill<br>Replace B. Skill with Resist Fire*<br><span class="fn">*If Shiisaa reaches that level</span></td></tr>
+<tr><td>Shiisaa + Ukobach<br><span class="res">→ King Frost</span></td><td>Auto-Tarukaja, Invigorate 2, Growth 1</td><td>Rakukaja <span class="lv">(Lv 23)</span><br>Dodge Fire <span class="lv">(Lv 24)</span><br>Ice Boost <span class="lv">(Lv 26)</span><br>Null Fire <span class="lv">(Lv 27)</span></td><td>Replace B. Skill with Dodge Fire*<br>Replace Rakukaja with Ice Boost*<br>Replace Dodge Fire with Null Fire*<br><span class="fn">*If King Frost reaches those levels</span></td></tr>
+<tr><td>Izanagi + Saki Mitama<br><span class="res">→ Ghoul</span></td><td>Agi, Bufu, Zio</td><td class="lv">—</td><td class="lv">—</td></tr>
+<tr><td>Ghoul + Xiezhai<br><span class="res">→ Ara Mitama</span></td><td>Auto-Tarukaja, Growth 1, Double Fangs, Bash</td><td>Blue Wall <span class="lv">(Lv 22)</span></td><td>Replace Bash with Blue Wall<br>Forget Bonus Skill</td></tr>
+<tr><td>Jack Frost + Ara Mitama<br><span class="res">→ Nigi Mitama</span></td><td>Auto-Tarukaja, Growth 1, Blue Wall, Tarunda</td><td>Recarm <span class="lv">(Lv 25)</span><br>Invigorate 2 <span class="lv">(Lv 26)</span><br>Garula <span class="lv">(Lv 28)</span></td><td>Replace Tarunda with Invigorate 2<br>Replace Blue Wall with Media <span class="fn">(Bonus Skill, may differ)</span><br>Replace Growth 1 with Garula*<br><span class="fn">*If Nigi Mitama reaches that level</span></td></tr>
+<tr><td>Eligor + Nigi Mitama<br><span class="res">→ Hua Po</span></td><td>Auto-Tarukaja, Invigorate 2, Growth 1, Maragi</td><td>Dodge Ice <span class="lv">(Lv 29)</span><br>Fire Boost <span class="lv">(Lv 30)</span></td><td>Forget Makajam<br>Forget Bonus Skill<br>Replace Rakukaja with Dodge Ice*<br>Replace Re Patra with Fire Boost*<br><span class="fn">*If Hua Po reaches those levels</span></td></tr>
+<tr><td>Anzu + Ukobach<br><span class="res">→ Oberon</span></td><td>Growth 1, Sukunda</td><td class="lv">—</td><td class="lv">—</td></tr>
+<tr><td>Sarasvati + Oberon<br><span class="res">→ Yaksini</span></td><td>Invigorate 2, Growth 1, Bufu, Dekaja</td><td>Swift Strike <span class="lv">(Lv 20)</span></td><td class="lv">—</td></tr>
+<tr><td>Phoenix + Lilim + Yaksini<br><span class="res">→ Narcissus</span></td><td>Auto-Tarukaja, Invigorate 2, Growth 1, Garula</td><td>Resist Fire <span class="lv">(Lv 26)</span><br>Anima Freeze <span class="lv">(Lv 27)</span><br>Ailment Boost <span class="lv">(Lv 30)</span></td><td>Replace Growth 1 with Resist Fire<br>Forget Bonus Skill<br>Replace Resist Fire with Anima Freeze*<br>Replace Auto-Tarukaja with Ailment Boost*<br><span class="fn">*If Narcissus reaches those levels</span></td></tr>
+</tbody></table>
+<div class="check-item"><input type="checkbox" id="c265"><label for="c265">After School — Summon back Shiisaa and Phoenix.</label></div>
+<div class="note">The Personas you should have on you now are: Shiisaa (Hierophant), Phoenix (Sun), Hua Po (Magician), Gurr (Jester), King Frost (Emperor), Principality (Justice), Narcissus (Aeon), and Andras (Moon). You now have a Persona for each of the four main elements carrying a tier-2 single-target spell, a tier-1 multi-target spell, and Invigorate 2 (restores 5 SP per turn), so you can rely less on physical skills for SP and go for more All-Out Attacks for guaranteed Shuffle Times.</div>
+<div class="check-item"><input type="checkbox" id="c266"><label for="c266">After School — Spend time with Ayane in Classroom Building 2F. (Expression up) Select: <b>"Don't worry you can do it"</b> (+2, Expression up). Sun → Rank 5.</label></div>
+<div class="note">"Don't worry you can do it" isn't the best response for Social Link points, but it's the only one that grants an Expression point — you can make up the missing link points elsewhere.</div>
+<div class="check-item"><input type="checkbox" id="c267"><label for="c267">Evening — Go to your room and check the Midnight Channel.</label></div>
+<div class="section-header">June 22</div>
+<div class="check-item"><input type="checkbox" id="c268"><label for="c268">After School — Story Event. During the cutscene, when Yosuke offers to buy something, select: <b>"Recommend ganmodoki"</b> (Yosuke +2).</label></div>
+<div class="check-item"><input type="checkbox" id="c269"><label for="c269">Evening — Story Event.</label></div>
+
+<div class="section-header">June 23</div>
+<div class="check-item"><input type="checkbox" id="c270"><label for="c270">After School — Story Event.</label></div>
+<div class="check-item"><input type="checkbox" id="c271"><label for="c271">Evening — Head to your room and watch the Midnight Channel.</label></div>
+
+<div class="section-header">June 24</div>
+<div class="check-item"><input type="checkbox" id="c272"><label for="c272">After School — Story Event.</label></div>
+<div class="ext">Star Social Link established (Rank 1) — Teddie.</div>
+<div class="check-item"><input type="checkbox" id="c273"><label for="c273">After School — Help Teddie find Rise by talking to the right people around town (spoiler below if you want the locations).</label></div>
+<details class="spoiler"><summary>Spoiler — who to talk to (tap to reveal)</summary><div class="rv">Talk to the Risette fan in the Practice Building 2F. Talk to Rise's grandmother at Marukyu Tofu. Talk to the Kind man in Samegawa Flood Plain.</div></details>
+<div class="check-item"><input type="checkbox" id="c274"><label for="c274">After School — <b>Quest 21: Feed the Cat.</b> Speak to the Cat in Samegawa Flood Plain and feed it the Huge Fish (choose not to feed the other fish first so the Huge Fish option appears).</label></div>
+<div class="check-item"><input type="checkbox" id="c275"><label for="c275">After School — Spend time with Ai in Classroom Building 1F. Select: <b>"Come shopping with me"</b> or <b>"Let's just chill"</b> (+2), then <b>"Not exactly"</b> (+3). Moon → Rank 3.</label></div>
+<div class="warn-line">When spending time with Ai today, do not pick option C — it reverses the Moon Social Link (this is the first rank where a wrong choice can do that, costing a day to fix). Any other option is fine.</div>
+<div class="check-item"><input type="checkbox" id="c276"><label for="c276">Evening — Head to the Shrine and give the Lady in White the Amber Seema to receive a Yazu Stone. This fully opens her store — you can now trade any fish for its matching stone.</label></div>
+<div class="check-item"><input type="checkbox" id="c277"><label for="c277">Evening — Spend time with Nanako. Select: <b>"Is there anything else?"</b> (+3), <b>"They go to heaven"</b> (+3), <b>"I don't know"</b> (+2), <b>"He's protecting you"</b> (+2). Justice → Rank 4.</label></div>
+<div class="section-header">June 25 — Marukyu Striptease (Dungeon 2)</div>
+<div class="note">The Housewife's seed rotation adds Wall Paprika (resists Fire/Ice/Electric/Wind skills for 3 turns; 1 of each, ¥2,300, matures in 7 days) and Barrier Corn (lets one ally reflect a physical attack and one ally reflect a magical attack; 1 of each, ¥2,300, 8 days). You need to plant and harvest one Barrier Corn for a quest — check back daily if she's out. Wall Paprika is great for shielding a party member's elemental weakness on bosses, and reflect items can break certain later bosses.</div>
+<div class="check-item"><input type="checkbox" id="c278"><label for="c278">After School — <b>Quest 25: 100% Inaba-Grown Cabbage.</b> Speak to the Fussy housewife in Junes and hand over your Hiranya Cabbage. Reward: Sharp Shovel (a good alternate Yu weapon if you didn't get the Titanium Club). If you're short on cabbage, you can finish this later — just don't use your supply in a dungeon first.</label></div>
+<div class="check-item"><input type="checkbox" id="c279"><label for="c279">After School — Talk to the Photographer in Samegawa Flood Plain and agree to trade information (speak to him a couple of times).</label></div>
+<div class="check-item"><input type="checkbox" id="c280"><label for="c280">After School — Head to Junes and enter the TV World: Marukyu Striptease.</label></div>
+<div class="note">You can choose your party for the first time. Use everyone fairly evenly rather than a core four — it gives you more SP to work with (swap out members who run low) and lets you match each member's strengths to a situation. You also need to use everyone to earn a later achievement, which requires hearing enough battle lines.</div>
+<div class="note">From today the Skill Level Up Card can appear in Shuffle Time. It randomly upgrades one skill on your equipped Persona — very powerful, but it adds RNG, so this guide avoids using it (and the fusion skills assume you do too). If you do use it, note which skills you changed so you can substitute them in the fusion guide. Saving periodically lets you reload an upgrade you don't want.</div>
+<div class="check-item"><input type="checkbox" id="c281"><label for="c281">Pet the Fox to receive the Kung Fu Costume. Equip the costume and fight one battle to unlock the trophy below.</label></div>
+<div class="ach">🏆 <b>Fashion Plate</b> (16/49) — Fight a battle while wearing a costume</div>
+<div class="check-item"><input type="checkbox" id="c282"><label for="c282">Speak to Teddie to be taken to where Rise is. From here you can add or remove party members outside any dungeon area.</label></div>
+<div class="warn-line">Last chance for the Gentlemen's Tux — you must get one today before it becomes quest-needed. Also farm at least 6 Golden Cloths today (drop from Phantom Mages on Yukiko's Castle 5F–6F), as this is your last chance before they're quest-needed too.</div>
+<div class="note">You may also unlock a battle trophy around now for reaching 50 Sweep Bonuses — don't worry if it doesn't pop today, it comes easily by the end of the game.</div>
+<div class="ach">🏆 <b>Fill Your Hand</b> (17/49) — Earn 50 Sweep Bonuses</div>
+<div class="note">Grab any new Personas you like from Shuffle Time, but don't delete the 8 you're carrying — they're needed for the upcoming fusions. You have two free slots to fill.</div>
+<div class="check-item"><input type="checkbox" id="c283"><label for="c283">Dungeon — Farm the Steamy Bathhouse for the quest items listed below before tackling Marukyu Striptease.</label></div>
+<div class="note">Steamy Bathhouse quest drops: Old Key (Bribed Fuzz, 1F–4F); 4x Curious Line (Cloudgirl Pot, 3F–5F &amp; 8F–10F); Coal (Selfish Basalt, 5F–7F); 5x Thick Hides (Dancing Hand, 1F–2F &amp; 5F–8F, including what you farmed earlier); Crooked Cross (Tranquil Idol, 3F–4F &amp; 6F–8F); Reflecting Board (Crying Table, 8F–10F); Grand Horn (Grave Beetle, 8F–10F).</div>
+<div class="note">Optional (Artisian Apprentice): 8x Pure Iron Lump (Iron Dice, 1F–2F / 5F–7F / 9F–10F) and 10x Cloth Wings (Monopolizing Cupid, 1F–4F) — counting whatever you farmed here last time.</div>
+<div class="note">Curious Line isn't quest-required, but it unlocks a strong armor for the girls (high evasion plus Auto-Sukukaja, useful well into the endgame). Its source, the Cloudgirl Pot, only appears on rainy days — and rainy dungeon days also raise Golden Hand spawn rates.</div>
+<div class="check-item"><input type="checkbox" id="c284"><label for="c284">Dungeon — Once you've collected everything, head up to 11F, then use a Goho-M to return to the entrance. Skip the optional boss on 11F for now — you'll do it later alongside the Yukiko's Castle one.</label></div>
+<div class="note">Aim for level 31 with at least 80,000 yen before the next fusions and the 7F mini-boss. Farm Golden Hands for fast EXP and money; keep swapping floors to respawn them.</div>
+<div class="note">Items to grab as you work through Marukyu Striptease: 1x Silver Lump (Silver Dice, 5F–8F &amp; 10F) and 3x Fashionable Dishes (Sky Balance, 9F–10F). Both are quest materials — don't sell them to Daidara by accident.</div>
+<div class="note">Optional farming for the Artisian Apprentice / Shiroku Pub weapons (needs extra money, and can be spread across later visits): 6x Steel Collar (Enslaved Beast, 3F–10F); 8x Tortoise Shell (Large Basalt, 3F–6F &amp; 7F–8F); 6x Sharp Thorn (Mighty Cyclops, 7F–10F); 5x Fluorite (any mob in the Steamy Bathhouse or Marukyu Striptease, Kanji weapon); 5x Lepidolite (any mob in Marukyu Striptease, Yukiko weapon).</div>
+<div class="check-item"><input type="checkbox" id="c285"><label for="c285">Dungeon — At level 31 with at least 80k, return to the entrance, save, enter the Velvet Room, register your Personas, and fuse the first batch below.</label></div>
+<div class="note">Register your Personas individually rather than using "register all" — it can overwrite a Persona you fused (and its added skills) with a Shuffle Time copy.</div>
+<table class="fz"><colgroup><col style="width:25%"><col style="width:22%"><col style="width:25%"><col style="width:28%"></colgroup>
+<thead><tr><th>Recipe → Result</th><th>Skills to Pass On</th><th>Skills to Learn</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Ara Mitama + Jack Frost + Sarasvati<br><span class="res">→ Ose</span></td><td>Auto-Tarukaja, Rakunda, Tarunda, Growth 1, Sharp Student</td><td>Auto-Sukukaja <span class="lv">(Lv 35)</span><br>Survive Light <span class="lv">(Lv 36)</span></td><td>Forget Poison Mist<br>Replace Tarunda with Auto-Sukukaja*<br>Replace Growth 1 with Survive Light*<br><span class="fn">*If Ose reaches those levels</span></td></tr>
+<tr><td>Andras + Sylph<br><span class="res">→ Yomotsu-Ikusa</span></td><td>Auto-Tarukaja, Growth 1, Regenerate 1, Tarunda</td><td class="lv">—</td><td class="lv">—</td></tr>
+<tr><td>Principality + Orobas + Forneus<br><span class="res">→ Matador</span></td><td>Mahama, Hysterical Slap, Growth 1, Regenerate 1</td><td class="lv">—</td><td class="lv">—</td></tr>
+</tbody></table>
+<div class="check-item"><input type="checkbox" id="c286"><label for="c286">Dungeon — Leave and re-enter the Velvet Room so Margaret notices your Matador with Mahama. Empress → Rank 3.</label></div>
+<table class="fz"><colgroup><col style="width:25%"><col style="width:22%"><col style="width:25%"><col style="width:28%"></colgroup>
+<thead><tr><th>Recipe → Result</th><th>Skills to Pass On</th><th>Skills to Learn</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Jack Frost + Phoenix<br><span class="res">→ Ares</span></td><td>Auto-Tarukaja, Growth 1, Twin Shot, Tarunda</td><td>Rampage <span class="lv">(Lv 28)</span><br>Dekaja <span class="lv">(Lv 29)</span><br>Power Charge <span class="lv">(Lv 30)</span></td><td>Replace Gale Slash with Dekaja*<br>Replace Growth 1 with Power Charge*<br><span class="fn">*If Ares reaches those levels</span></td></tr>
+<tr><td>Anzu + Ares<br><span class="res">→ Gdon</span></td><td>Auto-Tarukaja, Rampage, Twin Shot, Counter</td><td>Growth 2 <span class="lv">(Lv 33)</span><br>Maragion <span class="lv">(Lv 34)</span><br>Fire Boost <span class="lv">(Lv 35)</span><br>Evade Ice <span class="lv">(Lv 36)</span></td><td>Replace Maragi with Maragion<br>Replace Fire Break with Fire Boost*<br>Replace Counter with Evade Ice*<br><span class="fn">*If Gdon reaches those levels</span></td></tr>
+</tbody></table>
+<div class="check-item"><input type="checkbox" id="c287"><label for="c287">Dungeon — Leave and re-enter the Velvet Room so Margaret notices your Gdon with Rampage. Empress → Rank 4.</label></div>
+<table class="fz"><colgroup><col style="width:25%"><col style="width:22%"><col style="width:25%"><col style="width:28%"></colgroup>
+<thead><tr><th>Recipe → Result</th><th>Skills to Pass On</th><th>Skills to Learn</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Hua Po + Anzu<br><span class="res">→ Incubus</span></td><td>Auto-Tarukaja, Growth 1, Invigorate 2, Maragi</td><td>Stagnant Air <span class="lv">(Lv 30)</span><br>Spirit Drain <span class="lv">(Lv 32)</span><br>Ghastly Wail <span class="lv">(Lv 33)</span></td><td>Replace Mind Slice with Spirit Drain*<br>Replace Growth 1 with Ghastly Wail*<br><span class="fn">*If Incubus reaches those levels</span></td></tr>
+<tr><td>Matador + Ikusa<br><span class="res">→ Ganga</span></td><td>Auto-Tarukaja, Growth 1, Mabufu, Dekunda</td><td>Mediarama <span class="lv">(Lv 33)</span></td><td>Forget Panic Boost<br>Replace Mind Slice with Mediarama</td></tr>
+</tbody></table>
+<div class="check-item"><input type="checkbox" id="c288"><label for="c288">Dungeon — Summon back Principality, Ares, Nigi Mitama, and Ikusa (if money's tight, just grab any you're missing before the final boss).</label></div>
+<div class="check-item"><input type="checkbox" id="c289"><label for="c289">Dungeon — Hand over any Skill Cards you have to Marie.</label></div>
+<div class="note">Personas you should be carrying now: Shiisaa (Hierophant), Gdon (Sun), Gurr (Jester), King Frost (Emperor), Narcissus (Aeon), Ose (Fool), Incubus (Devil), Ganga (Priestess), Principality (Justice), Ares (Chariot), Nigi Mitama (Temperance), and Ikusa (Hanged). These cover the arcana you'll work on this coming month, except Ose, which is purely a battle Persona — it has Power Charge (2.5x your next physical), Power Slash, and Atom Smasher, making it your go-to physical Persona. Get Ose to learn Auto-Sukukaja before leaving today, and get Ganga to learn Mediarama before the final boss.</div>
+<div class="note">Your Persona stock is full, so don't pick up any more from Shuffle Time for the rest of the dungeon.</div>
+<div class="check-item"><input type="checkbox" id="c290"><label for="c290">Dungeon — Return to Marukyu Striptease and head up to 7F to defeat the mini-boss, Amorous Snake (Level 33).</label></div>
+<div class="note">Amorous Snake is weak to Ice but hits hard with physical attacks that inflict ailments, and it uses Stagnant Air to raise its ailment chance. Equip Ose on Yu (it resists physical and brings Rakunda, Power Charge, and Power Slash); have everyone attack physically and use Chie's Revolution for crits. The main danger is Panic landing on several members at once — Yukiko can clear it, but if she's hit you'll need an item or to switch Yu's Persona. When Yukiko isn't healing, she can chip in with Agilao.</div>
+<div class="check-item"><input type="checkbox" id="c291"><label for="c291">Dungeon — Work up to 11F (recommended: level 35, all quest items farmed, ~130k including loot you'll sell, and Ganga with Mediarama), then Goho-M back to the entrance to clear both optional bosses first.</label></div>
+<div class="check-item"><input type="checkbox" id="c292"><label for="c292">Head to Yukiko's Castle and defeat the optional boss, then check the throne for the Suzaku Feather (a Yukiko weapon). (Courage up)</label></div>
+<div class="note">Contrarian King (Level 17) drains Ice and nulls Light and Dark. Use Chie, Kanji, and Yukiko. Its Rampage hits very hard on Hard/Very Hard — soften it with Diamond Shields and/or Tarunda, keep Ose on Yu so physical attacks are resisted, and guard with Yukiko when she isn't healing. Have Chie use Revolution and farm crits and All-Out Attacks; Chie's Counter can reflect Rampage for big damage.</div>
+<div class="check-item"><input type="checkbox" id="c293"><label for="c293">Head to the Steamy Bathhouse and defeat the optional boss, then check the back wall for the Iron Plate (a Kanji weapon). (Courage up)</label></div>
+<div class="note">Intolerant Officer (Level 27) is weak to Wind and nulls Dark, but uses Wind and Ice attacks that Kanji and Yukiko are both weak to. Guard with Kanji and Yukiko to bait physical attacks instead (which Chie can Counter), and the Chie + Yukiko pairing can trigger Twin Dragons after an All-Out Attack. Knock it down with Kanji's Electric, then cancel the AOA to guard. Use Shiisaa on Yu (Rakunda, Zionga, resists Ice), and Ganga's Mediarama to heal without exposing Yukiko's weakness.</div>
+<div class="note">Before the Marukyu boss, recheck your Personas, that you have ~130k (including loot to sell), and that Ose has learned Auto-Sukukaja. Make sure you're carrying Personas of these arcana: Priestess, Jester, Sun, Chariot, Hierophant, Justice, Temperance, Aeon, Hanged, Emperor, and Devil.</div>
+<div class="check-item"><input type="checkbox" id="c294"><label for="c294">Dungeon — Return to 11F and defeat Shadow Rise (Level 35).</label></div>
+<div class="note">Shadow Rise has no weakness and can use tier 1 and 2 single- and multi-target spells of every element plus Break spells and Mind Slice, so expect to get hit on weaknesses — just keep your HP up. She has low HP; use Rakunda, physical attacks, and Chie's Revolution. You can only take her to 50%, where she casts Supreme Insight and your attacks stop connecting — simply guard for the three turns until it ends.</div>
+<div class="check-item"><input type="checkbox" id="c295"><label for="c295">Dungeon — Defeat Shadow Teddie (Level 35), the dungeon's true boss. A cutscene follows. Star → Rank 2.</label></div>
+<div class="note">Shadow Teddie drains Electric and resists Almighty. It's a long fight but very predictable. Keep Ganga's Mediarama ready (Yukiko's Media can't keep up on Hard/Very Hard); attack physically with Rakunda and skip Revolution (you can't crit him). Standard patterns: Mind Charge then Mabufula (guard with everyone on Mind Charge), Marakunda then Heat Wave, and Foolish Whisper to silence. Scripted attacks: around 75% HP he uses Ultra Charge then Nihil Hand (fully negated by guarding, but it insta-kills anyone dizzy); around 50% he uses Nulity Guidance (inflicts dizzy) then Ultra Charge and Nihil Hand — the dizzy wears off before it lands, so guard; around 25% he uses Nulity Guidance on two members, then Ultra Charge and Nihil Hand.</div>
+<div class="ach">🏆 <b>The Lounge is Closed</b> (18/49) — Clear Marukyu Striptease (defeat Shadow Teddie)</div>
+<div class="check-item"><input type="checkbox" id="c296"><label for="c296">Evening — Story Event.</label></div>
+<div class="section-header">June 26</div>
+<div class="note">Tanaka's Amazing Commodities airs today, but skip it this week — the Myth-like Sword is no better than the Diamond Club, and you'll get another chance to buy it soon, so skipping saves money.</div>
+<div class="warn-line">Don't sell your Fashionable Dishes or Silver Lumps — they're quest materials, so sell your loot individually rather than all at once.</div>
+<div class="note">If you've sold 6x Golden Cloth, 5x Thick Hides, and 4x Curious Line, you can buy the Iai Katana (Yu) and Hard Boots (Chie) — both quest items — plus the Miori Shirt, a great Auto-Sukukaja armor for the girls. Buy these when Daidara is next open late for the 20% discount.</div>
+<div class="check-item"><input type="checkbox" id="c297"><label for="c297">Daytime — Sell your loot at Daidara Metalworks. If you don't have at least 130k afterward, reload and farm more (you can also sell spare expendables or duplicate gear).</label></div>
+<div class="check-item"><input type="checkbox" id="c298"><label for="c298">Daytime — <b>Quest 23: Acquire an Old Key.</b> Give the Old woman in Samegawa Flood Plain the Old Key. Reward: Knowledge and Courage greatly up.</label></div>
+<div class="check-item"><input type="checkbox" id="c299"><label for="c299">Daytime — <b>Quest 24: Acquire Coal.</b> Give the Loud old man in Shopping District, North the Coal. Reward: 15,000 yen.</label></div>
+<div class="check-item"><input type="checkbox" id="c300"><label for="c300">Daytime — <b>Quest 29: Acquire a Horn.</b> Give the Aging housewife in Shopping District, South the Grand Horn. Reward: 18,000 yen.</label></div>
+<div class="check-item"><input type="checkbox" id="c301"><label for="c301">Daytime — Spend time with Kanji in Shopping District, North. Select: <b>"You just need to change"</b> (+3). Emperor → Rank 2 (learns Dizzy Boost).</label></div>
+<div class="check-item"><input type="checkbox" id="c302"><label for="c302">Evening — Spend time with Adachi in Shopping District, South. Select: <b>"You're right"</b> (+3). Jester → Rank 5.</label></div>
+<div class="section-header">June 27</div>
+<div class="check-item"><input type="checkbox" id="c303"><label for="c303">Morning — Lesson/Lecture. Select: <b>"Individuality"</b> (Knowledge up).</label></div>
+<div class="check-item"><input type="checkbox" id="c304"><label for="c304">After School — <b>Quest 26: Acquire a Crooked Cross.</b> Give the Timid female student in classroom 2-2 the Crooked Cross. Reward: 3x Ointment.</label></div>
+<div class="check-item"><input type="checkbox" id="c305"><label for="c305">After School — <b>Quest 28: Desk Refurbishing, Part 2.</b> Give the Homely student in the Practice Building 2F the Reflecting Board. Reward: 2x Snuff Souls.</label></div>
+<div class="check-item"><input type="checkbox" id="c306"><label for="c306">After School — Spend time with Yukiko in Classroom Building 1F. Select: <b>"They're not mistaken"</b> (+3). Priestess → Rank 7.</label></div>
+<div class="check-item"><input type="checkbox" id="c307"><label for="c307">Evening — Check the fridge and eat the Side Dish from Junes.</label></div>
+<div class="check-item"><input type="checkbox" id="c308"><label for="c308">Evening — Speak to the Cat outside the Dojima Residence, then pet it. (Expression up — reaches Rank 4: Touching; Understanding up)</label></div>
+
+<div class="section-header">June 28</div>
+<div class="check-item"><input type="checkbox" id="c309"><label for="c309">After School — Yomenaido Bookstore: buy <b>Short on Cash</b> (¥1,500) and <b>Expert Fishing</b> (¥4,800).</label></div>
+<div class="note">Vending machines have been refilled.</div>
+<div class="check-item"><input type="checkbox" id="c310"><label for="c310">After School — Spend time with Adachi in Junes. (No rank up today.)</label></div>
+<div class="check-item"><input type="checkbox" id="c311"><label for="c311">Evening — Save, enter the Velvet Room, register, and fuse the two recipes below (a couple of quick fusions so you have the right Persona for a Social Link without deleting one).</label></div>
+<table class="fz"><colgroup><col style="width:25%"><col style="width:22%"><col style="width:25%"><col style="width:28%"></colgroup>
+<thead><tr><th>Recipe → Result</th><th>Skills to Pass On</th><th>Skills to Learn</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Gurr + King Frost<br><span class="res">→ Power</span></td><td>Auto-Tarukaja, Invigorate 2, Growth 1, Rakunda</td><td>Power Slash <span class="lv">(Lv 30)</span><br>Hama Boost <span class="lv">(Lv 31)</span><br>Survive Dark <span class="lv">(Lv 32)</span></td><td>Replace Tentarafoo with Power Slash*<br>Replace Zionga with Hama Boost*<br>Replace Growth 1 with Survive Dark*<br><span class="fn">*If Power reaches those levels</span></td></tr>
+<tr><td>Principality + Jack Frost<br><span class="res">→ Rakshasa</span></td><td>Auto-Tarukaja, Tarunda, Growth 1, Rakunda</td><td class="lv">—</td><td class="lv">—</td></tr>
+</tbody></table>
+<div class="check-item"><input type="checkbox" id="c312"><label for="c312">Evening — Summon back King Frost.</label></div>
+<div class="check-item"><input type="checkbox" id="c313"><label for="c313">Evening — Spend time with Nanako. Select: <b>"A person you love a lot"</b> (+3), <b>"Did he say that?"</b> (+3), <b>"Listen to her talk"</b> (+3, requires Understanding Rank 3). Justice → Rank 5.</label></div>
+<div class="section-header">June 29</div>
+<div class="check-item"><input type="checkbox" id="c314"><label for="c314">After School — Speak to Saki Konishi's Brother in Classroom Building 1F and return the handkerchief.</label></div>
+<div class="ext">Hanged Man Social Link established (Rank 1) — Saki Konishi's Brother.</div>
+<div class="check-item"><input type="checkbox" id="c315"><label for="c315">Evening — Head to Aiya and eat the Chow Mein set (Aiya Dishes 5/8). (Diligence greatly up)</label></div>
+
+<div class="section-header">June 30</div>
+<div class="check-item"><input type="checkbox" id="c316"><label for="c316">Afternoon — Lesson/Lecture. Select: <b>"Pis Pis River"</b> (Knowledge up).</label></div>
+<div class="check-item"><input type="checkbox" id="c317"><label for="c317">After School — Spend time with Daisuke in Classroom Building 2F. (Diligence up) Select: <b>"No problem"</b> (+2). Strength → Rank 6.</label></div>
+<div class="check-item"><input type="checkbox" id="c318"><label for="c318">Evening — Head to Aiya and eat the Chow Mein set (Aiya Dishes 6/8). (Diligence greatly up)</label></div>
 
 </div><!-- #content -->
 
