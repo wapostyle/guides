@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chrono Cross – Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --warn-color:#e8b84a;
+    --note-color:#b8b8b8;
+    --choice-color:#8ec9e8;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+    --ext-color: #777;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; overflow: hidden; height: 54px; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #toc-kofi { margin-left: auto; }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); scroll-margin-top: 108px; }
+  .disc-header:first-child { margin-top: 0; }
+  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; }
+  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 2px 0 2px 4px; margin: 2px 0; }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '⚠ '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  .item-ref { font-size: 13px; padding: 3px 0 3px 4px; margin: 2px 0; color: var(--text); }
+  .item-ref b { color: var(--h2-color); }
+  .boss-ref { background: var(--bg2); border-left: 3px solid var(--warn-color); border-radius: 3px; padding: 8px 12px; margin: 6px 4px 6px 4px; font-size: 12.5px; }
+  .boss-ref .boss-name { color: var(--h2-color); font-weight: 700; font-size: 13.5px; margin-bottom: 4px; }
+  .boss-ref .boss-line { color: var(--text); margin: 2px 0; }
+  .boss-ref .boss-line b { color: var(--muted); font-weight: 600; }
+  .choice { background: var(--bg2); border-left: 3px solid var(--choice-color); border-radius: 3px; padding: 8px 12px; margin: 6px 4px 6px 4px; font-size: 13px; }
+  .choice .choice-prompt { color: var(--choice-color); font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .choice .choice-answer { color: var(--text); margin: 2px 0; }
+  .choice .choice-answer b { color: var(--check-checked); }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
+<div id="site-header">
+  <div id="progress-bar" style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);">
+    <div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div>
+  </div>
+  <h1><a href="../index.html">← Wapo's Game Guides</a> <span style="color:var(--muted);font-weight:400;font-size:14px;">/ Chrono Cross Walkthrough</span></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+    <div style="position:relative;display:inline-block;">
+      <button class="btn" id="savemenu-btn">Import/Export Progress</button>
+    </div>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+  </div>
+</div>
+<div id="savemenu" style="display:none;position:fixed;background:var(--bg3);border:1px solid var(--border);border-radius:4px;min-width:140px;z-index:1000;">
+  <div id="export-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Export</div>
+  <div id="import-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Import</div>
+</div>
+
+<div id="toc">
+  <a href="https://guides.cookseyonline.com/chrono-cross/walkthrough-checklist#new-game">New Game</a>
+  <a href="https://guides.cookseyonline.com/chrono-cross/walkthrough-checklist#new-game-plus">New Game+</a>
+  <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+</div>
+
+<div id="content">
+
+<div class="disc-header" id="new-game">New Game</div>
+
+<div class="section-header">00) Dream Sequence</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Name your lead character (anything except Crono) to begin the dream sequence in a large draconic palace. Kid and one randomized character accompany you.</label></div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">At the fork, head SW to a glowing blue exit. Touching a Cybot or Alphabat starts a battle, though no XP or items are gained here, so engage or avoid freely.</label></div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">Exit the first enemy room (it loops back on a higher ledge). Ignore the entrance stairway and use the catwalk to reach the NW door marked with a red symbol; enter and shut down the black pillar.</label></div>
+<div class="check-item"><input type="checkbox" id="c4"><label for="c4">Step onto the six-circle teleport pad in the previous room, ride it to the top, and exit through the nearby door to end the dream sequence.</label></div>
+
+<div class="section-header">01) Arni Village [Home World]</div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Check under the covers in Serge's room for 200G, then grab 5 Tablet consumables from the room's dark corner.</label></div>
+<div class="check-item"><input type="checkbox" id="c6"><label for="c6">In the town square, search the woman's cart near the item shop for a Shellfish Frame (changes the textbox frame under Customize).</label></div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Talk to the large man standing beneath the swordfish sign near Serge's house. Agree with him ("You're probably right!") to receive the Komodo Scale key item.</label></div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Show the Komodo Scale to the boy nearby to receive an Uplift element. It cannot be sold to him for 1000G.</label></div>
+<div class="note">He'll also mention some information about Poshul.</div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">In the house next door, search the teapot near Poshul's doghouse for a PhotonRay element.</label></div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Left of Serge's house at the chief's steps, search the bucket for an AquaBeam element.</label></div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Inside the chief's house, search behind a picture for a Cure element. Chief Radius can walk you through elemental battle basics outside if you ask.</label></div>
+<div class="note">A save point (Record of Fate) is here but occupied by townsfolk early on.</div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">In the cafe nearest the town exit, examine the barrel three times for another Uplift element.</label></div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">In the cafe's back room, search the unmade bed for the Heckran Bone key item, and open the chest against the wall for an Ivory Helmet.</label></div>
+<div class="item-ref"><b>Poshul</b> (Innate: Yellow): Found outside Radius' house. Show her the Heckran Bone key item to recruit her. It's recommended to get her now, though she can still be found later if missed here.</div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14">Next door at the fisherman's house, listen to his tips on catching Komodo Dragons, then go downstairs and talk to the king to receive the Shark Tooth key item.</label></div>
+<div class="check-item"><input type="checkbox" id="c15"><label for="c15">At the pier, talk to Leena. She asks Serge to fetch three Komodo Scales from Lizard Rock, then wait for her at Opassa Beach.</label></div>
+<div class="note">Optional: Cape Howl, northwest of Arni, has Beach Bum enemies and water jets dealing -5 HP. It contains a Heal element and Bone components only.</div>
+<div class="note">Before leaving, consider swapping any Tablets for a healing element and equipping Poshul with Uplifts.</div>
+<div class="section-header">02) Lizard Rock [Home World]</div>
+<div class="warn-line">Fight as many battles here as possible for small stat increases before facing the area boss. Some battles may give nothing before better ones appear.</div>
+<div class="check-item"><input type="checkbox" id="c16"><label for="c16">In the first screen, push aside the rock blocking the entrance to find a Fireball element. Spook the Komodo Pup into the tunnel and block it with the boulder, then circle around to trap and defeat it for the first Komodo Scale.</label></div>
+<div class="check-item"><input type="checkbox" id="c17"><label for="c17">In the southern screen, destroy the rock near the Beach Bum and push it into the pond to surface a Silver Loupe chest.</label></div>
+<div class="check-item"><input type="checkbox" id="c18"><label for="c18">Defeat the Beach Bum standing on the log, then re-enter the screen where the first Komodo Pup fled. From the higher outlook point, jump down onto it as it passes beneath the cliff to defeat it for the second Komodo Scale.</label></div>
+<div class="check-item"><input type="checkbox" id="c19"><label for="c19">In the third screen, chase down the final Komodo Pup in a circle starting at the bridge. Defeating it summons the area boss.</label></div>
+<div class="warn-line">Don't waste your good elements on the minions leading up to this fight; save them for the boss.</div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Mama Komodo</div>
+  <div class="boss-line"><b>Innate:</b> Blue &nbsp; <b>HP:</b> 160 &nbsp; <b>Spoils:</b> @Fang, Tablet</div>
+  <div class="boss-line"><b>Elements:</b> AquaBeam</div>
+  <div class="boss-line"><b>Specials:</b> Breath (blue-innate damage to all allies); SquirtGun (blue-innate damage to single target)</div>
+  <div class="boss-line"><b>Pattern:</b> Attack to AquaBeam/Attack to SquirtGun to Breath (×??)</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c20"><label for="c20">Defeat Mama Komodo. She uses only blue elements, so a red field effect reduces her damage. Physical attacks, especially fierce ones, are more effective here than elements. Her Breath tech, which always follows SquirtGun, can deal 30+ damage, so keep healing with Tablets. Keep both allies alive through the fight to get the full level-up stat bonus. Reward: 264G and the first level-up star.</label></div>
+<div class="check-item"><input type="checkbox" id="c21"><label for="c21">Collect the Tablet chest under the bridge. Drop through the nearby hole to reach the pond's upper section for a @Bone component, then walk under the northern tunnel for another Ivory Helmet chest.</label></div>
+<div class="check-item"><input type="checkbox" id="c22"><label for="c22">Return to Opassa Beach and watch the scene with Leena.</label></div>
+<div class="choice">
+  <div class="choice-prompt">DIALOGUE CHOICE: Opassa Beach scene with Leena</div>
+  <div class="choice-answer">Answer that Serge does <b>"remember the day"</b>, then follow up with <b>"we'll never forget this day!!"</b>. These responses count toward eventually unlocking Leena's "MaidenFaith" tech.</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c23"><label for="c23">Re-enter Lizard Rock after the scene.</label></div>
+<div class="section-header">03) Lizard Rock [Another World]</div>
+<div class="check-item"><input type="checkbox" id="c24"><label for="c24">Explore the now-altered Lizard Rock. Opah Fish replace the Beach Bums, but the layout is unchanged. Collect the @Feather, @Bone, and Ivory Helmet items scattered through the area.</label></div>
+<div class="note">Optional: Cape Howl: a chest holds an ElectroJolt element, and a @Bone container sits above where the Beach Bums used to be.</div>
+<div class="note">Optional: Hydra Marshes: walking through the water drains 2 HP per step. Collect a Tablet, a Bushwhacker element, and an ElectroJolt element across the screens. A man at the western dead end gives the Safety Gear key item, which removes the marsh's damage.</div>
+<div class="check-item"><input type="checkbox" id="c25"><label for="c25">Head to Arni Village once finished exploring.</label></div>
+
+<div class="section-header">04) Arni Village [Another World]</div>
+<div class="check-item"><input type="checkbox" id="c26"><label for="c26">Visit the shop for new wares, then check the cafe's pot for an IceLance element and the backroom curtain for a Tablet.</label></div>
+<div class="check-item"><input type="checkbox" id="c27"><label for="c27">At the chief's house, find a TurnRed element in the porch bucket and steal a Tablet from behind a painting inside.</label></div>
+<div class="check-item"><input type="checkbox" id="c28"><label for="c28">At Poshul's house, search the teapot for another PhotonRay element.</label></div>
+<div class="check-item"><input type="checkbox" id="c29"><label for="c29">In Serge's house, search his room for a MagmaBomb element. Sleeping here costs 100G in this timeline.</label></div>
+<div class="check-item"><input type="checkbox" id="c30"><label for="c30">Talk to Leena at the pier. She directs Serge to Cape Howl.</label></div>
+
+<div class="disc-header" id="new-game-plus">New Game+</div>
+<div class="note">Content coming in a later pass.</div>
+
+</div><!-- #content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+(function(){
+  const STORE = 'chrono-cross-checklist';
+  const boxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const total = boxes.length;
+
+  function save(){
+    const state = {};
+    boxes.forEach(b => { if(b.checked) state[b.id] = 1; });
+    localStorage.setItem(STORE, JSON.stringify(state));
+  }
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+  }
+
+  function updateProgress(){
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+  }
+
+  function applyDone(){
+    boxes.forEach(b => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+    });
+  }
+
+  const stored = load();
+  boxes.forEach(b => {
+    if(stored[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      save();
+      updateProgress();
+    });
+    b.closest('.check-item').addEventListener('click', function(e){
+      if(e.target === b || e.target.tagName === 'LABEL') return;
+      b.checked = !b.checked;
+      b.dispatchEvent(new Event('change'));
+    });
+  });
+
+  applyDone();
+  updateProgress();
+
+  document.getElementById('toggle-done').addEventListener('click', function(){
+    document.body.classList.toggle('hide-done');
+    this.textContent = document.body.classList.contains('hide-done') ? 'Show Completed' : 'Hide Completed';
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    if(!confirm('Reset all checkboxes?')) return;
+    boxes.forEach(b => { b.checked = false; });
+    applyDone();
+    save();
+    updateProgress();
+  });
+
+  document.getElementById('savemenu-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    const menu = document.getElementById('savemenu');
+    const rect = this.getBoundingClientRect();
+    if(menu.style.display === 'block'){
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'block';
+      menu.style.top = (rect.bottom + 4) + 'px';
+      menu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function(){
+    document.getElementById('savemenu').style.display = 'none';
+  });
+
+  document.getElementById('export-btn').addEventListener('click', function(){
+    const data = { [STORE]: localStorage.getItem(STORE) || '{}' };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = STORE + '-backup.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function(){
+    document.getElementById('import-file').click();
+  });
+
+  document.getElementById('import-file').addEventListener('change', function(){
+    const file = this.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try {
+        const data = JSON.parse(e.target.result);
+        if(data[STORE]) localStorage.setItem(STORE, data[STORE]);
+        const stored = load();
+        boxes.forEach(b => { b.checked = !!stored[b.id]; });
+        applyDone();
+        updateProgress();
+        alert('Save imported successfully.');
+      } catch(err) {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+    this.value = '';
+  });
+
+  window.addEventListener('scroll', function(){
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+})();
+</script>
+</body>
+</html>
