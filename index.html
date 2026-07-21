@@ -275,6 +275,32 @@
     </div>
   </div>
 
+  <!-- ═══════ C ═══════ -->
+  <div class="game-group" id="group-chrono-cross">
+    <div class="game-header" onclick="toggleGroup('group-chrono-cross')">
+      <img class="game-cover" src="chrono-cross/cover.webp" alt="Chrono Cross">
+      <div class="game-meta">
+        <div class="game-title">Chrono Cross (Work in Progress)</div>
+        <div class="game-platform">PlayStation 1 · 2000</div>
+      </div>
+      <span class="game-toggle">▾</span>
+    </div>
+    <div class="game-guides">
+
+      <a class="guide-card" href="chrono-cross/walkthrough-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Walkthrough Checklist</div>
+          <div class="card-summary" id="sum-chrono-cross">Step-by-step walkthrough covering the full main story from the opening Dream Sequence through the final battle, including boss strategies, key dialogue choices, and New Game+ content.</div>
+          <button class="show-more" id="btn-chrono-cross" onclick="toggleSummary(event, 'sum-chrono-cross', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-chrono-cross" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-chrono-cross">Not started</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+
+    </div>
+  </div>
+
   <!-- ═══════ F ═══════ -->
   <div class="game-group" id="group-ff4">
     <div class="game-header" onclick="toggleGroup('group-ff4')">
@@ -460,6 +486,7 @@
 
   loadProgress('breath-of-fire-checklist', 'prog-bof1', 'prog-label-bof1');
   loadProgress('bof3-checklist', 'prog-bof3', 'prog-label-bof3');
+  loadProgress('chrono-cross-checklist', 'prog-chrono-cross', 'prog-label-chrono-cross');
   loadProgress('ff4-advance-bestiary', 'prog-ff4-advance', 'prog-label-ff4-advance');
   loadProgress('ff4-walkthrough-checklist', 'prog-ff4-walkthrough', 'prog-label-ff4-walkthrough');
   loadProgress('persona-4-golden-checklist', 'prog-persona-4-golden', 'prog-label-persona-4-golden');
