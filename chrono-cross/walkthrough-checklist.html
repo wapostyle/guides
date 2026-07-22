@@ -59,10 +59,16 @@
   .boss-ref .boss-name { color: var(--h2-color); font-weight: 700; font-size: 13.5px; margin-bottom: 4px; }
   .boss-ref .boss-line { color: var(--text); margin: 2px 0; }
   .boss-ref .boss-line b { color: var(--muted); font-weight: 600; }
+  .boss-ref .boss-table { display: grid; grid-template-columns: max-content max-content max-content 1fr; column-gap: 16px; row-gap: 3px; margin-top: 4px; }
+  .boss-ref .boss-table span { color: var(--text); }
+  .boss-ref .boss-table .b-name { color: var(--h2-color); font-weight: 700; }
+  .boss-ref .boss-table b { color: var(--muted); font-weight: 600; }
   .choice { background: var(--bg2); border-left: 3px solid var(--choice-color); border-radius: 3px; padding: 8px 12px; margin: 6px 4px 6px 4px; font-size: 13px; }
   .choice .choice-prompt { color: var(--choice-color); font-weight: 700; font-size: 13px; margin-bottom: 4px; }
   .choice .choice-answer { color: var(--text); margin: 2px 0; }
   .choice .choice-answer b { color: var(--check-checked); }
+  .choice .choice-answer .choice-reco { color: var(--choice-color); font-weight: 600; }
+  .info-block { background: var(--bg2); border-left: 3px solid var(--h1-color); border-radius: 3px; padding: 10px 14px; margin: 8px 4px 14px 4px; font-size: 13px; color: var(--text); font-style: normal; }
   #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
   #scroll-top:hover { opacity: 1 !important; }
 </style>
@@ -98,6 +104,8 @@
 
 <div class="disc-header" id="new-game">New Game</div>
 
+<div class="info-block">Chrono Cross uses a unique stat-growth system instead of traditional experience points. Regular battles grant small stat increases, but only up to a cap; once battles stop giving gains, you've hit it. Larger, permanent stat boosts come only from defeating specific "boss" fights, each of which awards a numbered level-up star (tracked throughout this guide). All active party members must survive a boss fight to get its full stat bonus. Characters sitting outside the active party miss out on stat gains entirely until the Tele-Porter key item allows swapping them in.</div>
+
 <div class="section-header">00) Dream Sequence</div>
 <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Name your lead character (anything except Crono) to begin the dream sequence in a large draconic palace. Kid and one randomized character accompany you.</label></div>
 <div class="check-item"><input type="checkbox" id="c2"><label for="c2">At the fork, head SW to a glowing blue exit. Touching a Cybot or Alphabat starts a battle, though no XP or items are gained here, so engage or avoid freely.</label></div>
@@ -130,12 +138,10 @@
 <div class="warn-line">Don't waste your good elements on the minions leading up to this fight; save them for the boss.</div>
 <div class="boss-ref">
   <div class="boss-name">BOSS: Mama Komodo</div>
-  <div class="boss-line"><b>Innate:</b> Blue &nbsp; <b>HP:</b> 160 &nbsp; <b>Spoils:</b> @Fang, Tablet</div>
-  <div class="boss-line"><b>Elements:</b> AquaBeam</div>
-  <div class="boss-line"><b>Specials:</b> Breath (blue-innate damage to all allies); SquirtGun (blue-innate damage to single target)</div>
-  <div class="boss-line"><b>Pattern:</b> Attack to AquaBeam/Attack to SquirtGun to Breath (×??)</div>
+  <div class="boss-line"><b>Innate:</b> Blue &nbsp; <b>Weakness:</b> Red &nbsp; <b>HP:</b> 160 &nbsp; <b>Spoils:</b> @Fang, Tablet</div>
+  <div class="boss-line"><b>Star:</b> 1st</div>
 </div>
-<div class="check-item"><input type="checkbox" id="c20"><label for="c20">Defeat Mama Komodo. She uses only blue elements, so a red field effect reduces her damage. Physical attacks, especially fierce ones, are more effective here than elements. Her Breath tech, which always follows SquirtGun, can deal 30+ damage, so keep healing with Tablets. Keep both allies alive through the fight to get the full level-up stat bonus. Reward: 264G and the first level-up star.</label></div>
+<div class="check-item"><input type="checkbox" id="c20"><label for="c20">Defeat Mama Komodo. She uses only blue elements, so a red field effect reduces her damage. Physical attacks, especially fierce ones, are more effective here than elements. Her Breath tech, which always follows SquirtGun, can deal 30+ damage, so keep healing with Tablets. Keep active party members alive through the fight to get the full level-up stat bonus. Reward: 264G.</label></div>
 <div class="check-item"><input type="checkbox" id="c21"><label for="c21">Collect the Tablet chest under the bridge. Drop through the nearby hole to reach the pond's upper section for a @Bone component, then walk under the northern tunnel for another Ivory Helmet chest.</label></div>
 <div class="check-item"><input type="checkbox" id="c22"><label for="c22">Return to Opassa Beach and watch the scene with Leena.</label></div>
 <div class="choice">
@@ -156,8 +162,163 @@
 <div class="check-item"><input type="checkbox" id="c29"><label for="c29">In Serge's house, search his room for a MagmaBomb element. Sleeping here costs 100G in this timeline.</label></div>
 <div class="check-item"><input type="checkbox" id="c30"><label for="c30">Talk to Leena at the pier. She directs Serge to Cape Howl.</label></div>
 
+<div class="section-header">05) Cape Howl [Another World]</div>
+<div class="warn-line">Fight regular battles here to get extra stat gains.</div>
+<div class="check-item"><input type="checkbox" id="c31"><label for="c31">Open the two chests here for an ElectroJolt element and a @Bone bounty, then head north to the cliff outlook and read the headstone.</label></div>
+<div class="check-item"><input type="checkbox" id="c32"><label for="c32">A knight kicks Poshul over the bluff and starts a fight with his cronies. A new ally called "Girl" teams up with Serge for this battle.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Solt, Karsh &amp; Peppor</div>
+  <div class="boss-table">
+    <span class="b-name">Solt</span><span><b>Innate</b> Yellow</span><span><b>HP</b> 52</span><span><b>Spoils</b> Ivory Vest &rarr; @Copper</span>
+    <span class="b-name">Karsh</span><span><b>Innate</b> Green</span><span><b>HP</b> 115</span><span><b>Spoils</b> Bone Axe &rarr; Power Glove</span>
+    <span class="b-name">Peppor</span><span><b>Innate</b> Yellow</span><span><b>HP</b> 60</span><span><b>Spoils</b> Ivory Helmet &rarr; @Copper</span>
+  </div>
+  <div class="boss-line"><b>Star:</b> 2nd</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c33"><label for="c33">Defeat Solt, Karsh, and Peppor. Keep active party members alive through the fight to get the full level-up stat gains. Reward: 300G.</label></div>
+<div class="item-ref"><b>"Girl"</b> (Innate: Red): revealed to be named Kid after the fight.</div>
+<div class="choice">
+  <div class="choice-prompt">RECRUITMENT CHOICE: Invite Kid?</div>
+  <div class="choice-answer">Accepting Kid permanently forfeits recruiting Leena later; refusing three times keeps Kid out for now and lets Leena join automatically instead. Only one of the two can be recruited in a single normal playthrough.</div>
+  <div class="choice-answer"><b>Recommended:</b> <span class="choice-reco">Invite Kid</span>. She grants the Tele-Porter key item, which allows switching characters at a save point or on the world map, a major convenience for a first playthrough. Future steps in this guide assume you have chosen Kid.</div>
+</div>
+<div class="item-ref"><b>Kid</b> (Innate: Red): if invited, Serge receives the Tele-Porter key item, which allows switching characters at a save point or on the world map.</div>
+<div class="item-ref"><b>Leena</b> (Innate: Blue): joins automatically if Kid is refused.</div>
+<div class="item-ref"><b>Poshul</b> (Innate: Yellow): rejoins the party here automatically if she wasn't recruited earlier in Home World Arni.</div>
+<div class="check-item"><input type="checkbox" id="c34"><label for="c34">If Leena is in the party and the Shark Tooth key item was obtained earlier in Home World Arni, talk to the fisherman (now a voodoo-doll worshipper) and show him the Shark Tooth. Mojo joins automatically as you try to leave.</label></div>
+<div class="item-ref"><b>Mojo</b> (Innate: Black): requires Leena in the party and the Shark Tooth key item. Not obtainable if following this guide's recommended Kid path, since Leena won't be in the party.</div>
+<div class="check-item"><input type="checkbox" id="c35"><label for="c35">Head north through Fossil Valley to reach Termina.</label></div>
+
+<div class="section-header">06) Fossil Valley [Another World]</div>
+<div class="check-item"><input type="checkbox" id="c36"><label for="c36">Talk to the soldier guarding the ladder and bluff your way past him by saying you're the exorcists they're looking for.</label></div>
+<div class="check-item"><input type="checkbox" id="c37"><label for="c37">Agree to help Skelly, a talking skull, to receive the Heavy Skull key item. He can rejoin the party later once all his missing pieces are found.</label></div>
+<div class="warn-line">Don't use elements on any Dodos near the Bellflower; it sends them into a frenzy with a hard-hitting tech that can potentially defeat anyone not defending.</div>
+<div class="check-item"><input type="checkbox" id="c38"><label for="c38">Grab the Bellflower key item on the cliff, guarded by a harmless plant monster.</label></div>
+<div class="check-item"><input type="checkbox" id="c39"><label for="c39">Climb down the vertebrae ladder near the soldier, ignoring his warning, to reach the Big Egg key item guarded by a mother Dodo. A character can be hatched from it later.</label></div>
+<div class="check-item"><input type="checkbox" id="c40"><label for="c40">Return to the lowroad and continue forward. Solt and Peppor block the path and start a fight.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Solt &amp; Peppor</div>
+  <div class="boss-table">
+    <span class="b-name">Solt</span><span><b>Innate</b> Yellow</span><span><b>HP</b> 80</span><span><b>Spoils</b> Ivory Vest &rarr; @Copper</span>
+    <span class="b-name">Peppor</span><span><b>Innate</b> Yellow</span><span><b>HP</b> 90</span><span><b>Spoils</b> Uplift &rarr; @Copper</span>
+  </div>
+  <div class="boss-line"><b>Star:</b> 3rd</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c41"><label for="c41">Defeat Solt and Peppor. Peppor only attacks once Solt is defeated, so focus Solt first for an easy win.</label></div>
+<div class="note">Serge, Kid, and Poshul each gain their first tech in a permanent Lv. 3 element grid slot after this fight. Kid's is the "Pilfer" ability, allowing theft from enemies.</div>
+<div class="check-item"><input type="checkbox" id="c42"><label for="c42">Exit to the world map and travel to Termina. Other locations aren't accessible yet.</label></div>
+
+<div class="section-header">07) Termina [Another World]</div>
+<div class="note">If Kid wasn't invited at Cape Howl, she's waiting here for another chance to join; if she leaves before you can talk to her, speaking with the person polishing the General Viper statue brings her back.</div>
+<div class="check-item"><input type="checkbox" id="c43"><label for="c43">Talk to the man hidden in the shade of the house left of the General Viper statue. Answer yes when he asks if you "get his drift" to receive the Tea for Three Frame.</label></div>
+<div class="check-item"><input type="checkbox" id="c44"><label for="c44">In Van's house, search beneath the foyer's stairway for a hidden chest containing the Profiteer Purse.</label></div>
+<div class="note">The Profiteer Purse boosts gold gained by roughly 123%, but disassembling it instead yields 3 @Copper and an @Iron, enough to craft Iron Mail and an Iron Swallow before entering Viper Manor.</div>
+<div class="warn-line">Party members cannot be swapped once inside Viper Manor, so choose your party carefully before entering.</div>
+<div class="choice">
+  <div class="choice-prompt">GUIDE CHOICE: Nikki, Guile, or Pierre?</div>
+  <div class="choice-answer">A guide is needed to reach Viper Manor. Only one of the three can be obtained; whichever is picked, the other two cannot be recruited in the same playthrough, and each leads through a different path with its own boss fights.</div>
+  <div class="choice-answer"><b>Recommended:</b> <span class="choice-reco">Choose Guile</span>. He's a functional black-innate character, and unlike Pierre's route, this path allows leveling up between boss fights. Future steps in this guide assume Guile's route was chosen.</div>
+</div>
+<div class="item-ref"><b>Guile</b> (Innate: Black): found at the Termina Bar and joins automatically, no requirements.</div>
+<div class="check-item"><input type="checkbox" id="c45"><label for="c45">At the bridge east of the element shop, talk to Korcha, then follow him down to the shrines.</label></div>
+<div class="check-item"><input type="checkbox" id="c46"><label for="c46">Watch the scene with Glenn and Riddel at the shrines. Give them the Bellflower key item from Fossil Valley if you have it.</label></div>
+<div class="check-item"><input type="checkbox" id="c47"><label for="c47">With Guile in the party, return to Korcha at the shrines and pay the 100G fee to travel to the bluffs.</label></div>
+<div class="check-item"><input type="checkbox" id="c48"><label for="c48">Head east across the stepping stones near Korcha's boat and climb up into the next screen.</label></div>
+<div class="check-item"><input type="checkbox" id="c49"><label for="c49">Along the cliff to the west, time your climb around the waterjet to reach a Heal element atop a ladder. A PhotonRay chest is also reachable if the jet knocks you back.</label></div>
+<div class="check-item"><input type="checkbox" id="c50"><label for="c50">Take the ladder by the dock, then use another waterjet to reach a Tablet on the small ledge below it.</label></div>
+<div class="check-item"><input type="checkbox" id="c51"><label for="c51">At the three-path junction past the Tablet, take the middle path. The left path leads to a Meteorite chest; the right is a dead end.</label></div>
+<div class="check-item"><input type="checkbox" id="c52"><label for="c52">In the next screen, take the first left up a long ladder to find the FreeFall Trap element, watching for falling rocks.</label></div>
+<div class="check-item"><input type="checkbox" id="c53"><label for="c53">Descend and take the right-hand ladder to reach the top, where an Acacia soldier throwing rocks blocks the way.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Acacia PVT</div>
+  <div class="boss-line"><b>Innate:</b> Yellow &nbsp; <b>HP:</b> 70 &nbsp; <b>Spoils:</b> Tablet, PhotonRay</div>
+  <div class="boss-line"><b>Star:</b> 4th</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c54"><label for="c54">Defeat the Acacia PVT. Reward: 320G.</label></div>
+<div class="check-item"><input type="checkbox" id="c55"><label for="c55">Immediately after, a trio of giant eagle-people block the way into the mansion.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: KingMoaman, RedMoaman &amp; BlueMoaman</div>
+  <div class="boss-table">
+    <span class="b-name">KingMoaman</span><span><b>Innate</b> Black</span><span><b>HP</b> 245</span><span><b>Spoils</b> GravityBlow, Power Glove</span>
+    <span class="b-name">RedMoaman</span><span><b>Innate</b> Red</span><span><b>HP</b> 145</span><span><b>Spoils</b> @Feather, FirePillar</span>
+    <span class="b-name">BlueMoaman</span><span><b>Innate</b> Blue</span><span><b>HP</b> 145</span><span><b>Spoils</b> @Feather, IceBlast</span>
+  </div>
+  <div class="boss-line"><b>Star:</b> 5th</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c56"><label for="c56">Defeat the Moaman trio. Focus Red and Blue Moaman first to stop King Moaman's TwinTurbo attack, which only triggers while both are alive.</label></div>
+<div class="check-item"><input type="checkbox" id="c57"><label for="c57">The party waits until nightfall before entering the manor. This ends Guile's Route; all three guide paths converge from here.</label></div>
+
+<div class="section-header">08) Viper Manor [Another World]</div>
+<div class="check-item"><input type="checkbox" id="c58"><label for="c58">From the starting point, climb up the cliffs and grab the TurnBlue element from the shaded cliff building.</label></div>
+<div class="check-item"><input type="checkbox" id="c59"><label for="c59">Head north to the barn, avoiding the spotlights. Talk to the dragon handler and pose as a new trainer to begin the dragon-feeding minigame.</label></div>
+<div class="item-ref"><b>Dragon Feeding minigame</b>: feeding 10 times is the minimum needed to proceed and unlocks the Manor Key. Higher tallies unlock better prizes (20: Bronze Helmet, 30: Bronze Mail, 40: RecoverAll element, 100: Iron Vest) and can be repeated as many times as desired.</div>
+<div class="check-item"><input type="checkbox" id="c60"><label for="c60">Claim the Manor Key from the NE cabinet after feeding the dragons at least 10 times.</label></div>
+<div class="check-item"><input type="checkbox" id="c61"><label for="c61">Head to the mansion's east gate (Pierre's entrance) and grab the TurnYellow element from the hidden chest behind it.</label></div>
+<div class="check-item"><input type="checkbox" id="c62"><label for="c62">Defeat the SGTs guarding the mansion's main entrance, then use the Manor Key to enter.</label></div>
+<div class="warn-line">Party members cannot be changed once you fall through the trapdoor inside.</div>
+<div class="check-item"><input type="checkbox" id="c63"><label for="c63">In the foyer, inspect the coiled-snake statue and enter a random rotation number to fall through the floor into the basement.</label></div>
+<div class="check-item"><input type="checkbox" id="c64"><label for="c64">Defeat the soldiers that ambush the party after landing to claim their knight outfits. Poshul cannot wear hers.</label></div>
+<div class="check-item"><input type="checkbox" id="c65"><label for="c65">In the jail area, inspect the treasure chest to fight a monster duo. Attacking the correct one wins 100G and an AeroSaucer element; you can flee and retry if you guess wrong.</label></div>
+<div class="warn-line">Avoid walking on the red carpet nearby; it triggers a battle with patrol enemies that isn't worth fighting.</div>
+<div class="check-item"><input type="checkbox" id="c66"><label for="c66">In the dining hall, talk to Glenn (or eavesdrop) to learn about a password. Grab the Dragoon's Honor chest in the corner and a TurnGreen element in the cabinet near Orcha, then follow Glenn out.</label></div>
+<div class="item-ref"><b>Optional: Guile's Bet</b>: picking up the Dragoon's Honor pays off with a reward later, as part of a bet Guile made with Termina's fortune-teller.</div>
+<div class="check-item"><input type="checkbox" id="c67"><label for="c67">Follow Glenn to the barracks quickly to catch him writing the foyer's password on the wall. The password is randomized each playthrough; the writing remains on the wall if you're too slow to catch him in the act.</label></div>
+<div class="check-item"><input type="checkbox" id="c68"><label for="c68">Grab the Revive element in the barracks before heading upstairs via the staircase near the quarters.</label></div>
+<div class="check-item"><input type="checkbox" id="c69"><label for="c69">In one of the upstairs rooms, open the chest for a TurnBlack element and fight the boxer duo for a chance at 100G and an IceLance element.</label></div>
+<div class="check-item"><input type="checkbox" id="c70"><label for="c70">Head to the opposite basement section. Talk to the guards twice; when asked for a password, select nothing until "silence" is revealed as the correct answer.</label></div>
+<div class="note">If Kid wasn't recruited earlier, she's found here in the vault instead.</div>
+<div class="check-item"><input type="checkbox" id="c71"><label for="c71">In the vault, collect the Bronze Sword, Bronze Mail, and the Hero's Shield key item (usable only with Pierre). Fight the chest's Big Boxer/Li'l Boxer duo for a chance at 100G and an IceLance element; you can flee and retry.</label></div>
+<div class="check-item"><input type="checkbox" id="c72"><label for="c72">Inspect the vase to fight and defeat "Potty" for a TurnRed element.</label></div>
+<div class="check-item"><input type="checkbox" id="c73"><label for="c73">Take the Silver Pendant from the wall. This sends the party into Luccia's lab and triggers a boss fight.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Neo-N-Bulb (&times;2)</div>
+  <div class="boss-line"><b>Innate:</b> Green &nbsp; <b>HP:</b> 160 &nbsp; <b>Spoils:</b> AeroSaucer, EagleEye</div>
+  <div class="boss-line"><b>Star:</b> 6th</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c74"><label for="c74">Defeat both Neo-N-Bulbs. Reward: 400G.</label></div>
+<div class="check-item"><input type="checkbox" id="c75"><label for="c75">Talk to the caged monster Pip in the corner and unlock his cage. He can't join now, but remembers the favor for later.</label></div>
+<div class="check-item"><input type="checkbox" id="c76"><label for="c76">Sneak past the portalgheist (when its eye is closed) into the storage room. Take the Decor Shield and equip it on the incomplete armor set, plus grab the Bronze Helmet.</label></div>
+<div class="note">Man-O-War enemies here (&times;5) drop Capsules, useful since there's no free healing anywhere in the manor.</div>
+<div class="check-item"><input type="checkbox" id="c77"><label for="c77">In Karsh's chambers, through the other portalgheist-guarded door, inspect the chest 20 times to exhaust his patience and receive the Dragoon Gauntlet.</label></div>
+<div class="check-item"><input type="checkbox" id="c78"><label for="c78">Return to the main lobby and input the password learned from Glenn to head north.</label></div>
+<div class="check-item"><input type="checkbox" id="c79"><label for="c79">Take the only open exit (left) from the large hall, cross the outdoor catwalk, and enter the library tower. Talk to the girl inside to trigger a scene and a boss fight.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Marcy</div>
+  <div class="boss-line"><b>Innate:</b> Blue &nbsp; <b>HP:</b> 525 &nbsp; <b>Spoils:</b> IceBlast, @Iron</div>
+  <div class="boss-line"><b>Star:</b> 7th</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c80"><label for="c80">Defeat Marcy. Reward: 780G.</label></div>
+<div class="check-item"><input type="checkbox" id="c81"><label for="c81">Two screens back in the large hall, find a switch behind the second-from-last pillar on the left side.</label></div>
+<div class="check-item"><input type="checkbox" id="c82"><label for="c82">Use the bookshelf ladder-dropping switch to reach the third floor and grab the TurnWhite element.</label></div>
+<div class="check-item"><input type="checkbox" id="c83"><label for="c83">Return to the main hall, meet Harle, press the button, and defeat the SGT/PVTs that attack to clear the way upward.</label></div>
+<div class="check-item"><input type="checkbox" id="c84"><label for="c84">Save the game, then head through the door the blue carpet leads to. Inspect the glowing blue orb after exploring the office to trigger a boss fight.</label></div>
+<div class="boss-ref">
+  <div class="boss-name">BOSS: Lynx</div>
+  <div class="boss-line"><b>Innate:</b> Black &nbsp; <b>HP:</b> 820 &nbsp; <b>Spoils:</b> Pendragon Sigil C, Gravitonne</div>
+  <div class="boss-line"><b>Star:</b> 8th</div>
+</div>
+<div class="check-item"><input type="checkbox" id="c85"><label for="c85">Defeat Lynx. Reward: 500G.</label></div>
+<div class="warn-line">Remove any elements equipped on Kid before continuing; she won't be available again for a while.</div>
+<div class="check-item"><input type="checkbox" id="c86"><label for="c86">Watch the scenes and save if desired before continuing to Guldove.</label></div>
+
+<div class="section-header">09) Guldove [Another World]</div>
+<div class="check-item"><input type="checkbox" id="c87"><label for="c87">When Serge awakens, check outside to find the allies talking with Korcha. Kid falls ill and is admitted to the town clinic, giving Serge her Astral Amulet to hold onto.</label></div>
+<div class="choice">
+  <div class="choice-prompt">STORY CHOICE: Try to save Kid?</div>
+  <div class="choice-answer">Choosing "Find a way to save her" recruits Korcha, Mel, and Razzly, and keeps Kid's absence from the party relatively short. Choosing "...I don't know" or "...There's nothing we can do" recruits Doc, Macha, and Glenn instead, and delays Kid rejoining the party until very late in the game.</div>
+  <div class="choice-answer"><b>Recommended:</b> <span class="choice-reco">Find a way to save her</span>. Future steps in this guide assume Kid was saved.</div>
+</div>
+<div class="item-ref"><b>Pelvic Bone</b> (either path): obtained from the element trader by the town dock by choosing "Trade," then agreeing to dispose of a bone she wants gone.</div>
+<div class="item-ref"><b>Green Tinkler</b> (either path): after talking with the shaman, go into the bar and talk to the drunken dwarf twice. It's used to control plants at Hydra Marshes later.</div>
+<div class="item-ref"><b>Feathery Dress</b> (either path): found behind Macha's house through a hidden entrance, reached by going around the blind spot on the tower's midlevel walkway.</div>
+<div class="check-item"><input type="checkbox" id="c88"><label for="c88">Talk to the doctor, who suggests consulting the village shaman. The shaman's tower is past the bar and up the ladder to the left.</label></div>
+<div class="check-item"><input type="checkbox" id="c89"><label for="c89">Talk to Shaman Direa and Steena to learn about seeking the hydra humour back in Serge's original world, which requires a dimensional distortion ritual, "Angelus Errare."</label></div>
+<div class="check-item"><input type="checkbox" id="c90"><label for="c90">Collect the items listed above around town, then Korcha will escort everyone out of town at the dock.</label></div>
+<div class="note">Whichever path is taken, the next stop is Termina.</div>
+
 <div class="disc-header" id="new-game-plus">New Game+</div>
 <div class="note">Content coming in a later pass.</div>
+
 
 </div><!-- #content -->
 
