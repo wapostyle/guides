@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xenogears – Walkthrough Checklist</title>
+<style>
+  :root {
+    --bg:        #1a1a1a;
+    --bg2:       #242424;
+    --bg3:       #2e2e2e;
+    --border:    #3a3a3a;
+    --text:      #e0e0e0;
+    --muted:     #888;
+    --h1-color:  #7eb8e8;
+    --h2-color:  #a8d0f0;
+    --ach-color: #6fbf8e;
+    --warn-color:#e8b84a;
+    --note-color:#999;
+    --done-text: #555;
+    --check-border: #666;
+    --check-checked: #5a9e6f;
+    --ext-color: #777;
+    --choice-color: #8ec9e8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+  #site-header { background: #111; border-bottom: 1px solid var(--border); padding: 14px 20px; position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; overflow: hidden; height: 54px; }
+  #site-header h1 { font-size: 18px; font-weight: 700; color: var(--h1-color); letter-spacing: 0.03em; }
+  #site-header h1 a { color: inherit; text-decoration: none; }
+  #site-header h1 a:hover { text-decoration: underline; }
+  .header-controls { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+  .btn { background: var(--bg3); border: 1px solid var(--border); color: var(--text); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 13px; transition: background 0.15s; }
+  .btn:hover { background: #3a3a3a; }
+  .progress-wrap { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  #toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; gap: 6px; flex-wrap: wrap; position: sticky; top: 54px; z-index: 99; }
+  #toc a { color: var(--h1-color); text-decoration: none; font-size: 13px; padding: 3px 8px; border-radius: 3px; border: 1px solid var(--border); transition: background 0.15s; }
+  #toc a:hover { background: var(--bg3); }
+  #toc-kofi { margin-left: auto; }
+  #content { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  .disc-header { font-size: 22px; font-weight: 700; color: var(--h1-color); margin: 36px 0 12px; padding: 8px 10px; border-bottom: 2px solid var(--border); background: var(--bg); scroll-margin-top: 108px; }
+  .disc-header:first-child { margin-top: 0; }
+  .section-header { font-size: 14px; font-weight: 700; color: var(--h2-color); margin: 20px 0 6px; padding: 4px 10px; }
+  .ach { color: var(--ach-color); font-size: 12.5px; padding: 2px 0 2px 4px; margin: 2px 0; cursor: pointer; border-left: 2px solid transparent; border-radius: 3px; }
+  .ach:hover { background: var(--bg2); border-left-color: var(--ach-color); }
+  .ach.ach-done { color: var(--done-text); text-decoration: line-through; border-left-color: var(--check-checked); }
+  body.hide-done .ach.ach-done { display: none; }
+  .ext { color: var(--ext-color); font-size: 12px; font-style: italic; padding: 2px 0 2px 4px; margin: 2px 0; }
+  .warn-line { color: var(--warn-color); font-weight: 600; font-size: 13px; padding: 3px 0 3px 4px; margin: 3px 0; }
+  .warn-line::before { content: '⚠ '; }
+  .note { color: var(--note-color); font-size: 12.5px; font-style: italic; padding: 2px 0 2px 24px; margin: 2px 0; border-left: 2px solid var(--border); margin-left: 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 3px 4px 3px 6px; border-radius: 3px; margin: 2px 0; cursor: pointer; transition: background 0.1s, border-left-color 0.15s; border-left: 2px solid transparent; }
+  .check-item:hover { background: var(--bg2); border-left-color: var(--h1-color); }
+  .check-item.done { border-left-color: var(--check-checked); }
+  .check-item input[type="checkbox"] { appearance: none; -webkit-appearance: none; width: 15px; height: 15px; min-width: 15px; border: 1.5px solid var(--check-border); border-radius: 3px; background: transparent; cursor: pointer; margin-top: 2px; transition: background 0.2s, border-color 0.2s, transform 0.15s; position: relative; }
+  .check-item input[type="checkbox"]:checked { background: var(--check-checked); border-color: var(--check-checked); transform: scale(1.15); }
+  .check-item input[type="checkbox"]:checked::after { content: ''; position: absolute; left: 3px; top: 0px; width: 5px; height: 9px; border: 2px solid #fff; border-top: none; border-left: none; transform: rotate(45deg); }
+  .check-item label { cursor: pointer; flex: 1; line-height: 1.45; font-size: 13.5px; transition: color 0.2s; }
+  .check-item.done label { color: var(--done-text); text-decoration: line-through; }
+  body.hide-done .check-item.done { display: none; }
+  .item-ref { font-size: 13px; padding: 3px 0 3px 4px; margin: 2px 0; color: var(--text); }
+  .item-ref b { color: var(--h2-color); }
+  .choice { background: var(--bg2); border-left: 3px solid var(--choice-color); border-radius: 3px; padding: 8px 12px; margin: 6px 4px 6px 4px; font-size: 13px; }
+  .choice .choice-prompt { color: var(--choice-color); font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .choice .choice-answer { color: var(--text); margin: 2px 0; }
+  .choice .choice-answer b { color: var(--check-checked); }
+  #scroll-top { position: fixed; bottom: 20px; right: 20px; background: var(--bg3); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; }
+  #scroll-top:hover { opacity: 1 !important; }
+</style>
+</head>
+<body>
+
+<div id="site-header">
+  <div id="progress-bar" style="position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);">
+    <div id="progress-bar-fill" style="height:100%;width:0%;background:var(--check-checked);transition:width 0.3s;"></div>
+  </div>
+  <h1><a href="../index.html">← Wapo's Game Guides</a> <span style="color:var(--muted);font-weight:400;font-size:14px;">/ Xenogears Walkthrough</span></h1>
+  <div class="header-controls">
+    <span class="progress-wrap" id="progress-display">0 / 0 completed</span>
+    <button class="btn" id="toggle-done">Hide Completed</button>
+    <button class="btn" id="reset-btn">Reset All</button>
+    <div style="position:relative;display:inline-block;">
+      <button class="btn" id="savemenu-btn">Import/Export Progress</button>
+    </div>
+    <input type="file" id="import-file" accept=".json" style="display:none;">
+  </div>
+</div>
+<div id="savemenu" style="display:none;position:fixed;background:var(--bg3);border:1px solid var(--border);border-radius:4px;min-width:140px;z-index:1000;">
+  <div id="export-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Export</div>
+  <div id="import-btn" style="padding:8px 14px;cursor:pointer;font-size:13px;" onmouseover="this.style.background='var(--border)'" onmouseout="this.style.background=''">Import</div>
+</div>
+
+<div id="toc">
+  <a href="https://guides.cookseyonline.com/xenogears/walkthrough-checklist#lahan">Lahan</a>
+  <a id="toc-kofi" href="https://ko-fi.com/wapostyle" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+</div>
+
+<div id="content">
+
+<!-- ═══════════════════════════════════════════ LAHAN -->
+<div class="disc-header" id="lahan">Lahan</div>
+
+<div class="section-header">Lahan Village</div>
+<div class="warn-line">The Mermaid Tear and RPS Badge are unique trade items with no second chance. The RPS Badge is only available until you meet Citan at his mountaintop house.</div>
+<div class="check-item"><input type="checkbox" id="c1"><label for="c1">Go upstairs and try to leave the chieftain's house. Dan wants to talk; meet him near the town tavern. Your answer to him does not matter.</label></div>
+<div class="check-item"><input type="checkbox" id="c2"><label for="c2">Enter Alice's house and talk to her upstairs. She needs Doctor Uzuki's camera equipment for the coming day.</label></div>
+<div class="check-item"><input type="checkbox" id="c3"><label for="c3">In the bar, talk to the sulky man to receive the Mermaid Tear.</label></div>
+<div class="choice">
+  <div class="choice-prompt">DIALOGUE CHOICE: Sulky man in the bar</div>
+  <div class="choice-answer">"Drinking won't help matters"</div>
+</div>
+<div class="note">Traded much later at the Snowfield Hideout, after Emeralda becomes an adult, for the Mermaid Ring (Emeralda only).</div>
+<div class="check-item"><input type="checkbox" id="c4"><label for="c4">In the southeast house, beat the man at Rock-Paper-Scissors 5 times in a row, without leaving the house or losing, to win the RPS Badge.</label></div>
+<div class="note">One of three badges. Trade all three to the old Chu-Chu in Shevat for a Charger A and a Power Ring S.</div>
+<div class="check-item"><input type="checkbox" id="c5"><label for="c5">Leave town via the exit to the Mountain Path.</label></div>
+
+<div class="section-header">Mountain Path</div>
+<div class="check-item"><input type="checkbox" id="c6"><label for="c6">Near the northern exit, shake the tree west of the exit signpost to get the Spider.</label></div>
+<div class="note">Give it to Chu-Chu during Road to Nisan for an Etherveiler.</div>
+<div class="check-item"><input type="checkbox" id="c7"><label for="c7">Follow the path to Citan's House. One of the two jump spots is mandatory: one takes a standing jump, the other a running jump. The NPC in the area explains how.</label></div>
+
+<div class="section-header">Citan's House</div>
+<div class="check-item"><input type="checkbox" id="c8"><label for="c8">Talk to Yui inside the house to learn Citan is working in the backyard shed.</label></div>
+<div class="check-item"><input type="checkbox" id="c9"><label for="c9">Go back down the slope and take the Bird Egg from the tree on the small ledge northwest of the Mountain Path save point.</label></div>
+<div class="note">Timing matters: take it any sooner and the egg gets cooked; any later and it disappears. The mother bird deals 1 damage every few seconds until you return to Citan's House.</div>
+<div class="check-item"><input type="checkbox" id="c10"><label for="c10">Jump behind the house's external flowerbed to find Midori's Ring.</label></div>
+<div class="note">Trade it to Midori in the final chapter (First and Last) for a HerculesRing, which gives 50 more EXP during battle.</div>
+<div class="check-item"><input type="checkbox" id="c11"><label for="c11">Enter the building behind the main house to find Citan repairing a "Land Crab." He asks Fei to inspect the music box he restored inside; a few scenes follow.</label></div>
+<div class="check-item"><input type="checkbox" id="c12"><label for="c12">After dinner, return to Lahan via the Mountain Path.</label></div>
+<div class="note">Save at the save point at the mountain base before continuing.</div>
+
+<div class="section-header">Lahan Village (Fallen Shadows)</div>
+<div class="check-item"><input type="checkbox" id="c13"><label for="c13">Watch the scenes, then defeat the two Musha Mk100s.</label></div>
+<div class="check-item"><input type="checkbox" id="c14"><label for="c14">Head for the nearby woods (Blackmoon Forest).</label></div>
+<div class="note">Start learning Deathblows now. Raijin (Triangle, X) is Fei's first and easiest; Senretsu (Triangle, Triangle, X) may be close if you have been training. Check learning progress under Status on the main menu.</div>
+
+</div><!-- #content -->
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+(function(){
+  const STORE = 'xenogears-checklist';
+  const boxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const total = boxes.length;
+
+  function save(){
+    const state = {};
+    boxes.forEach(b => { if(b.checked) state[b.id] = 1; });
+    localStorage.setItem(STORE, JSON.stringify(state));
+  }
+
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch(e){ return {}; }
+  }
+
+  function updateProgress(){
+    const done = boxes.filter(b => b.checked).length;
+    document.getElementById('progress-display').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('progress-bar-fill').style.width = (total ? (done/total*100) : 0) + '%';
+  }
+
+  function applyDone(){
+    boxes.forEach(b => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+    });
+  }
+
+  const stored = load();
+  boxes.forEach(b => {
+    if(stored[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      this.closest('.check-item').classList.toggle('done', this.checked);
+      save();
+      updateProgress();
+    });
+    b.closest('.check-item').addEventListener('click', function(e){
+      if(e.target === b || e.target.tagName === 'LABEL') return;
+      b.checked = !b.checked;
+      b.dispatchEvent(new Event('change'));
+    });
+  });
+
+  const achs = Array.from(document.querySelectorAll('.ach'));
+  const achStore = JSON.parse(localStorage.getItem(STORE+'-ach') || '{}');
+  achs.forEach((el, i) => {
+    const key = 'a'+i;
+    if(achStore[key]) el.classList.add('ach-done');
+    el.addEventListener('click', function(){
+      this.classList.toggle('ach-done');
+      achStore[key] = this.classList.contains('ach-done') ? 1 : 0;
+      localStorage.setItem(STORE+'-ach', JSON.stringify(achStore));
+    });
+  });
+
+  applyDone();
+  updateProgress();
+
+  document.getElementById('toggle-done').addEventListener('click', function(){
+    document.body.classList.toggle('hide-done');
+    this.textContent = document.body.classList.contains('hide-done') ? 'Show Completed' : 'Hide Completed';
+  });
+
+  document.getElementById('reset-btn').addEventListener('click', function(){
+    if(!confirm('Reset all checkboxes?')) return;
+    boxes.forEach(b => { b.checked = false; });
+    applyDone();
+    save();
+    updateProgress();
+  });
+
+  document.getElementById('savemenu-btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    const menu = document.getElementById('savemenu');
+    const rect = this.getBoundingClientRect();
+    if(menu.style.display === 'block'){
+      menu.style.display = 'none';
+    } else {
+      menu.style.display = 'block';
+      menu.style.top = (rect.bottom + 4) + 'px';
+      menu.style.left = rect.left + 'px';
+    }
+  });
+
+  document.addEventListener('click', function(){
+    document.getElementById('savemenu').style.display = 'none';
+  });
+
+  document.getElementById('export-btn').addEventListener('click', function(){
+    const data = {
+      [STORE]: localStorage.getItem(STORE) || '{}',
+      [STORE+'-ach']: localStorage.getItem(STORE+'-ach') || '{}'
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = STORE + '-backup.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('import-btn').addEventListener('click', function(){
+    document.getElementById('import-file').click();
+  });
+
+  document.getElementById('import-file').addEventListener('change', function(){
+    const file = this.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try {
+        const data = JSON.parse(e.target.result);
+        if(data[STORE]) localStorage.setItem(STORE, data[STORE]);
+        if(data[STORE+'-ach']) localStorage.setItem(STORE+'-ach', data[STORE+'-ach']);
+        const stored = load();
+        boxes.forEach(b => { b.checked = !!stored[b.id]; });
+        applyDone();
+        updateProgress();
+        alert('Save imported successfully.');
+      } catch(err) {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+    this.value = '';
+  });
+
+  window.addEventListener('scroll', function(){
+    document.getElementById('scroll-top').style.opacity = window.scrollY > 300 ? '0.7' : '0';
+  });
+})();
+</script>
+</body>
+</html>
