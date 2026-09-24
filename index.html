@@ -229,7 +229,7 @@
     <div class="game-header" onclick="toggleGroup('group-bof1')">
       <img class="game-cover" src="breath-of-fire-1/cover.webp" alt="Breath of Fire">
       <div class="game-meta">
-        <div class="game-title">Breath of Fire ()</div>
+        <div class="game-title">Breath of Fire (Work in Progress)</div>
         <div class="game-platform">Super Nintendo · 1993</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -254,7 +254,7 @@
     <div class="game-header" onclick="toggleGroup('group-bof3')">
       <img class="game-cover" src="breath-of-fire-3/cover.webp" alt="Breath of Fire III">
       <div class="game-meta">
-        <div class="game-title">Breath of Fire III ()</div>
+        <div class="game-title">Breath of Fire III (Work in Progress)</div>
         <div class="game-platform">PlayStation 1 · 1997</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -280,7 +280,7 @@
     <div class="game-header" onclick="toggleGroup('group-chrono-cross')">
       <img class="game-cover" src="chrono-cross/cover.webp" alt="Chrono Cross">
       <div class="game-meta">
-        <div class="game-title">Chrono Cross</div>
+        <div class="game-title">Chrono Cross (Work in Progress)</div>
         <div class="game-platform">PlayStation 1 · 2000</div>
       </div>
       <span class="game-toggle">▾</span>
@@ -442,6 +442,31 @@
     </div>
   </div>
 
+  <div class="game-group" id="group-xenogears">
+    <div class="game-header" onclick="toggleGroup('group-xenogears')">
+      <img class="game-cover" src="xenogears/cover.webp" alt="Xenogears">
+      <div class="game-meta">
+        <div class="game-title">Xenogears (Work in Progress)</div>
+        <div class="game-platform">PlayStation 1 · 1998</div>
+      </div>
+      <span class="game-toggle">▾</span>
+    </div>
+    <div class="game-guides">
+
+      <a class="guide-card" href="xenogears/walkthrough-checklist.html" data-status="complete">
+        <div class="guide-card-info">
+          <div class="card-title">Walkthrough Checklist</div>
+          <div class="card-summary" id="sum-xenogears">Step-by-step walkthrough covering the full story across both discs, including every missable unique item and all sidequests.</div>
+          <button class="show-more" id="btn-xenogears" onclick="toggleSummary(event, 'sum-xenogears', this)">Show more</button>
+          <div class="card-progress"><div class="card-progress-fill" id="prog-xenogears" style="width:0%"></div></div>
+          <div class="card-progress-label" id="prog-label-xenogears">Not started</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+
+    </div>
+  </div>
+
   <!-- ADD MORE GAMES HERE IN ALPHABETICAL ORDER -->
 
 </main>
@@ -493,6 +518,7 @@
   loadProgress('koudelka-checklist', 'prog-koudelka', 'prog-label-koudelka');
   loadProgress('robotrek-checklist', 'prog-robotrek', 'prog-label-robotrek');
   loadProgress('xenoblade-chronicles-definitive-edition-missables', 'prog-xenoblade-chronicles-definitive-edition', 'prog-label-xenoblade-chronicles-definitive-edition');
+  loadProgress('xenogears-checklist', 'prog-xenogears', 'prog-label-xenogears');
 </script>
 </body>
 </html>
